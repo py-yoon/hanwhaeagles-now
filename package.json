@@ -1,0 +1,47 @@
+{
+  "name": "hanwha-now",
+  "version": "0.9.5",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "hanwha-now": "./bin/hanwha-now.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "pipeline": "node bin/hanwha-now.js run",
+    "replay": "node src/verifier/run.js",
+    "collect": "node src/collector/run.js",
+    "test:collector": "node --test src/collector/*.test.js",
+    "verify:season": "node src/verifier/season-run.js",
+    "verify:official": "node src/verifier/official-run.js",
+    "scenario": "node src/verifier/scenario-run.js",
+    "monte-carlo": "node src/verifier/monte-carlo-run.js",
+    "elo": "node src/verifier/elo-run.js",
+    "audit:season": "node src/verifier/season-audit-run.js",
+    "audit:coverage": "node src/verifier/coverage-run.js",
+    "collect:checkpoints": "node src/collector/season-import-run.js",
+    "elo:grid": "node src/verifier/elo-grid-run.js",
+    "elo:snapshot": "node src/verifier/elo-snapshot-run.js",
+    "forecast": "node src/verifier/forecast-run.js",
+    "collect:live": "node src/collector/live-run.js",
+    "collect:standings": "node src/collector/daily-standings-run.js",
+    "collect:team-stats": "node src/collector/team-stats-run.js",
+    "refresh": "node scripts/refresh-and-build.js",
+    "elo:live-snapshot": "node src/collector/elo-pipeline-run.js",
+    "source:health": "node src/collector/source-health-run.js",
+    "verify:standings": "node src/collector/standings-reconciliation-run.js",
+    "calibrate": "node src/verifier/calibration-run.js",
+    "ablation": "node src/verifier/ablation-run.js",
+    "player:features": "node src/verifier/player-features-run.js",
+    "predict": "node src/verifier/predict-run.js",
+    "forecast:games": "node src/verifier/game-forecast-run.js",
+    "backtest:integrated": "node src/verifier/integrated-backtest-run.js",
+    "pregame:update": "node src/verifier/pregame-update-run.js",
+    "monte-carlo:integrated": "node src/verifier/integrated-monte-carlo-run.js",
+    "production:gate": "node src/verifier/production-gate-run.js",
+    "coverage:live": "node src/verifier/live-coverage-gate-run.js"
+  },
+  "dependencies": {
+    "playwright": "^1.55.0"
+  }
+}

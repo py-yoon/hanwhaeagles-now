@@ -1,0 +1,2 @@
+import fs from 'node:fs'; import { walkForwardBacktest } from '../engine/elo.js'; import { calibrationReport } from '../model/calibration.js';
+const path=process.argv[2]??'data/fixtures/season-2026-early-april.json'; const d=JSON.parse(fs.readFileSync(path,'utf8')); const r=walkForwardBacktest(d.games,{teams:d.initial_standings.map(x=>x.team)}); console.log(JSON.stringify(calibrationReport(r.rows),null,2));

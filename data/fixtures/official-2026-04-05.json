@@ -1,0 +1,106 @@
+{
+  "date": "2026-04-05",
+  "source": "KBO TeamRankDaily",
+  "official_standings": [
+    {
+      "rank": 1,
+      "team": "SSG",
+      "games": 8,
+      "wins": 7,
+      "losses": 1,
+      "draws": 0,
+      "win_rate": 0.875,
+      "games_behind": 0
+    },
+    {
+      "rank": 2,
+      "team": "NC",
+      "games": 8,
+      "wins": 6,
+      "losses": 2,
+      "draws": 0,
+      "win_rate": 0.75,
+      "games_behind": 1
+    },
+    {
+      "rank": 2,
+      "team": "KT",
+      "games": 8,
+      "wins": 6,
+      "losses": 2,
+      "draws": 0,
+      "win_rate": 0.75,
+      "games_behind": 1
+    },
+    {
+      "rank": 4,
+      "team": "SAMSUNG",
+      "games": 8,
+      "wins": 4,
+      "losses": 3,
+      "draws": 1,
+      "win_rate": 0.571,
+      "games_behind": 2.5
+    },
+    {
+      "rank": 5,
+      "team": "LG",
+      "games": 8,
+      "wins": 4,
+      "losses": 4,
+      "draws": 0,
+      "win_rate": 0.5,
+      "games_behind": 3
+    },
+    {
+      "rank": 5,
+      "team": "HANWHA",
+      "games": 8,
+      "wins": 4,
+      "losses": 4,
+      "draws": 0,
+      "win_rate": 0.5,
+      "games_behind": 3
+    },
+    {
+      "rank": 7,
+      "team": "DOOSAN",
+      "games": 8,
+      "wins": 2,
+      "losses": 5,
+      "draws": 1,
+      "win_rate": 0.286,
+      "games_behind": 4.5
+    },
+    {
+      "rank": 8,
+      "team": "LOTTE",
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "draws": 0,
+      "win_rate": 0.25,
+      "games_behind": 5
+    },
+    {
+      "rank": 8,
+      "team": "KIA",
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "draws": 0,
+      "win_rate": 0.25,
+      "games_behind": 5
+    },
+    {
+      "rank": 8,
+      "team": "KIWOOM",
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "draws": 0,
+      "win_rate": 0.25,
+      "games_behind": 5
+    }
+  ]
+}

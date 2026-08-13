@@ -1,0 +1,10 @@
+{
+  "as_of": "2026-04-05",
+  "source": "FIXTURE — engineering fixture for pipeline-run.test.js only, not real KBO data.",
+  "teams": {
+    "HANWHA": { "batter": { "pa": 300, "avg": 0.280, "ops": 0.780, "hr_rate": 0.03, "bb_rate": 0.09, "so_rate": 0.19 }, "pitcher": { "ip": 70, "era": 3.80, "whip": 1.20, "k9": 8.5, "bb9": 3.0, "hr9": 0.8 } },
+    "DOOSAN":  { "batter": { "pa": 300, "avg": 0.250, "ops": 0.700, "hr_rate": 0.02, "bb_rate": 0.08, "so_rate": 0.20 }, "pitcher": { "ip": 70, "era": 4.50, "whip": 1.40, "k9": 7.0, "bb9": 3.5, "hr9": 1.0 } },
+    "LG":      { "batter": { "pa": 300, "avg": 0.260, "ops": 0.720, "hr_rate": 0.025, "bb_rate": 0.08, "so_rate": 0.20 }, "pitcher": { "ip": 70, "era": 4.20, "whip": 1.35, "k9": 7.5, "bb9": 3.2, "hr9": 0.9 } },
+    "KT":      { "batter": { "pa": 300, "avg": 0.270, "ops": 0.740, "hr_rate": 0.028, "bb_rate": 0.085, "so_rate": 0.19 }, "pitcher": { "ip": 70, "era": 4.00, "whip": 1.30, "k9": 7.8, "bb9": 3.1, "hr9": 0.85 } }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "focusTeam": "HANWHA",
+  "iterations": 100000,
+  "seed": 20260812,
+  "psCutoff": 5,
+  "asOf": "2026-08-12T00:00:00+09:00",
+  "standings": [
+    {"team":"HANWHA","wins":6,"losses":5,"draws":0},
+    {"team":"A","wins":7,"losses":4,"draws":0},
+    {"team":"B","wins":6,"losses":5,"draws":0},
+    {"team":"C","wins":5,"losses":6,"draws":0}
+  ],
+  "snapshots": {
+    "HANWHA":{"elo":0.30,"roster":0.40,"starter":0.25,"bullpen":0.10,"offense":0.30,"defense":0.10,"recent":0.20},
+    "A":{"elo":0.45,"roster":0.35,"starter":0.30,"bullpen":0.15,"offense":0.35,"defense":0.15,"recent":0.15},
+    "B":{"elo":0.10,"roster":0.10,"starter":0.10,"bullpen":0.05,"offense":0.10,"defense":0.05,"recent":0.05},
+    "C":{"elo":-0.10,"roster":-0.05,"starter":-0.05,"bullpen":0,"offense":-0.05,"defense":0,"recent":-0.05}
+  },
+  "games": [
+    {"game_id":"G1","date":"2026-08-13T18:30:00+09:00","status":"SCHEDULED","home":"HANWHA","away":"A"},
+    {"game_id":"G2","date":"2026-08-14T18:30:00+09:00","status":"SCHEDULED","home":"B","away":"HANWHA"},
+    {"game_id":"G3","date":"2026-08-15T18:30:00+09:00","status":"SCHEDULED","home":"HANWHA","away":"C"},
+    {"game_id":"G4","date":"2026-08-16T18:30:00+09:00","status":"SCHEDULED","home":"C","away":"A"}
+  ]
+}

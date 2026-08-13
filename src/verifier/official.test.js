@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {calculateGamesBehind,compareOfficialSnapshot,normalizeGamesBehind} from './official.js';
+test('calculates KBO games-behind',()=>assert.deepEqual(calculateGamesBehind([{team:'A',wins:10,losses:5},{team:'B',wins:8,losses:7},{team:'C',wins:5,losses:10}]).map(x=>x.games_behind),[0,2,5]));
+test('normalizes official zero games-behind',()=>assert.equal(normalizeGamesBehind('-'),0));
+test('compares official snapshot including GB when present',()=>{const c=[{rank:1,team:'A',games:10,wins:8,losses:2,draws:0,win_rate:.8},{rank:2,team:'B',games:10,wins:6,losses:4,draws:0,win_rate:.6}];const o=[{rank:1,team:'A',games:10,wins:8,losses:2,draws:0,win_rate:.8,games_behind:0},{rank:2,team:'B',games:10,wins:6,losses:4,draws:0,win_rate:.6,games_behind:2}];assert.equal(compareOfficialSnapshot(c,o).status,'PASS');});

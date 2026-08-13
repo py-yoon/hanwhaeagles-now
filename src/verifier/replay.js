@@ -1,0 +1,4 @@
+import {applyGames,rankTeams} from '../engine/standings.js';
+export function replay(pre,games){return rankTeams(applyGames(pre,games));}
+export function compareStandings(calc,official){const m=new Map(official.map(t=>[t.team,t])),bad=[];for(const r of calc){const e=m.get(r.team);if(!e){bad.push({team:r.team,reason:'MISSING_OFFICIAL_TEAM'});continue;}for(const f of ['rank','wins','losses','draws'])if(r[f]!==e[f])bad.push({team:r.team,reason:`${f.toUpperCase()}_MISMATCH`,calculated:r[f],official:e[f]});}for(const e of official)if(!calc.some(r=>r.team===e.team))bad.push({team:e.team,reason:'MISSING_CALCULATED_TEAM'});return{status:bad.length?'FAIL':'PASS',teams_checked:official.length,mismatches:bad};}
+export function verifyReplay(f){const calculated=replay(f.pre_standings,f.games);return{date:f.date,...compareStandings(calculated,f.official_standings),calculated};}

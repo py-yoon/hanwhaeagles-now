@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {runStrengthSensitivity} from './sensitivity.js';
+const standings=[{team:'HANWHA',wins:40,losses:40,draws:0},{team:'DOOSAN',wins:39,losses:41,draws:0},{team:'NC',wins:38,losses:42,draws:0},{team:'LOTTE',wins:37,losses:43,draws:0}];const games=[{game_id:'A',home:'HANWHA',away:'NC',status:'SCHEDULED',date:'2026-08-13'}];const snapshots={HANWHA:{elo:1500,starter:0,offense:0},DOOSAN:{elo:1500},NC:{elo:1500},LOTTE:{elo:1500}};
+test('sensitivity ranks shocks',()=>{const r=runStrengthSensitivity({standings,games,snapshots,asOf:'2026-08-12'},{iterations:1000});assert.equal(r.rows.length,10);assert.equal(r.rows.length>0,true);});

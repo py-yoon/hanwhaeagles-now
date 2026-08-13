@@ -1,0 +1,2 @@
+import fs from 'node:fs';import { replay } from './replay.js';import { compareOfficialSnapshot } from './official.js';
+const f=JSON.parse(fs.readFileSync('data/fixtures/season-2026-early-april.json','utf8'));const o=JSON.parse(fs.readFileSync('data/fixtures/official-2026-04-05.json','utf8'));const calculated=replay(f.initial_standings,f.games);console.log(JSON.stringify({date:o.date,games_checked:f.games.length,...compareOfficialSnapshot(calculated,o.official_standings)},null,2));

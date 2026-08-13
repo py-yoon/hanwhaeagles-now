@@ -1,0 +1,1 @@
+import fs from 'node:fs';import {verifyReplay} from './replay.js';const file=process.argv[2]??'data/fixtures/replay-demo.json';const result=verifyReplay(JSON.parse(fs.readFileSync(file,'utf8')));console.log(JSON.stringify(result,null,2));process.exitCode=result.status==='PASS'?0:1;

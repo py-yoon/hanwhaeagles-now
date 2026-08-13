@@ -1,0 +1,15 @@
+{
+  "focus_team": "HANWHA",
+  "standings": [
+    {"team":"A","wins":7,"losses":4,"draws":0},
+    {"team":"B","wins":7,"losses":4,"draws":0},
+    {"team":"HANWHA","wins":6,"losses":5,"draws":0},
+    {"team":"C","wins":6,"losses":5,"draws":0}
+  ],
+  "games": [
+    {"game_id":"G1","home":"HANWHA","away":"A"},
+    {"game_id":"G2","home":"B","away":"C"},
+    {"game_id":"G3","home":"HANWHA","away":"B"},
+    {"game_id":"G4","home":"C","away":"A"}
+  ]
+}

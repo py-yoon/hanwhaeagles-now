@@ -1,0 +1,21 @@
+{
+  "season": 2026,
+  "purpose": "provenance and import coverage manifest",
+  "imported_game_range": {
+    "from": "2026-03-28",
+    "to": "2026-04-05",
+    "games": 40,
+    "status": "fixture-verified"
+  },
+  "official_snapshot_refs": [
+    {
+      "date": "2026-07-26",
+      "source": "KBO TeamRankDaily",
+      "status": "standings-fixture-only"
+    }
+  ],
+  "full_season_import": {
+    "status": "not-yet-imported",
+    "reason": "Do not manufacture missing game rows; collector must import and audit the official scoreboard data before Elo backtesting is extended."
+  }
+}

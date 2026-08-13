@@ -1,0 +1,4 @@
+[
+ {"player_id":"demo-h1","team":"HANWHA","as_of":"2026-04-05","PA":100,"AB":90,"H":27,"TB":42,"BB":8,"HBP":2,"SO":20,"HR":2,"SF":1,"IP":20,"pitcher_H":18,"pitcher_HR":2,"pitcher_BB":6,"pitcher_SO":18,"ER":7,"TBF":80},
+ {"player_id":"demo-h2","team":"LG","as_of":"2026-04-05","PA":100,"AB":90,"H":24,"TB":38,"BB":10,"HBP":1,"SO":18,"HR":1,"SF":1,"IP":20,"pitcher_H":20,"pitcher_HR":2,"pitcher_BB":5,"pitcher_SO":20,"ER":8,"TBF":82}
+]

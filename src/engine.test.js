@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {applyGame,rankTeams} from './engine/standings.js';import {evaluateScenarios} from './engine/scenario.js';
+test('game result',()=>{const t=[{team:'HANWHA',wins:40,losses:40,draws:0},{team:'DOOSAN',wins:39,losses:41,draws:0}],o=applyGame(t,{home:'HANWHA',away:'DOOSAN',home_score:3,away_score:1,status:'FINAL'});assert.equal(o[0].wins,41);assert.equal(o[1].losses,42);});
+test('ranking',()=>{const o=rankTeams([{team:'HANWHA',wins:40,losses:40,draws:0},{team:'DOOSAN',wins:39,losses:41,draws:0}]);assert.equal(o[0].team,'HANWHA');});
+test('scenario count',()=>{const t=[{team:'HANWHA',wins:40,losses:40,draws:0},{team:'DOOSAN',wins:39,losses:41,draws:0},{team:'NC',wins:38,losses:42,draws:0},{team:'LOTTE',wins:37,losses:43,draws:0}],g=[{game_id:'A',home:'HANWHA',away:'NC'},{game_id:'B',home:'DOOSAN',away:'LOTTE'}];assert.equal(evaluateScenarios(t,g).length,9);});

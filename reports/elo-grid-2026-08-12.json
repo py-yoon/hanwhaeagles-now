@@ -1,0 +1,220 @@
+{
+  "results": [
+    {
+      "kFactor": 10,
+      "homeAdvantage": 0,
+      "games": 510,
+      "accuracy": 0.5235294117647059,
+      "log_loss": 0.7999989933317899,
+      "brier_score": 0.5211634760465296
+    },
+    {
+      "kFactor": 10,
+      "homeAdvantage": 25,
+      "games": 510,
+      "accuracy": 0.5333333333333333,
+      "log_loss": 0.8003046371984953,
+      "brier_score": 0.5213257515658625
+    },
+    {
+      "kFactor": 10,
+      "homeAdvantage": 50,
+      "games": 510,
+      "accuracy": 0.5196078431372549,
+      "log_loss": 0.8056780897599489,
+      "brier_score": 0.525890742511532
+    },
+    {
+      "kFactor": 10,
+      "homeAdvantage": 75,
+      "games": 510,
+      "accuracy": 0.5215686274509804,
+      "log_loss": 0.8160342909365481,
+      "brier_score": 0.5346114970596033
+    },
+    {
+      "kFactor": 10,
+      "homeAdvantage": 100,
+      "games": 510,
+      "accuracy": 0.515686274509804,
+      "log_loss": 0.8312375331095279,
+      "brier_score": 0.5470855587845498
+    },
+    {
+      "kFactor": 20,
+      "homeAdvantage": 0,
+      "games": 510,
+      "accuracy": 0.5196078431372549,
+      "log_loss": 0.8045904465818345,
+      "brier_score": 0.5248688627717331
+    },
+    {
+      "kFactor": 20,
+      "homeAdvantage": 25,
+      "games": 510,
+      "accuracy": 0.5254901960784314,
+      "log_loss": 0.8049011859187885,
+      "brier_score": 0.5249511987354847
+    },
+    {
+      "kFactor": 20,
+      "homeAdvantage": 50,
+      "games": 510,
+      "accuracy": 0.5313725490196078,
+      "log_loss": 0.8103407744181188,
+      "brier_score": 0.5292743079417395
+    },
+    {
+      "kFactor": 20,
+      "homeAdvantage": 75,
+      "games": 510,
+      "accuracy": 0.5196078431372549,
+      "log_loss": 0.8208147390908843,
+      "brier_score": 0.5375851757612292
+    },
+    {
+      "kFactor": 20,
+      "homeAdvantage": 100,
+      "games": 510,
+      "accuracy": 0.515686274509804,
+      "log_loss": 0.8361739820319504,
+      "brier_score": 0.5494757740052216
+    },
+    {
+      "kFactor": 30,
+      "homeAdvantage": 0,
+      "games": 510,
+      "accuracy": 0.5235294117647059,
+      "log_loss": 0.8101907737404648,
+      "brier_score": 0.5292441604628924
+    },
+    {
+      "kFactor": 30,
+      "homeAdvantage": 25,
+      "games": 510,
+      "accuracy": 0.5352941176470588,
+      "log_loss": 0.8105442264613089,
+      "brier_score": 0.5292980598475547
+    },
+    {
+      "kFactor": 30,
+      "homeAdvantage": 50,
+      "games": 510,
+      "accuracy": 0.5392156862745098,
+      "log_loss": 0.8160955056474579,
+      "brier_score": 0.533461216235572
+    },
+    {
+      "kFactor": 30,
+      "homeAdvantage": 75,
+      "games": 510,
+      "accuracy": 0.5294117647058824,
+      "log_loss": 0.8267449970143651,
+      "brier_score": 0.5414740417167498
+    },
+    {
+      "kFactor": 30,
+      "homeAdvantage": 100,
+      "games": 510,
+      "accuracy": 0.5196078431372549,
+      "log_loss": 0.8423352789811308,
+      "brier_score": 0.5529226234677227
+    },
+    {
+      "kFactor": 40,
+      "homeAdvantage": 0,
+      "games": 510,
+      "accuracy": 0.5078431372549019,
+      "log_loss": 0.8161502947307521,
+      "brier_score": 0.5337063943424701
+    },
+    {
+      "kFactor": 40,
+      "homeAdvantage": 25,
+      "games": 510,
+      "accuracy": 0.5411764705882353,
+      "log_loss": 0.8165397222319031,
+      "brier_score": 0.5337520205983227
+    },
+    {
+      "kFactor": 40,
+      "homeAdvantage": 50,
+      "games": 510,
+      "accuracy": 0.5372549019607843,
+      "log_loss": 0.8221898693284994,
+      "brier_score": 0.5377826308565189
+    },
+    {
+      "kFactor": 40,
+      "homeAdvantage": 75,
+      "games": 510,
+      "accuracy": 0.5294117647058824,
+      "log_loss": 0.8329981106747089,
+      "brier_score": 0.545533556506455
+    },
+    {
+      "kFactor": 40,
+      "homeAdvantage": 100,
+      "games": 510,
+      "accuracy": 0.5215686274509804,
+      "log_loss": 0.8488014273883647,
+      "brier_score": 0.5565882654798511
+    },
+    {
+      "kFactor": 50,
+      "homeAdvantage": 0,
+      "games": 510,
+      "accuracy": 0.5313725490196078,
+      "log_loss": 0.8223961716527584,
+      "brier_score": 0.538179095637868
+    },
+    {
+      "kFactor": 50,
+      "homeAdvantage": 25,
+      "games": 510,
+      "accuracy": 0.5490196078431373,
+      "log_loss": 0.8228084470562954,
+      "brier_score": 0.5382346645669921
+    },
+    {
+      "kFactor": 50,
+      "homeAdvantage": 50,
+      "games": 510,
+      "accuracy": 0.5450980392156862,
+      "log_loss": 0.8285353661475264,
+      "brier_score": 0.5421506743964642
+    },
+    {
+      "kFactor": 50,
+      "homeAdvantage": 75,
+      "games": 510,
+      "accuracy": 0.5313725490196078,
+      "log_loss": 0.8394724445029157,
+      "brier_score": 0.5496588897671558
+    },
+    {
+      "kFactor": 50,
+      "homeAdvantage": 100,
+      "games": 510,
+      "accuracy": 0.5352941176470588,
+      "log_loss": 0.8554526750319326,
+      "brier_score": 0.5603429782358116
+    }
+  ],
+  "best_by_log_loss": {
+    "kFactor": 10,
+    "homeAdvantage": 0,
+    "games": 510,
+    "accuracy": 0.5235294117647059,
+    "log_loss": 0.7999989933317899,
+    "brier_score": 0.5211634760465296
+  },
+  "best_by_brier": {
+    "kFactor": 10,
+    "homeAdvantage": 0,
+    "games": 510,
+    "accuracy": 0.5235294117647059,
+    "log_loss": 0.7999989933317899,
+    "brier_score": 0.5211634760465296
+  }
+}

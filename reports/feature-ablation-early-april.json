@@ -1,0 +1,143 @@
+
+{
+  "best_by_log_loss": {
+    "name": "elo_recent",
+    "features": [
+      "elo_diff",
+      "recent_elo_trend"
+    ],
+    "weights": {
+      "HOME_WIN": {
+        "bias": 0.10964696054666975,
+        "w": [
+          0.00503986296849781,
+          0.019224661783022786
+        ]
+      },
+      "DRAW": {
+        "bias": -0.31152147529288887,
+        "w": [
+          0.005884858798323717,
+          0.01921391005259836
+        ]
+      },
+      "AWAY_WIN": {
+        "bias": 0.20187451474621912,
+        "w": [
+          -0.010924721766821525,
+          -0.03843857183562115
+        ]
+      }
+    },
+    "metrics": {
+      "games": 40,
+      "accuracy": 0.45,
+      "log_loss": 1.0374657426174285,
+      "brier_score": 0.6284569626510577
+    }
+  },
+  "best_by_brier": {
+    "name": "elo_recent",
+    "features": [
+      "elo_diff",
+      "recent_elo_trend"
+    ],
+    "weights": {
+      "HOME_WIN": {
+        "bias": 0.10964696054666975,
+        "w": [
+          0.00503986296849781,
+          0.019224661783022786
+        ]
+      },
+      "DRAW": {
+        "bias": -0.31152147529288887,
+        "w": [
+          0.005884858798323717,
+          0.01921391005259836
+        ]
+      },
+      "AWAY_WIN": {
+        "bias": 0.20187451474621912,
+        "w": [
+          -0.010924721766821525,
+          -0.03843857183562115
+        ]
+      }
+    },
+    "metrics": {
+      "games": 40,
+      "accuracy": 0.45,
+      "log_loss": 1.0374657426174285,
+      "brier_score": 0.6284569626510577
+    }
+  },
+  "results": [
+    {
+      "name": "elo",
+      "features": [
+        "elo_diff"
+      ],
+      "metrics": {
+        "games": 40,
+        "accuracy": 0.45,
+        "log_loss": 1.0377971441306673,
+        "brier_score": 0.6286880083634425
+      }
+    },
+    {
+      "name": "elo_recent",
+      "features": [
+        "elo_diff",
+        "recent_elo_trend"
+      ],
+      "metrics": {
+        "games": 40,
+        "accuracy": 0.45,
+        "log_loss": 1.0374657426174285,
+        "brier_score": 0.6284569626510577
+      }
+    },
+    {
+      "name": "elo_record",
+      "features": [
+        "elo_diff",
+        "record_diff"
+      ],
+      "metrics": {
+        "games": 40,
+        "accuracy": 0.45,
+        "log_loss": 1.037757541338358,
+        "brier_score": 0.6286633856041349
+      }
+    },
+    {
+      "name": "elo_homeform",
+      "features": [
+        "elo_diff",
+        "home_form"
+      ],
+      "metrics": {
+        "games": 40,
+        "accuracy": 0.475,
+        "log_loss": 1.0384351662712574,
+        "brier_score": 0.6290606104755201
+      }
+    },
+    {
+      "name": "full",
+      "features": [
+        "elo_diff",
+        "recent_elo_trend",
+        "record_diff",
+        "home_form"
+      ],
+      "metrics": {
+        "games": 40,
+        "accuracy": 0.475,
+        "log_loss": 1.0382050806168515,
+        "brier_score": 0.6288978322600679
+      }
+    }
+  ]
+}

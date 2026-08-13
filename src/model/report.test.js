@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {buildHanhwaNowReport,validateReport} from './report.js';
+test('report is stable schema',()=>{const r=buildHanhwaNowReport({simulation:{as_of:'2026-08-12',focus_team:'HANWHA',iterations:1000,future_games:1,playoff_probability:.6,monte_carlo:{rank_distribution:{'5':{probability:.6},'6':{probability:.4}}}} ,generatedAt:'2026-08-12T00:00:00Z'});assert.equal(validateReport(r).status,'PASS');assert.equal(r.summary.expected_rank,5.4);});

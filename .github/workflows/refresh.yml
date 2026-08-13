@@ -1,0 +1,49 @@
+name: Refresh production forecast
+
+on:
+  schedule:
+    # 14:00 UTC = 23:00 KST — after the day's KBO games have finished.
+    - cron: '0 14 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-production
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run test suite
+        run: npm test
+
+      - name: Refresh data and rebuild landing page
+        run: npm run refresh
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "hanwha-now-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/index.html docs/.nojekyll data/live/latest-report.json
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+          else
+            git commit -m "Auto-refresh forecast $(date -u +%Y-%m-%d)"
+            git push
+          fi

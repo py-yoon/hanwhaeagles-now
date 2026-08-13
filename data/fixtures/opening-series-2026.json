@@ -1,0 +1,27 @@
+{
+  "season": 2026,
+  "initial_standings": [
+    {"team":"KT","wins":0,"losses":0,"draws":0},{"team":"LG","wins":0,"losses":0,"draws":0},
+    {"team":"HANWHA","wins":0,"losses":0,"draws":0},{"team":"KIWOOM","wins":0,"losses":0,"draws":0},
+    {"team":"SSG","wins":0,"losses":0,"draws":0},{"team":"KIA","wins":0,"losses":0,"draws":0},
+    {"team":"LOTTE","wins":0,"losses":0,"draws":0},{"team":"SAMSUNG","wins":0,"losses":0,"draws":0},
+    {"team":"NC","wins":0,"losses":0,"draws":0},{"team":"DOOSAN","wins":0,"losses":0,"draws":0}
+  ],
+  "games": [
+    {"game_id":"20260328-KT-LG-1","date":"2026-03-28","away":"KT","home":"LG","away_score":11,"home_score":7,"status":"FINAL"},
+    {"game_id":"20260328-KIWOOM-HANWHA-1","date":"2026-03-28","away":"KIWOOM","home":"HANWHA","away_score":9,"home_score":10,"status":"FINAL"},
+    {"game_id":"20260328-KIA-SSG-1","date":"2026-03-28","away":"KIA","home":"SSG","away_score":6,"home_score":7,"status":"FINAL"},
+    {"game_id":"20260328-LOTTE-SAMSUNG-1","date":"2026-03-28","away":"LOTTE","home":"SAMSUNG","away_score":6,"home_score":3,"status":"FINAL"},
+    {"game_id":"20260328-DOOSAN-NC-1","date":"2026-03-28","away":"DOOSAN","home":"NC","away_score":0,"home_score":6,"status":"FINAL"},
+    {"game_id":"20260329-KT-LG-1","date":"2026-03-29","away":"KT","home":"LG","away_score":6,"home_score":5,"status":"FINAL"},
+    {"game_id":"20260329-KIWOOM-HANWHA-1","date":"2026-03-29","away":"KIWOOM","home":"HANWHA","away_score":4,"home_score":10,"status":"FINAL"},
+    {"game_id":"20260329-KIA-SSG-1","date":"2026-03-29","away":"KIA","home":"SSG","away_score":6,"home_score":11,"status":"FINAL"},
+    {"game_id":"20260329-LOTTE-SAMSUNG-1","date":"2026-03-29","away":"LOTTE","home":"SAMSUNG","away_score":6,"home_score":2,"status":"FINAL"},
+    {"game_id":"20260329-DOOSAN-NC-1","date":"2026-03-29","away":"DOOSAN","home":"NC","away_score":9,"home_score":6,"status":"FINAL"}
+  ],
+  "official_standings": [
+    {"rank":1,"team":"KT","games":2,"wins":2,"losses":0,"draws":0},{"rank":1,"team":"SSG","games":2,"wins":2,"losses":0,"draws":0},{"rank":1,"team":"LOTTE","games":2,"wins":2,"losses":0,"draws":0},{"rank":1,"team":"HANWHA","games":2,"wins":2,"losses":0,"draws":0},
+    {"rank":5,"team":"NC","games":2,"wins":1,"losses":1,"draws":0},{"rank":5,"team":"DOOSAN","games":2,"wins":1,"losses":1,"draws":0},
+    {"rank":7,"team":"KIA","games":2,"wins":0,"losses":2,"draws":0},{"rank":7,"team":"LG","games":2,"wins":0,"losses":2,"draws":0},{"rank":7,"team":"SAMSUNG","games":2,"wins":0,"losses":2,"draws":0},{"rank":7,"team":"KIWOOM","games":2,"wins":0,"losses":2,"draws":0}
+  ]
+}

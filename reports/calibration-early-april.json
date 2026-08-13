@@ -1,0 +1,115 @@
+
+{
+  "n": 40,
+  "ece": 0.05900304173186576,
+  "mce": 0.6126731211990551,
+  "bins": [
+    {
+      "bin": 0,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    },
+    {
+      "bin": 1,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    },
+    {
+      "bin": 2,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    },
+    {
+      "bin": 3,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    },
+    {
+      "bin": 4,
+      "count": 8,
+      "confidence_sum": 3.8837392543951164,
+      "accuracy_sum": 4,
+      "confidence": 0.48546740679938954,
+      "accuracy": 0.5,
+      "gap": 0.014532593200610455
+    },
+    {
+      "bin": 5,
+      "count": 31,
+      "confidence_sum": 16.63118780247069,
+      "accuracy_sum": 15,
+      "confidence": 0.5364899291119578,
+      "accuracy": 0.4838709677419355,
+      "gap": 0.05261896137002231
+    },
+    {
+      "bin": 6,
+      "count": 1,
+      "confidence_sum": 0.6126731211990551,
+      "accuracy_sum": 0,
+      "confidence": 0.6126731211990551,
+      "accuracy": 0,
+      "gap": 0.6126731211990551
+    },
+    {
+      "bin": 7,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    },
+    {
+      "bin": 8,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    },
+    {
+      "bin": 9,
+      "count": 0,
+      "confidence_sum": 0,
+      "accuracy_sum": 0,
+      "confidence": 0,
+      "accuracy": 0,
+      "gap": 0
+    }
+  ],
+  "classwise": {
+    "HOME_WIN": {
+      "brier": 0.25112079579113444,
+      "ece": 0,
+      "n": 40
+    },
+    "DRAW": {
+      "brier": 0.02560000000000003,
+      "ece": 0,
+      "n": 40
+    },
+    "AWAY_WIN": {
+      "brier": 0.26040151513348314,
+      "ece": 0,
+      "n": 40
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "source": "data/raw/production-2026.json",
+  "baseline": {
+    "elo": 1,
+    "roster": 0.55,
+    "starter": 0.75,
+    "bullpen": 0.35,
+    "offense": 0.55,
+    "defense": 0.25,
+    "recent": 0.3,
+    "home": 0.15,
+    "drawBase": 0.23,
+    "drawBalance": 0.1
+  },
+  "baseline_train": {
+    "games": 357,
+    "accuracy": 0.5294117647058824,
+    "log_loss": 1.0735724785772771,
+    "brier_score": 0.6485034658881026
+  },
+  "baseline_validation": {
+    "games": 153,
+    "accuracy": 0.5490196078431373,
+    "log_loss": 1.078073170521638,
+    "brier_score": 0.651087212994392
+  },
+  "optimized": {
+    "split": {
+      "total": 510,
+      "cut": 357,
+      "train_games": 357,
+      "validation_games": 153
+    },
+    "weights": {
+      "elo": 0.75,
+      "roster": 0.55,
+      "starter": 0.75,
+      "bullpen": 0.35,
+      "offense": 0.55,
+      "defense": 0.25,
+      "recent": 0.6000000000000001,
+      "home": 0.15,
+      "drawBase": 0.23,
+      "drawBalance": 0.1
+    },
+    "train_metrics": {
+      "games": 357,
+      "accuracy": 0.5490196078431373,
+      "log_loss": 1.073151335299805,
+      "brier_score": 0.6478996044825042
+    },
+    "validation_metrics": {
+      "games": 153,
+      "accuracy": 0.5163398692810458,
+      "log_loss": 1.0796252763944867,
+      "brier_score": 0.652093443172837
+    },
+    "history": [
+      {
+        "field": "recent",
+        "step": 0.25,
+        "value": 0.55,
+        "train_log_loss": 1.0732425403105859
+      },
+      {
+        "field": "elo",
+        "step": 0.25,
+        "value": 0.75,
+        "train_log_loss": 1.0731637623576258
+      },
+      {
+        "field": "elo",
+        "step": 0.05,
+        "value": 0.8,
+        "train_log_loss": 1.0731587639861193
+      },
+      {
+        "field": "recent",
+        "step": 0.05,
+        "value": 0.6000000000000001,
+        "train_log_loss": 1.0731560678271959
+      },
+      {
+        "field": "elo",
+        "step": 0.05,
+        "value": 0.75,
+        "train_log_loss": 1.073151335299805
+      }
+    ]
+  }
+}

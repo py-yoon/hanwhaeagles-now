@@ -1,0 +1,2 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { calibrationReport } from './calibration.js';
+test('calibration report computes ECE/MCE',()=>{const r=calibrationReport([{actual:'HOME_WIN',probabilities:{HOME_WIN:.8,DRAW:.1,AWAY_WIN:.1}},{actual:'AWAY_WIN',probabilities:{HOME_WIN:.2,DRAW:.1,AWAY_WIN:.7}}]);assert.equal(r.n,2);assert.ok(r.ece>=0);assert.ok(r.mce>=0);});

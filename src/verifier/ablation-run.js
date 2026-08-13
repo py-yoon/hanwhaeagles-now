@@ -1,0 +1,2 @@
+import fs from 'node:fs'; import { runFeatureAblation } from '../model/feature-ablation.js';
+const path=process.argv[2]??'data/fixtures/season-2026-early-april.json'; const d=JSON.parse(fs.readFileSync(path,'utf8')); const r=runFeatureAblation(d.games,{teams:d.initial_standings.map(x=>x.team)}); console.log(JSON.stringify({best_by_log_loss:r.best_by_log_loss,best_by_brier:r.best_by_brier,results:r.results.map(x=>({name:x.name,features:x.features,metrics:x.metrics}))},null,2));

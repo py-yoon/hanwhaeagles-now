@@ -1,0 +1,519 @@
+{
+  "season": 2026,
+  "range": [
+    "2026-03-28",
+    "2026-04-05"
+  ],
+  "initial_standings": [
+    {
+      "team": "KT",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "LG",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "HANWHA",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "KIWOOM",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "SSG",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "KIA",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "LOTTE",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "SAMSUNG",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "NC",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    {
+      "team": "DOOSAN",
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    }
+  ],
+  "games": [
+    {
+      "game_id": "20260328-KT-LG-1",
+      "date": "2026-03-28",
+      "away": "KT",
+      "home": "LG",
+      "away_score": 11,
+      "home_score": 7,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260328-KIWOOM-HANWHA-1",
+      "date": "2026-03-28",
+      "away": "KIWOOM",
+      "home": "HANWHA",
+      "away_score": 9,
+      "home_score": 10,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260328-KIA-SSG-1",
+      "date": "2026-03-28",
+      "away": "KIA",
+      "home": "SSG",
+      "away_score": 6,
+      "home_score": 7,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260328-LOTTE-SAMSUNG-1",
+      "date": "2026-03-28",
+      "away": "LOTTE",
+      "home": "SAMSUNG",
+      "away_score": 6,
+      "home_score": 3,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260328-DOOSAN-NC-1",
+      "date": "2026-03-28",
+      "away": "DOOSAN",
+      "home": "NC",
+      "away_score": 0,
+      "home_score": 6,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260329-KT-LG-1",
+      "date": "2026-03-29",
+      "away": "KT",
+      "home": "LG",
+      "away_score": 6,
+      "home_score": 5,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260329-KIWOOM-HANWHA-1",
+      "date": "2026-03-29",
+      "away": "KIWOOM",
+      "home": "HANWHA",
+      "away_score": 4,
+      "home_score": 10,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260329-KIA-SSG-1",
+      "date": "2026-03-29",
+      "away": "KIA",
+      "home": "SSG",
+      "away_score": 6,
+      "home_score": 11,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260329-LOTTE-SAMSUNG-1",
+      "date": "2026-03-29",
+      "away": "LOTTE",
+      "home": "SAMSUNG",
+      "away_score": 6,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260329-DOOSAN-NC-1",
+      "date": "2026-03-29",
+      "away": "DOOSAN",
+      "home": "NC",
+      "away_score": 9,
+      "home_score": 6,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260331-KIA-LG-1",
+      "date": "2026-03-31",
+      "away": "KIA",
+      "home": "LG",
+      "away_score": 7,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260331-DOOSAN-SAMSUNG-1",
+      "date": "2026-03-31",
+      "away": "DOOSAN",
+      "home": "SAMSUNG",
+      "away_score": 5,
+      "home_score": 5,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260331-KIWOOM-SSG-1",
+      "date": "2026-03-31",
+      "away": "KIWOOM",
+      "home": "SSG",
+      "away_score": 3,
+      "home_score": 9,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260331-LOTTE-NC-1",
+      "date": "2026-03-31",
+      "away": "LOTTE",
+      "home": "NC",
+      "away_score": 2,
+      "home_score": 9,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260331-KT-HANWHA-1",
+      "date": "2026-03-31",
+      "away": "KT",
+      "home": "HANWHA",
+      "away_score": 9,
+      "home_score": 4,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260401-KIA-LG-1",
+      "date": "2026-04-01",
+      "away": "KIA",
+      "home": "LG",
+      "away_score": 2,
+      "home_score": 7,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260401-DOOSAN-SAMSUNG-1",
+      "date": "2026-04-01",
+      "away": "DOOSAN",
+      "home": "SAMSUNG",
+      "away_score": 3,
+      "home_score": 13,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260401-KIWOOM-SSG-1",
+      "date": "2026-04-01",
+      "away": "KIWOOM",
+      "home": "SSG",
+      "away_score": 11,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260401-LOTTE-NC-1",
+      "date": "2026-04-01",
+      "away": "LOTTE",
+      "home": "NC",
+      "away_score": 4,
+      "home_score": 5,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260401-KT-HANWHA-1",
+      "date": "2026-04-01",
+      "away": "KT",
+      "home": "HANWHA",
+      "away_score": 14,
+      "home_score": 11,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260402-KIA-LG-1",
+      "date": "2026-04-02",
+      "away": "KIA",
+      "home": "LG",
+      "away_score": 1,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260402-DOOSAN-SAMSUNG-1",
+      "date": "2026-04-02",
+      "away": "DOOSAN",
+      "home": "SAMSUNG",
+      "away_score": 2,
+      "home_score": 5,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260402-KIWOOM-SSG-1",
+      "date": "2026-04-02",
+      "away": "KIWOOM",
+      "home": "SSG",
+      "away_score": 1,
+      "home_score": 11,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260402-LOTTE-NC-1",
+      "date": "2026-04-02",
+      "away": "LOTTE",
+      "home": "NC",
+      "away_score": 4,
+      "home_score": 8,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260402-KT-HANWHA-1",
+      "date": "2026-04-02",
+      "away": "KT",
+      "home": "HANWHA",
+      "away_score": 13,
+      "home_score": 8,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260403-HANWHA-DOOSAN-1",
+      "date": "2026-04-03",
+      "away": "HANWHA",
+      "home": "DOOSAN",
+      "away_score": 11,
+      "home_score": 6,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260403-SSG-LOTTE-1",
+      "date": "2026-04-03",
+      "away": "SSG",
+      "home": "LOTTE",
+      "away_score": 17,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260403-NC-KIA-1",
+      "date": "2026-04-03",
+      "away": "NC",
+      "home": "KIA",
+      "away_score": 5,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260403-SAMSUNG-KT-1",
+      "date": "2026-04-03",
+      "away": "SAMSUNG",
+      "home": "KT",
+      "away_score": 2,
+      "home_score": 1,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260403-LG-KIWOOM-1",
+      "date": "2026-04-03",
+      "away": "LG",
+      "home": "KIWOOM",
+      "away_score": 2,
+      "home_score": 5,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260404-HANWHA-DOOSAN-1",
+      "date": "2026-04-04",
+      "away": "HANWHA",
+      "home": "DOOSAN",
+      "away_score": 9,
+      "home_score": 3,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260404-SSG-LOTTE-1",
+      "date": "2026-04-04",
+      "away": "SSG",
+      "home": "LOTTE",
+      "away_score": 7,
+      "home_score": 6,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260404-NC-KIA-1",
+      "date": "2026-04-04",
+      "away": "NC",
+      "home": "KIA",
+      "away_score": 6,
+      "home_score": 0,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260404-SAMSUNG-KT-1",
+      "date": "2026-04-04",
+      "away": "SAMSUNG",
+      "home": "KT",
+      "away_score": 8,
+      "home_score": 6,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260404-LG-KIWOOM-1",
+      "date": "2026-04-04",
+      "away": "LG",
+      "home": "KIWOOM",
+      "away_score": 6,
+      "home_score": 4,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260405-HANWHA-DOOSAN-1",
+      "date": "2026-04-05",
+      "away": "HANWHA",
+      "home": "DOOSAN",
+      "away_score": 0,
+      "home_score": 8,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260405-SSG-LOTTE-1",
+      "date": "2026-04-05",
+      "away": "SSG",
+      "home": "LOTTE",
+      "away_score": 4,
+      "home_score": 3,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260405-NC-KIA-1",
+      "date": "2026-04-05",
+      "away": "NC",
+      "home": "KIA",
+      "away_score": 0,
+      "home_score": 3,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260405-SAMSUNG-KT-1",
+      "date": "2026-04-05",
+      "away": "SAMSUNG",
+      "home": "KT",
+      "away_score": 0,
+      "home_score": 2,
+      "status": "FINAL"
+    },
+    {
+      "game_id": "20260405-LG-KIWOOM-1",
+      "date": "2026-04-05",
+      "away": "LG",
+      "home": "KIWOOM",
+      "away_score": 6,
+      "home_score": 5,
+      "status": "FINAL"
+    }
+  ],
+  "snapshots": [
+    {
+      "date": "2026-04-05",
+      "official_standings": [
+        {
+          "rank": 1,
+          "team": "SSG",
+          "games": 8,
+          "wins": 7,
+          "losses": 1,
+          "draws": 0
+        },
+        {
+          "rank": 2,
+          "team": "NC",
+          "games": 8,
+          "wins": 6,
+          "losses": 2,
+          "draws": 0
+        },
+        {
+          "rank": 2,
+          "team": "KT",
+          "games": 8,
+          "wins": 6,
+          "losses": 2,
+          "draws": 0
+        },
+        {
+          "rank": 4,
+          "team": "SAMSUNG",
+          "games": 8,
+          "wins": 4,
+          "losses": 3,
+          "draws": 1
+        },
+        {
+          "rank": 5,
+          "team": "LG",
+          "games": 8,
+          "wins": 4,
+          "losses": 4,
+          "draws": 0
+        },
+        {
+          "rank": 5,
+          "team": "HANWHA",
+          "games": 8,
+          "wins": 4,
+          "losses": 4,
+          "draws": 0
+        },
+        {
+          "rank": 7,
+          "team": "DOOSAN",
+          "games": 8,
+          "wins": 2,
+          "losses": 5,
+          "draws": 1
+        },
+        {
+          "rank": 8,
+          "team": "LOTTE",
+          "games": 8,
+          "wins": 2,
+          "losses": 6,
+          "draws": 0
+        },
+        {
+          "rank": 8,
+          "team": "KIA",
+          "games": 8,
+          "wins": 2,
+          "losses": 6,
+          "draws": 0
+        },
+        {
+          "rank": 8,
+          "team": "KIWOOM",
+          "games": 8,
+          "wins": 2,
+          "losses": 6,
+          "draws": 0
+        }
+      ],
+      "source": "Yonhap 2026-04-05 KBO league standings"
+    }
+  ]
+}

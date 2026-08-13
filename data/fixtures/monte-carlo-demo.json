@@ -1,0 +1,17 @@
+{
+  "focus_team": "HANWHA",
+  "iterations": 10000,
+  "seed": 20260811,
+  "standings": [
+    {"team":"HANWHA","wins":6,"losses":5,"draws":0},
+    {"team":"A","wins":7,"losses":4,"draws":0},
+    {"team":"B","wins":6,"losses":5,"draws":0},
+    {"team":"C","wins":5,"losses":6,"draws":0}
+  ],
+  "games": [
+    {"game_id":"G1","home":"HANWHA","away":"A","probabilities":{"HOME_WIN":0.52,"AWAY_WIN":0.45,"DRAW":0.03}},
+    {"game_id":"G2","home":"B","away":"HANWHA","probabilities":{"HOME_WIN":0.48,"AWAY_WIN":0.49,"DRAW":0.03}},
+    {"game_id":"G3","home":"HANWHA","away":"C","probabilities":{"HOME_WIN":0.58,"AWAY_WIN":0.39,"DRAW":0.03}},
+    {"game_id":"G4","home":"C","away":"A","probabilities":{"HOME_WIN":0.44,"AWAY_WIN":0.53,"DRAW":0.03}}
+  ]
+}

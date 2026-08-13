@@ -1,0 +1,5 @@
+export function cloneTeams(teams){return teams.map(t=>({...t}));}
+export function winRate(t){const d=t.wins+t.losses;return d?t.wins/d:0;}
+export function rankTeams(teams){const sorted=cloneTeams(teams).sort((a,b)=>{const d=winRate(b)-winRate(a);return Math.abs(d)>1e-12?d:b.wins-a.wins;});let prevRate=null;let prevRank=0;return sorted.map((t,i)=>{const rate=winRate(t);const rank=prevRate!==null&&Math.abs(rate-prevRate)<1e-12?prevRank:i+1;prevRate=rate;prevRank=rank;return {...t,games:t.wins+t.losses+t.draws,rank,win_rate:Number(rate.toFixed(3))};});}
+export function applyGame(teams,g){if(g.status&&g.status!=="FINAL")return cloneTeams(teams);const n=cloneTeams(teams),h=n.find(t=>t.team===g.home),a=n.find(t=>t.team===g.away);if(!h||!a)throw new Error(`Unknown team: ${g.home}/${g.away}`);if(g.home_score>g.away_score){h.wins++;a.losses++;}else if(g.home_score<g.away_score){a.wins++;h.losses++;}else{h.draws++;a.draws++;}return n;}
+export function applyGames(teams,games){return games.reduce(applyGame,teams);}
