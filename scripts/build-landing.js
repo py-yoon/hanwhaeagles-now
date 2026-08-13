@@ -71,6 +71,113 @@ function buildGamesHtml(importantGames, focusTeam) {
   }).join('\n      ');
 }
 
+function pct2(x) {
+  return (x * 100).toFixed(2);
+}
+
+/** '2026-08-13' -> '8/13' */
+function korDateShort(dateStr) {
+  const m = String(dateStr).match(/^\d{4}-0?(\d{1,2})-0?(\d{1,2})$/);
+  return m ? `${Number(m[1])}/${Number(m[2])}` : dateStr;
+}
+
+function resultLabel(decided) {
+  const wins = decided.filter((d) => d.result === 'WIN').length;
+  const losses = decided.length - wins;
+  if (losses === 0) return `${decided.length}연승`;
+  if (wins === 0) return `${decided.length}연패`;
+  return `${wins}승${losses}패`;
+}
+
+function treeBranchTagHtml(node) {
+  if (!node.game) return '';
+  const homeLabel = node.game.home_away === 'HOME' ? '홈' : '원정';
+  const wp = node.game.focus_win_probability != null ? pct2(node.game.focus_win_probability) : '?';
+  return `<span class="t-branch">${korDateShort(node.game.date)} ${node.game.opponent}(${homeLabel})<br><b>승리확률 ${wp}%</b></span>`;
+}
+
+function treeNodeCardHtml(node, maxPct) {
+  const pctStr = pct2(node.playoff_probability);
+  if (node.depth === 0) {
+    return `<div class="t-node root">
+            <span class="t-tag now">현재</span>
+            <div class="pp mono">${pctStr}%</div>
+            <div class="pp-label">가을야구 확률</div>
+          </div>`;
+  }
+  const last = node.decided[node.decided.length - 1];
+  const width = Math.max(1, Math.round((node.playoff_probability / maxPct) * 100));
+  const tagCls = last.result === 'WIN' ? 'win' : 'loss';
+  const tagLabel = last.result === 'WIN' ? '승' : '패';
+  const oppLine = node.game
+    ? `vs ${last.opponent} ${last.home_away === 'HOME' ? '홈' : '원정'}`
+    : resultLabel(node.decided);
+  return `<div class="t-node">
+            <span class="t-tag ${tagCls}">${korDateShort(last.date)} ${tagLabel}</span>
+            <div class="pp mono">${pctStr}%</div>
+            <div class="pp-label">가을야구</div>
+            <div class="t-bar"><i style="width:${width}%"></i></div>
+            <div class="t-opp">${oppLine}</div>
+          </div>`;
+}
+
+function treeNodeLiHtml(node, maxPct) {
+  const card = treeNodeCardHtml(node, maxPct);
+  if (!node.game) return `<li>\n          ${card}\n        </li>`;
+  const tag = treeBranchTagHtml(node);
+  return `<li>
+          ${card}
+          ${tag}
+          <ul>
+            ${treeNodeLiHtml(node.win, maxPct)}
+            ${treeNodeLiHtml(node.lose, maxPct)}
+          </ul>
+        </li>`;
+}
+
+function flattenTree(node, out = []) {
+  out.push(node);
+  if (node.win) flattenTree(node.win, out);
+  if (node.lose) flattenTree(node.lose, out);
+  return out;
+}
+
+/** Renders the win/lose branch tree (see src/model/game-tree.js) plus its
+ * head-to-head cards. Returns the three template fragments as an object rather
+ * than throwing on a missing tree — fewer than 3 upcoming games (very late
+ * season) degrades to an explanatory empty state instead of failing the build. */
+function buildTreeHtml(gameTree) {
+  if (!gameTree) {
+    return { descHtml: '분석할 예정 경기가 3경기 미만이라 갈림길 트리를 계산할 수 없다.', treeHtml: '', h2hHtml: '' };
+  }
+  const allNodes = flattenTree(gameTree.tree);
+  const maxPct = Math.max(...allNodes.map((n) => n.playoff_probability)) || 1;
+  const treeHtml = `<ul class="tree">\n      ${treeNodeLiHtml(gameTree.tree, maxPct)}\n    </ul>`;
+
+  const leaves = allNodes.filter((n) => !n.game);
+  const best = leaves.reduce((a, b) => (b.playoff_probability > a.playoff_probability ? b : a));
+  const worst = leaves.reduce((a, b) => (b.playoff_probability < a.playoff_probability ? b : a));
+  const matchupList = gameTree.target_games.map((g) => `${korDateShort(g.date)} ${g.opponent}`).join(', ');
+  const descHtml = `위 세 경기(${matchupList})를 승/패로 끝까지 갈라서 재시뮬레이션했다. <b style="color:#f4ede0">${resultLabel(best.decided)}하면 ${pct2(best.playoff_probability)}%</b>까지 오르고, <b style="color:#f4ede0">${resultLabel(worst.decided)}하면 ${pct2(worst.playoff_probability)}%</b>로 사실상 끝난다. 확정된 결과가 아니라 각 갈림길 시점의 조건부 시뮬레이션 수치다.`;
+
+  const h2hHtml = Object.entries(gameTree.head_to_head ?? {}).map(([opp, rec]) => {
+    const winPct = rec.games ? Math.round((rec.wins / rec.games) * 100) : 0;
+    const lossPct = rec.games ? Math.round((rec.losses / rec.games) * 100) : 0;
+    const drawPct = Math.max(0, 100 - winPct - lossPct);
+    const recStr = rec.draws ? `${rec.wins}승 ${rec.losses}패 ${rec.draws}무` : `${rec.wins}승 ${rec.losses}패`;
+    const pctStr = rec.win_rate != null ? rec.win_rate.toFixed(3).replace(/^0/, '') : '-';
+    const oppDates = gameTree.target_games.filter((g) => g.opponent === opp).map((g) => korDateShort(g.date)).join(', ');
+    return `<div class="h2h-card">
+        <div class="h2h-name">${opp} (${oppDates})</div>
+        <div class="h2h-rec mono">${recStr}<span class="pct">${pctStr}</span></div>
+        <div class="h2h-note">2026시즌 ${rec.games}경기</div>
+        <div class="h2h-bar"><span class="w" style="width:${winPct}%"></span><span class="d" style="width:${drawPct}%"></span><span class="l" style="width:${lossPct}%"></span></div>
+      </div>`;
+  }).join('\n      ');
+
+  return { descHtml, treeHtml, h2hHtml };
+}
+
 function buildStandingsHtml(allRows, focusTeam) {
   const leader = allRows.find((r) => r.rank === 1) ?? allRows[0];
   const sorted = [...allRows].sort((a, b) => a.rank - b.rank);
@@ -97,6 +204,8 @@ export function buildLandingHtml({ template, report, focusRow, refRow, allRows, 
     ? focusRow.wins / (focusRow.wins + focusRow.losses)
     : 0;
 
+  const tree = buildTreeHtml(report.game_tree);
+
   const values = {
     AS_OF: report.as_of,
     RANK: String(focusRow.rank),
@@ -115,6 +224,9 @@ export function buildLandingHtml({ template, report, focusRow, refRow, allRows, 
     LADDER_HTML: buildLadderHtml(report.rank_distribution, focusRow.rank),
     GAMES_HTML: buildGamesHtml(report.important_games ?? [], focusRow.team),
     STANDINGS_HTML: buildStandingsHtml(allRows ?? [focusRow, refRow], focusRow.team),
+    TREE_DESC: tree.descHtml,
+    TREE_HTML: tree.treeHtml,
+    H2H_HTML: tree.h2hHtml,
   };
 
   let html = template;

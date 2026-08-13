@@ -11,6 +11,7 @@ import { aggregateTeamPlayerStats, teamFeatureVector } from '../model/player-fea
 import { runIntegratedMonteCarlo } from '../model/integrated-monte-carlo.js';
 import { runProductionPipeline } from '../model/pipeline.js';
 import { estimateGameImportance } from '../model/game-importance.js';
+import { estimateGameTree, headToHeadRecord } from '../model/game-tree.js';
 
 async function readJson(file) {
   return JSON.parse(await fs.readFile(file, 'utf8'));
@@ -216,6 +217,25 @@ export async function runProductionCliPipeline(options = {}) {
   ).sort((a, b) => b.impact_range - a.impact_range);
 
   report.important_games = importantGames;
+
+  // --- Win/lose branch tree for the 3 highest-impact upcoming games, chained
+  // chronologically (game_id is prefixed YYYYMMDD, so a plain string sort is a
+  // date sort). Powers the landing page's "가을야구, 어디까지 갈 수 있나" section.
+  // Recomputed fresh on every run, so this tracks whichever 3 games are most
+  // impactful today rather than a fixed date list. ---
+  const treeGameIds = importantGames.slice(0, 3).map((g) => g.game_id).sort();
+  const gameTree = treeGameIds.length === 3
+    ? estimateGameTree({
+        base: { ...pipelineInput, forecasts: simForImportance.forecasts, playoff_probability: simForImportance.playoff_probability },
+        gameIds: treeGameIds,
+        iterations: Math.min(iterations, 30000),
+        seed,
+      })
+    : null;
+  if (gameTree) {
+    gameTree.head_to_head = headToHeadRecord(games, focusTeam, [...new Set(gameTree.target_games.map((g) => g.opponent))]);
+  }
+  report.game_tree = gameTree;
   report.provenance = {
     ...report.provenance,
     simulation_seed: seed,
