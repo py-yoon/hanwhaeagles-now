@@ -26,7 +26,10 @@ export const DEFAULT_WEIGHTS = Object.freeze({
 function n(v,d=0){const x=Number(v);return Number.isFinite(x)?x:d;}
 function logistic3(x,draw){
   const h=1/(1+Math.exp(-clamp(x,-8,8)));
-  const d=clamp(draw,0.05,0.40);
+  // draw is already clamped to [0.01,0.32] by predictIntegrated; re-clamping here to a
+  // different [0.05,0.40] range used to silently floor every draw probability at 5%,
+  // regardless of drawBase/drawBalance, defeating the whole point of those knobs.
+  const d=clamp(draw,0.01,0.32);
   return {HOME_WIN:(1-d)*h,DRAW:d,AWAY_WIN:(1-d)*(1-h)};
 }
 
