@@ -68,8 +68,14 @@ export function simulateMonteCarlo(standings, games, options = {}) {
   const outcomeCounts = Object.fromEntries(games.map(g => [g.game_id, { HOME_WIN: 0, AWAY_WIN: 0, DRAW: 0 }]));
   const samples = [];
   const retainSamples = Boolean(options.retainSamples);
-  const bestCases = [];
-  const worstCases = [];
+  // Track the true best/worst-rank examples incrementally instead of storing every
+  // iteration: the previous version kept only the first 5 iterations drawn (regardless of
+  // their rank) and then filtered that tiny, unsorted slice by the final bestRank/worstRank,
+  // which for 100k iterations almost always produced an empty best_cases/worst_cases.
+  let bestRankSeen = Infinity;
+  let worstRankSeen = -Infinity;
+  let bestCases = [];
+  let worstCases = [];
   const quantileRanks = [];
 
   for (let i = 0; i < iterations; i++) {
@@ -82,9 +88,12 @@ export function simulateMonteCarlo(standings, games, options = {}) {
     const focus = ranked.find(t => t.team === focusTeam);
     rankCounts[focus.rank] = (rankCounts[focus.rank] ?? 0) + 1;
     rankSum += focus.rank;
-    if (retainSamples) samples.push({ id: i + 1, rank: focus.rank, outcomes: sampled.map(g => ({ game_id: g.game_id, outcome: g.outcome })) });
-    if (bestCases.length < 5) bestCases.push({ id: i + 1, rank: focus.rank, outcomes: sampled.map(g => ({ game_id: g.game_id, outcome: g.outcome })) });
-    if (worstCases.length < 5) worstCases.push({ id: i + 1, rank: focus.rank, outcomes: sampled.map(g => ({ game_id: g.game_id, outcome: g.outcome })) });
+    const outcomes = sampled.map(g => ({ game_id: g.game_id, outcome: g.outcome }));
+    if (retainSamples) samples.push({ id: i + 1, rank: focus.rank, outcomes });
+    if (focus.rank < bestRankSeen) { bestRankSeen = focus.rank; bestCases = [{ id: i + 1, rank: focus.rank, outcomes }]; }
+    else if (focus.rank === bestRankSeen && bestCases.length < 5) bestCases.push({ id: i + 1, rank: focus.rank, outcomes });
+    if (focus.rank > worstRankSeen) { worstRankSeen = focus.rank; worstCases = [{ id: i + 1, rank: focus.rank, outcomes }]; }
+    else if (focus.rank === worstRankSeen && worstCases.length < 5) worstCases.push({ id: i + 1, rank: focus.rank, outcomes });
     quantileRanks.push(focus.rank);
   }
 
@@ -107,7 +116,7 @@ export function simulateMonteCarlo(standings, games, options = {}) {
     top3_probability: Number((Object.entries(rankCounts).filter(([rank]) => Number(rank) <= 3).reduce((s, [, c]) => s + c, 0) / iterations).toFixed(4)),
     rank_distribution: rankDistribution,
     sampled_outcome_distribution: Object.fromEntries(Object.entries(outcomeCounts).map(([id, counts]) => [id, Object.fromEntries(Object.entries(counts).map(([k, v]) => [k, Number((v / iterations).toFixed(4))]))])),
-    best_cases: retainSamples ? samples.filter(x => x.rank === bestRank).slice(0, 5) : bestCases.filter(x => x.rank === bestRank).slice(0, 5),
-    worst_cases: retainSamples ? samples.filter(x => x.rank === worstRank).slice(0, 5) : worstCases.filter(x => x.rank === worstRank).slice(0, 5)
+    best_cases: retainSamples ? samples.filter(x => x.rank === bestRank).slice(0, 5) : bestCases,
+    worst_cases: retainSamples ? samples.filter(x => x.rank === worstRank).slice(0, 5) : worstCases
   };
 }
