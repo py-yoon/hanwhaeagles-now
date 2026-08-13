@@ -12,8 +12,15 @@ export const DEFAULT_WEIGHTS = Object.freeze({
   defense: 0.25,
   recent: 0.30,
   home: 0.15,
-  drawBase: 0.23,
-  drawBalance: 0.10
+  // Validated 2026-08-13 via chronological 70/30 held-out backtest on real 2026-season
+  // games (src/model/integrated-backtest.js, fields:['drawBase','drawBalance']):
+  // validation log loss 1.0813 -> 0.8887, Brier 0.6534 -> 0.5578, accuracy unchanged.
+  // The old 0.23/0.10 (draw probability clamped to a 12-32% floor/ceiling) was an
+  // unvalidated soccer-scale default that had never been included in any backtest's
+  // tunable fields; real KBO draws are ~3-4% of games (extra-inning limit only), and
+  // these values push predicted draw probability into roughly that range for most games.
+  drawBase: 0.03,
+  drawBalance: -0.10
 });
 
 function n(v,d=0){const x=Number(v);return Number.isFinite(x)?x:d;}
@@ -34,7 +41,11 @@ export function predictIntegrated(home={}, away={}, options={}){
   const h=strengthScore(home,w), a=strengthScore(away,w);
   const diff=h-a+w.home;
   const balance=1-Math.min(1,Math.abs(diff)/4);
-  const draw=clamp(w.drawBase+w.drawBalance*balance,0.12,0.32);
+  // Floor was 0.12 — inherited from a soccer-style template and never validated for
+  // baseball, where real KBO draws are ~3-4% of games (extra-inning limit only). A 12%
+  // floor forced every game's draw probability toward soccer-scale territory regardless
+  // of what drawBase/drawBalance were set to, silently compressing both win probabilities.
+  const draw=clamp(w.drawBase+w.drawBalance*balance,0.01,0.32);
   const p=logistic3(diff,draw);
   return {probabilities:p,home_score:h,away_score:a,differential:diff,draw_probability:p.DRAW};
 }
