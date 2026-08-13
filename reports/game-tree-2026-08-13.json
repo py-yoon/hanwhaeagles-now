@@ -1,0 +1,447 @@
+{
+  "season": 2026,
+  "as_of": "2026-08-13",
+  "focus_team": "HANWHA",
+  "root_playoff_probability": 0.0513,
+  "target_games": [
+    {
+      "game_id": "20260813-HANWHA-DOOSAN-1",
+      "date": "2026-08-13",
+      "opponent": "DOOSAN",
+      "home_away": "AWAY"
+    },
+    {
+      "game_id": "20260818-KIA-HANWHA-1",
+      "date": "2026-08-18",
+      "opponent": "KIA",
+      "home_away": "HOME"
+    },
+    {
+      "game_id": "20260820-KIA-HANWHA-1",
+      "date": "2026-08-20",
+      "opponent": "KIA",
+      "home_away": "HOME"
+    }
+  ],
+  "head_to_head_2026": {
+    "DOOSAN": {
+      "games": 14,
+      "wins": 7,
+      "losses": 6,
+      "draws": 1,
+      "win_rate": 0.5
+    },
+    "KIA": {
+      "games": 12,
+      "wins": 6,
+      "losses": 6,
+      "draws": 0,
+      "win_rate": 0.5
+    }
+  },
+  "tree": {
+    "depth": 0,
+    "path": [],
+    "decided": [],
+    "playoff_probability": 0.0513,
+    "game": {
+      "game_id": "20260813-HANWHA-DOOSAN-1",
+      "date": "2026-08-13",
+      "opponent": "DOOSAN",
+      "home_away": "AWAY",
+      "hanwha_win_probability": 0.2996
+    },
+    "win": {
+      "depth": 1,
+      "path": [
+        "W"
+      ],
+      "decided": [
+        {
+          "game_id": "20260813-HANWHA-DOOSAN-1",
+          "date": "2026-08-13",
+          "opponent": "DOOSAN",
+          "result": "WIN"
+        }
+      ],
+      "playoff_probability": 0.0915,
+      "game": {
+        "game_id": "20260818-KIA-HANWHA-1",
+        "date": "2026-08-18",
+        "opponent": "KIA",
+        "home_away": "HOME",
+        "hanwha_win_probability": 0.3542
+      },
+      "win": {
+        "depth": 2,
+        "path": [
+          "W",
+          "W"
+        ],
+        "decided": [
+          {
+            "game_id": "20260813-HANWHA-DOOSAN-1",
+            "date": "2026-08-13",
+            "opponent": "DOOSAN",
+            "result": "WIN"
+          },
+          {
+            "game_id": "20260818-KIA-HANWHA-1",
+            "date": "2026-08-18",
+            "opponent": "KIA",
+            "result": "WIN"
+          }
+        ],
+        "playoff_probability": 0.142,
+        "game": {
+          "game_id": "20260820-KIA-HANWHA-1",
+          "date": "2026-08-20",
+          "opponent": "KIA",
+          "home_away": "HOME",
+          "hanwha_win_probability": 0.3542
+        },
+        "win": {
+          "depth": 3,
+          "path": [
+            "W",
+            "W",
+            "W"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "WIN"
+            }
+          ],
+          "playoff_probability": 0.2144
+        },
+        "lose": {
+          "depth": 3,
+          "path": [
+            "W",
+            "W",
+            "L"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "LOSS"
+            }
+          ],
+          "playoff_probability": 0.0735
+        }
+      },
+      "lose": {
+        "depth": 2,
+        "path": [
+          "W",
+          "L"
+        ],
+        "decided": [
+          {
+            "game_id": "20260813-HANWHA-DOOSAN-1",
+            "date": "2026-08-13",
+            "opponent": "DOOSAN",
+            "result": "WIN"
+          },
+          {
+            "game_id": "20260818-KIA-HANWHA-1",
+            "date": "2026-08-18",
+            "opponent": "KIA",
+            "result": "LOSS"
+          }
+        ],
+        "playoff_probability": 0.0461,
+        "game": {
+          "game_id": "20260820-KIA-HANWHA-1",
+          "date": "2026-08-20",
+          "opponent": "KIA",
+          "home_away": "HOME",
+          "hanwha_win_probability": 0.3542
+        },
+        "win": {
+          "depth": 3,
+          "path": [
+            "W",
+            "L",
+            "W"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "WIN"
+            }
+          ],
+          "playoff_probability": 0.0735
+        },
+        "lose": {
+          "depth": 3,
+          "path": [
+            "W",
+            "L",
+            "L"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "LOSS"
+            }
+          ],
+          "playoff_probability": 0.0226
+        }
+      }
+    },
+    "lose": {
+      "depth": 1,
+      "path": [
+        "L"
+      ],
+      "decided": [
+        {
+          "game_id": "20260813-HANWHA-DOOSAN-1",
+          "date": "2026-08-13",
+          "opponent": "DOOSAN",
+          "result": "LOSS"
+        }
+      ],
+      "playoff_probability": 0.0223,
+      "game": {
+        "game_id": "20260818-KIA-HANWHA-1",
+        "date": "2026-08-18",
+        "opponent": "KIA",
+        "home_away": "HOME",
+        "hanwha_win_probability": 0.3542
+      },
+      "win": {
+        "depth": 2,
+        "path": [
+          "L",
+          "W"
+        ],
+        "decided": [
+          {
+            "game_id": "20260813-HANWHA-DOOSAN-1",
+            "date": "2026-08-13",
+            "opponent": "DOOSAN",
+            "result": "LOSS"
+          },
+          {
+            "game_id": "20260818-KIA-HANWHA-1",
+            "date": "2026-08-18",
+            "opponent": "KIA",
+            "result": "WIN"
+          }
+        ],
+        "playoff_probability": 0.0401,
+        "game": {
+          "game_id": "20260820-KIA-HANWHA-1",
+          "date": "2026-08-20",
+          "opponent": "KIA",
+          "home_away": "HOME",
+          "hanwha_win_probability": 0.3542
+        },
+        "win": {
+          "depth": 3,
+          "path": [
+            "L",
+            "W",
+            "W"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "WIN"
+            }
+          ],
+          "playoff_probability": 0.0719
+        },
+        "lose": {
+          "depth": 3,
+          "path": [
+            "L",
+            "W",
+            "L"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "WIN"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "LOSS"
+            }
+          ],
+          "playoff_probability": 0.0141
+        }
+      },
+      "lose": {
+        "depth": 2,
+        "path": [
+          "L",
+          "L"
+        ],
+        "decided": [
+          {
+            "game_id": "20260813-HANWHA-DOOSAN-1",
+            "date": "2026-08-13",
+            "opponent": "DOOSAN",
+            "result": "LOSS"
+          },
+          {
+            "game_id": "20260818-KIA-HANWHA-1",
+            "date": "2026-08-18",
+            "opponent": "KIA",
+            "result": "LOSS"
+          }
+        ],
+        "playoff_probability": 0.0076,
+        "game": {
+          "game_id": "20260820-KIA-HANWHA-1",
+          "date": "2026-08-20",
+          "opponent": "KIA",
+          "home_away": "HOME",
+          "hanwha_win_probability": 0.3542
+        },
+        "win": {
+          "depth": 3,
+          "path": [
+            "L",
+            "L",
+            "W"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "WIN"
+            }
+          ],
+          "playoff_probability": 0.0141
+        },
+        "lose": {
+          "depth": 3,
+          "path": [
+            "L",
+            "L",
+            "L"
+          ],
+          "decided": [
+            {
+              "game_id": "20260813-HANWHA-DOOSAN-1",
+              "date": "2026-08-13",
+              "opponent": "DOOSAN",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
+              "result": "LOSS"
+            },
+            {
+              "game_id": "20260820-KIA-HANWHA-1",
+              "date": "2026-08-20",
+              "opponent": "KIA",
+              "result": "LOSS"
+            }
+          ],
+          "playoff_probability": 0.0022
+        }
+      }
+    }
+  }
+}

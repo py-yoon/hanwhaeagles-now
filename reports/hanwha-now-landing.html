@@ -121,6 +121,66 @@
   .game .impact .bar i{ display:block; height:100%; background:#ef5f1c; border-radius:3px; }
   .game .impact .num{ font-size:11.5px; color:#ffb238; font-weight:700; white-space:nowrap; }
 
+  /* branch tree */
+  .tree-wrap{ overflow-x:auto; }
+  .tree, .tree ul{ display:flex; justify-content:center; padding:0; margin:0; }
+  /* the outermost row must NOT center — a centered flex row that overflows a
+     scroll ancestor spills onto both sides, and only the right-hand spill is
+     reachable by scrolling. flex-start keeps all overflow (if any) scrollable. */
+  .tree{ justify-content:flex-start; }
+  .tree li{
+    list-style:none; position:relative; padding:18px 5px 0; transition:.2s;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .tree li::before, .tree li::after{
+    content:''; position:absolute; top:0; right:50%; width:50%; height:18px;
+    border-top:1px solid rgba(244,237,224,0.16);
+  }
+  .tree li::after{ right:auto; left:50%; border-left:1px solid rgba(244,237,224,0.16); }
+  .tree li:only-child::before, .tree li:only-child::after{ display:none; }
+  .tree li:only-child{ padding-top:0; }
+  .tree li:first-child::before, .tree li:last-child::after{ border:0 none; }
+  .tree li:last-child::before{ border-right:1px solid rgba(244,237,224,0.16); border-radius:0 6px 0 0; }
+  .tree li:first-child::after{ border-radius:6px 0 0 0; }
+  .tree ul::before{
+    content:''; position:absolute; top:0; left:50%; border-left:1px solid rgba(244,237,224,0.16); width:0; height:18px;
+  }
+  .tree > li{ padding-top:0; }
+  .tree > li::before, .tree > li::after{ display:none; }
+
+  .t-node{
+    width:98px; border:1px solid rgba(244,237,224,0.12); border-radius:10px;
+    background:rgba(255,255,255,0.02); padding:9px 10px 10px;
+  }
+  .t-node.root{ width:116px; background:rgba(239,95,28,0.06); border-color:rgba(239,95,28,0.3); }
+  .t-tag{ font-size:10px; font-weight:700; letter-spacing:.03em; }
+  .t-tag.win{ color:#ef5f1c; }
+  .t-tag.loss{ color:#8a8074; }
+  .t-tag.now{ color:#ffb238; text-transform:uppercase; letter-spacing:.08em; }
+  .t-node .pp{ font-size:.98rem; font-weight:800; color:#f4ede0; margin-top:5px; }
+  .t-node.root .pp{ font-size:1.3rem; color:#ef5f1c; }
+  .t-node .pp-label{ font-size:9.5px; color:#8a8074; margin-top:1px; }
+  .t-node .t-opp{ font-size:9.5px; color:#8a8074; margin-top:5px; }
+  .t-node .t-bar{ height:3px; background:rgba(244,237,224,.08); border-radius:2px; margin-top:7px; overflow:hidden; }
+  .t-node .t-bar i{ display:block; height:100%; background:#ef5f1c; border-radius:2px; }
+  .t-branch{
+    display:block; text-align:center; font-size:10px; line-height:1.4; color:#8a8074;
+    margin-top:6px; width:98px;
+  }
+  .t-branch b{ color:#c7bda9; font-weight:700; }
+
+  .h2h-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:28px; }
+  .h2h-card{ border:1px solid rgba(244,237,224,0.12); border-radius:12px; padding:16px 18px; background:rgba(255,255,255,0.02); }
+  .h2h-card .h2h-name{ font-weight:700; font-size:14.5px; color:#f4ede0; }
+  .h2h-card .h2h-rec{ font-size:22px; font-weight:800; color:#f4ede0; margin:6px 0 3px; }
+  .h2h-card .h2h-rec .pct{ font-size:12.5px; color:#8a8074; font-weight:600; margin-left:7px; }
+  .h2h-card .h2h-note{ font-size:11.5px; color:#8a8074; }
+  .h2h-bar{ display:flex; gap:2px; height:5px; border-radius:3px; overflow:hidden; margin-top:9px; }
+  .h2h-bar span{ display:block; height:100%; }
+  .h2h-bar .w{ background:#ef5f1c; }
+  .h2h-bar .l{ background:#4a4237; }
+  .h2h-bar .d{ background:rgba(244,237,224,0.16); }
+
   /* trust strip */
   .trust{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:rgba(244,237,224,0.10); border:1px solid rgba(244,237,224,0.10); border-radius:12px; overflow:hidden; }
   .trust .t{ background:#100d09; padding:18px; }
@@ -217,6 +277,196 @@
         <div class="date">8월 27일</div>
         <div class="match">HANWHA<span class="vs">vs</span>SSG</div>
         <div class="impact"><div class="bar"><i style="width:66%"></i></div><div class="num">±4.92%p</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="eyebrow2">3연전을 갈림길로 펼치면</div>
+    <h2 class="sec-title">가을야구, 어디까지 갈 수 있나</h2>
+    <p class="sec-desc">위 세 경기(8/13 두산, 8/18·8/20 KIA)를 승/패로 끝까지 갈라서 재시뮬레이션했다. <b style="color:#f4ede0">3연승하면 21.4%</b>까지 오르고, <b style="color:#f4ede0">3연패하면 0.22%</b>로 사실상 끝난다. 확정된 결과가 아니라 각 갈림길 시점의 조건부 시뮬레이션 수치다.</p>
+
+    <div class="tree-wrap">
+      <ul class="tree">
+        <li>
+          <div class="t-node root">
+            <span class="t-tag now">현재</span>
+            <div class="pp mono">5.27%</div>
+            <div class="pp-label">가을야구 확률</div>
+          </div>
+          <span class="t-branch">8/13 두산(원정)<br><b>승리확률 29.96%</b></span>
+
+          <ul>
+            <li>
+              <div class="t-node">
+                <span class="t-tag win">8/13 승</span>
+                <div class="pp mono">9.15%</div>
+                <div class="pp-label">가을야구</div>
+                <div class="t-bar"><i style="width:43%"></i></div>
+                <div class="t-opp">vs 두산 원정</div>
+              </div>
+              <span class="t-branch">8/18 KIA(홈)<br><b>승리확률 35.42%</b></span>
+
+              <ul>
+                <li>
+                  <div class="t-node">
+                    <span class="t-tag win">8/18 승</span>
+                    <div class="pp mono">14.20%</div>
+                    <div class="pp-label">가을야구</div>
+                    <div class="t-bar"><i style="width:67%"></i></div>
+                    <div class="t-opp">vs KIA 홈</div>
+                  </div>
+                  <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 35.42%</b></span>
+
+                  <ul>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag win">8/20 승</span>
+                        <div class="pp mono">21.44%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:100%"></i></div>
+                        <div class="t-opp">3연승</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag loss">8/20 패</span>
+                        <div class="pp mono">7.35%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:34%"></i></div>
+                        <div class="t-opp">2승1패</div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="t-node">
+                    <span class="t-tag loss">8/18 패</span>
+                    <div class="pp mono">4.61%</div>
+                    <div class="pp-label">가을야구</div>
+                    <div class="t-bar"><i style="width:21%"></i></div>
+                    <div class="t-opp">vs KIA 홈</div>
+                  </div>
+                  <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 35.42%</b></span>
+
+                  <ul>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag win">8/20 승</span>
+                        <div class="pp mono">7.35%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:34%"></i></div>
+                        <div class="t-opp">1승1패1승</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag loss">8/20 패</span>
+                        <div class="pp mono">2.26%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:11%"></i></div>
+                        <div class="t-opp">1승2패</div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="t-node">
+                <span class="t-tag loss">8/13 패</span>
+                <div class="pp mono">2.23%</div>
+                <div class="pp-label">가을야구</div>
+                <div class="t-bar"><i style="width:10%"></i></div>
+                <div class="t-opp">vs 두산 원정</div>
+              </div>
+              <span class="t-branch">8/18 KIA(홈)<br><b>승리확률 35.42%</b></span>
+
+              <ul>
+                <li>
+                  <div class="t-node">
+                    <span class="t-tag win">8/18 승</span>
+                    <div class="pp mono">4.01%</div>
+                    <div class="pp-label">가을야구</div>
+                    <div class="t-bar"><i style="width:18%"></i></div>
+                    <div class="t-opp">vs KIA 홈</div>
+                  </div>
+                  <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 35.42%</b></span>
+
+                  <ul>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag win">8/20 승</span>
+                        <div class="pp mono">7.19%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:33%"></i></div>
+                        <div class="t-opp">1패2승</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag loss">8/20 패</span>
+                        <div class="pp mono">1.41%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:6%"></i></div>
+                        <div class="t-opp">1승2패</div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="t-node">
+                    <span class="t-tag loss">8/18 패</span>
+                    <div class="pp mono">0.76%</div>
+                    <div class="pp-label">가을야구</div>
+                    <div class="t-bar"><i style="width:3%"></i></div>
+                    <div class="t-opp">vs KIA 홈</div>
+                  </div>
+                  <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 35.42%</b></span>
+
+                  <ul>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag win">8/20 승</span>
+                        <div class="pp mono">1.41%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:6%"></i></div>
+                        <div class="t-opp">1승2패</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="t-node">
+                        <span class="t-tag loss">8/20 패</span>
+                        <div class="pp mono">0.22%</div>
+                        <div class="pp-label">가을야구</div>
+                        <div class="t-bar"><i style="width:1%"></i></div>
+                        <div class="t-opp">3연패</div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="h2h-grid">
+      <div class="h2h-card">
+        <div class="h2h-name">두산 베어스 (8/13)</div>
+        <div class="h2h-rec mono">7승 6패 1무<span class="pct">.500</span></div>
+        <div class="h2h-note">2026시즌 14경기</div>
+        <div class="h2h-bar"><span class="w" style="width:50%"></span><span class="d" style="width:7.1%"></span><span class="l" style="width:42.9%"></span></div>
+      </div>
+      <div class="h2h-card">
+        <div class="h2h-name">KIA 타이거즈 (8/18, 8/20)</div>
+        <div class="h2h-rec mono">6승 6패<span class="pct">.500</span></div>
+        <div class="h2h-note">2026시즌 12경기</div>
+        <div class="h2h-bar"><span class="w" style="width:50%"></span><span class="l" style="width:50%"></span></div>
       </div>
     </div>
   </div>
