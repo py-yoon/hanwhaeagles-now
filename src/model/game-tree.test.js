@@ -1,4 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {estimateGameTree, headToHeadRecord} from './game-tree.js';
+import {runIntegratedMonteCarlo} from './integrated-monte-carlo.js';
 const standings=[{team:'HANWHA',wins:40,losses:40,draws:0},{team:'DOOSAN',wins:42,losses:38,draws:0},{team:'NC',wins:38,losses:42,draws:0},{team:'LOTTE',wins:37,losses:43,draws:0}];
 const games=[
   {game_id:'20260813-HANWHA-DOOSAN-1',home:'DOOSAN',away:'HANWHA',status:'SCHEDULED',date:'2026-08-13'},
@@ -16,6 +17,16 @@ test('game tree builds a full binary tree with 2^n-1 decided leaves',()=>{
   assert.equal(r.tree.win.lose.decided[0].result,'WIN');
   assert.equal(r.tree.lose.decided[0].result,'LOSS');
   assert(r.root_playoff_probability>=0 && r.root_playoff_probability<=1);
+});
+
+test('displayed game win probability is renormalized over win/lose only, excluding the draw slice',()=>{
+  const root=runIntegratedMonteCarlo({...base,iterations:1000,seed:7});
+  const r=estimateGameTree({base:{...base,forecasts:root.forecasts,playoff_probability:root.playoff_probability},gameIds:['20260813-HANWHA-DOOSAN-1'],iterations:1000,seed:7});
+  const raw=root.forecasts.find(f=>f.game_id==='20260813-HANWHA-DOOSAN-1').probabilities;
+  assert(raw.DRAW>0, 'test fixture should have a nonzero draw slice to make this check meaningful');
+  const expected=raw.AWAY_WIN/(raw.HOME_WIN+raw.AWAY_WIN); // HANWHA is away in this game
+  assert.equal(r.tree.game.focus_win_probability, Number(expected.toFixed(4)));
+  assert(r.tree.game.focus_win_probability>raw.AWAY_WIN, 'renormalized probability should be larger than the raw (draw-diluted) figure');
 });
 
 test('head to head record counts only FINAL games for the given opponents',()=>{

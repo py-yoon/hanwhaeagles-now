@@ -36,7 +36,14 @@ export function estimateGameTree({ base, gameIds, iterations = 20000, seed = 202
   for (const g of targetGames) {
     const f = root.forecasts.find((x) => x.game_id === g.game_id);
     const p = f?.probabilities;
-    gameWinProb[g.game_id] = p ? (g.home === focusTeam ? p.HOME_WIN : p.AWAY_WIN) : null;
+    // The tree only has WIN/LOSE branches (draws aren't modeled as a third branch — a
+    // forced-decided game can't end in a draw), so the displayed "win probability" should
+    // be conditional on the game being decided, not the raw HOME_WIN/AWAY_WIN that still
+    // has a slice sitting in DRAW. Renormalizing over just {HOME_WIN, AWAY_WIN} answers
+    // "if this game has a winner, who's more likely to be it" — the question the two
+    // branches are actually asking.
+    const decided = p ? p.HOME_WIN + p.AWAY_WIN : 0;
+    gameWinProb[g.game_id] = p && decided > 0 ? (g.home === focusTeam ? p.HOME_WIN / decided : p.AWAY_WIN / decided) : null;
   }
 
   function runWithForced(decided) {
