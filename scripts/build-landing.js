@@ -13,8 +13,24 @@ function korDate(gameId) {
 }
 
 function matchup(gameId) {
+  // game_id format is `${date}-${away}-${home}-${n}` (see src/collector/parser.js).
   const parts = String(gameId).split('-');
-  return { a: parts[1] ?? '?', b: parts[2] ?? '?' };
+  return { away: parts[1] ?? '?', home: parts[2] ?? '?' };
+}
+
+/** Pulls the focus team's own win/loss conditional playoff probabilities out of
+ * estimateGameImportance()'s `conditional` array (HOME_WIN/DRAW/AWAY_WIN, each keyed
+ * to whichever side is literally home), by first working out which side the focus
+ * team is on for this particular game. */
+function focusScenarios(game, focusTeam) {
+  if (!game.conditional) throw new Error(`buildGamesHtml: important game ${game.game_id} is missing conditional outcomes`);
+  const { home } = matchup(game.game_id);
+  const focusIsHome = home === focusTeam;
+  const byOutcome = Object.fromEntries(game.conditional.map((c) => [c.outcome, c.playoff_probability]));
+  return {
+    win: byOutcome[focusIsHome ? 'HOME_WIN' : 'AWAY_WIN'],
+    loss: byOutcome[focusIsHome ? 'AWAY_WIN' : 'HOME_WIN'],
+  };
 }
 
 /** wins-behind formula, generalized to any reference row (not just 1st place). */
@@ -36,19 +52,21 @@ function buildLadderHtml(rankDistribution, currentRank) {
   return rows.join('\n      ');
 }
 
-function buildGamesHtml(importantGames) {
+function buildGamesHtml(importantGames, focusTeam) {
   if (!importantGames.length) {
     return '<p class="empty">잔여 경기에 대한 임팩트 데이터가 아직 없다.</p>';
   }
   const top = importantGames.slice(0, 6);
   const max = Math.max(...top.map((g) => g.impact_range)) || 1;
   return top.map((g) => {
-    const { a, b } = matchup(g.game_id);
+    const { away, home } = matchup(g.game_id);
     const width = Math.max(6, Math.round((g.impact_range / max) * 100));
+    const { win, loss } = focusScenarios(g, focusTeam);
     return `<div class="game">
         <div class="date">${korDate(g.game_id)}</div>
-        <div class="match">${a}<span class="vs">vs</span>${b}</div>
+        <div class="match">${away}<span class="vs">vs</span>${home}</div>
         <div class="impact"><div class="bar"><i style="width:${width}%"></i></div><div class="num">±${(g.impact_range * 100).toFixed(2)}%p</div></div>
+        <div class="scenario"><span class="win">이기면 ${(win * 100).toFixed(2)}%</span><span class="loss">지면 ${(loss * 100).toFixed(2)}%</span></div>
       </div>`;
   }).join('\n      ');
 }
@@ -95,7 +113,7 @@ export function buildLandingHtml({ template, report, focusRow, refRow, allRows, 
     P10_PCT: (report.uncertainty.playoff_probability.p10 * 100).toFixed(2),
     P90_PCT: (report.uncertainty.playoff_probability.p90 * 100).toFixed(2),
     LADDER_HTML: buildLadderHtml(report.rank_distribution, focusRow.rank),
-    GAMES_HTML: buildGamesHtml(report.important_games ?? []),
+    GAMES_HTML: buildGamesHtml(report.important_games ?? [], focusRow.team),
     STANDINGS_HTML: buildStandingsHtml(allRows ?? [focusRow, refRow], focusRow.team),
   };
 

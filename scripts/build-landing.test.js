@@ -15,8 +15,28 @@ const report = {
     { rank: 7, probability: 0.1199 },
   ],
   important_games: [
-    { game_id: '20260813-HANWHA-DOOSAN-1', impact_range: 0.0744 },
-    { game_id: '20260818-KIA-HANWHA-1', impact_range: 0.0564 },
+    {
+      game_id: '20260813-HANWHA-DOOSAN-1',
+      focus_team: 'HANWHA',
+      impact_range: 0.0744,
+      // HANWHA is away in this matchup, so its win scenario is AWAY_WIN.
+      conditional: [
+        { outcome: 'HOME_WIN', playoff_probability: 0.0156 },
+        { outcome: 'DRAW', playoff_probability: 0.0527 },
+        { outcome: 'AWAY_WIN', playoff_probability: 0.09 },
+      ],
+    },
+    {
+      game_id: '20260818-KIA-HANWHA-1',
+      focus_team: 'HANWHA',
+      impact_range: 0.0564,
+      // HANWHA is home in this matchup, so its win scenario is HOME_WIN.
+      conditional: [
+        { outcome: 'HOME_WIN', playoff_probability: 0.08 },
+        { outcome: 'DRAW', playoff_probability: 0.06 },
+        { outcome: 'AWAY_WIN', playoff_probability: 0.0236 },
+      ],
+    },
   ],
 };
 
@@ -66,6 +86,16 @@ test('important games render in impact order with a matchup label', () => {
   const kiaIdx = html.indexOf('KIA');
   assert.ok(doosanIdx > -1 && kiaIdx > -1 && doosanIdx < kiaIdx);
   assert.match(html, /8월 13일/);
+});
+
+test('important games spell out the focus team\'s own win/loss scenario, not just the raw impact range', () => {
+  const html = buildLandingHtml({ template: TEMPLATE, report, focusRow, refRow, allRows, gamesCollected: 645, officialCount: 1 });
+  // HANWHA is away against DOOSAN on 8/13: win scenario is AWAY_WIN (9.00%), loss is HOME_WIN (1.56%).
+  assert.match(html, /이기면 9\.00%/);
+  assert.match(html, /지면 1\.56%/);
+  // HANWHA is home against KIA on 8/18: win scenario is HOME_WIN (8.00%), loss is AWAY_WIN (2.36%).
+  assert.match(html, /이기면 8\.00%/);
+  assert.match(html, /지면 2\.36%/);
 });
 
 test('standings table lists all 10 teams, highlights the focus team, and marks the playoff cutoff', () => {

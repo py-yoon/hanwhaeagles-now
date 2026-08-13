@@ -124,6 +124,9 @@
   .game .impact .bar{ height:5px; flex:1; background:rgba(244,237,224,0.08); border-radius:3px; overflow:hidden; }
   .game .impact .bar i{ display:block; height:100%; background:#ef5f1c; border-radius:3px; }
   .game .impact .num{ font-size:11.5px; color:#ffb238; font-weight:700; white-space:nowrap; }
+  .game .scenario{ display:flex; gap:14px; font-size:11.5px; }
+  .game .scenario .win{ color:#7ec98f; font-weight:600; }
+  .game .scenario .loss{ color:#e2645a; font-weight:600; }
   .empty{ color:#8a8074; font-size:14px; }
 
   /* standings table */
@@ -157,7 +160,7 @@
 
 <div class="topbar">
   <div class="brand"><span class="dot"></span>HANWHA EAGLES NOW</div>
-  <div class="badge">🦅&nbsp;<b>2026-08-13</b>&nbsp;기준 · 라이브 데이터</div>
+  <div class="badge">🦅&nbsp;<b>2026-08-12</b>&nbsp;기준 · 라이브 데이터</div>
 </div>
 
 <section class="hero" style="border-top:none; padding-top:12px;">
@@ -239,31 +242,37 @@
         <div class="date">8월 13일</div>
         <div class="match">HANWHA<span class="vs">vs</span>DOOSAN</div>
         <div class="impact"><div class="bar"><i style="width:100%"></i></div><div class="num">±7.44%p</div></div>
+        <div class="scenario"><span class="win">이기면 9.38%</span><span class="loss">지면 1.94%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 18일</div>
         <div class="match">KIA<span class="vs">vs</span>HANWHA</div>
         <div class="impact"><div class="bar"><i style="width:76%"></i></div><div class="num">±5.64%p</div></div>
+        <div class="scenario"><span class="win">이기면 8.32%</span><span class="loss">지면 2.68%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 20일</div>
         <div class="match">KIA<span class="vs">vs</span>HANWHA</div>
         <div class="impact"><div class="bar"><i style="width:75%"></i></div><div class="num">±5.58%p</div></div>
+        <div class="scenario"><span class="win">이기면 7.94%</span><span class="loss">지면 2.36%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 22일</div>
         <div class="match">LG<span class="vs">vs</span>HANWHA</div>
         <div class="impact"><div class="bar"><i style="width:75%"></i></div><div class="num">±5.56%p</div></div>
+        <div class="scenario"><span class="win">이기면 8.22%</span><span class="loss">지면 2.66%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 19일</div>
         <div class="match">KIA<span class="vs">vs</span>HANWHA</div>
         <div class="impact"><div class="bar"><i style="width:74%"></i></div><div class="num">±5.54%p</div></div>
+        <div class="scenario"><span class="win">이기면 7.96%</span><span class="loss">지면 2.42%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 27일</div>
         <div class="match">HANWHA<span class="vs">vs</span>SSG</div>
         <div class="impact"><div class="bar"><i style="width:66%"></i></div><div class="num">±4.92%p</div></div>
+        <div class="scenario"><span class="win">이기면 7.80%</span><span class="loss">지면 2.88%</span></div>
       </div>
     </div>
   </div>
@@ -276,7 +285,7 @@
     <p class="sec-desc">이 확률은 KBO 공식 사이트에서 직접 가져온 실제 경기 기록으로 계산한다. 픽스처나 가짜 데이터는 절대 실전 예측에 쓰지 않는다.</p>
     <div class="trust">
       <div class="t"><div class="v mono">645</div><div class="l">실시간 수집 경기</div></div>
-      <div class="t"><div class="v mono">1 / 1</div><div class="l">공식 순위 대조 · 불일치 0건</div></div>
+      <div class="t"><div class="v mono">3 / 3</div><div class="l">공식 순위 대조 · 불일치 0건</div></div>
       <div class="t"><div class="v mono">100,000</div><div class="l">회 몬테카를로 시뮬레이션</div></div>
       <div class="t"><div class="v mono">6</div><div class="l">단계 검증 게이트 전부 통과</div></div>
     </div>
@@ -290,7 +299,7 @@
       선수 개인 기록 등 검증되지 않은 신호는 기본값에 포함하지 않습니다.
     </p>
     <div class="foot-row">
-      <span>기준일 2026-08-13 · 데이터 출처 koreabaseball.com</span>
+      <span>기준일 2026-08-12 · 데이터 출처 koreabaseball.com</span>
       <span>매일 경기 종료 후 자동 갱신</span>
     </div>
   </div>
