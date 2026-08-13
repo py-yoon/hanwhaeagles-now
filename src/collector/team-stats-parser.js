@@ -4,12 +4,14 @@ function text(value) {
   return String(value ?? '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-/** Parses innings notation like "920 2/3" (KBO writes fractional outs as thirds) into a decimal. */
+/** Parses innings notation like "920 2/3" (season cumulative) or a bare "2/3" (a single
+ * relief appearance shorter than one inning, common in per-game box scores) into a decimal.
+ * KBO always writes fractional outs as thirds. */
 export function parseInnings(value) {
   const s = text(value);
-  const m = s.match(/^(\d+)(?:\s+(\d)\/3)?$/);
-  if (!m) { const n = Number(s); return Number.isFinite(n) ? n : 0; }
-  return Number(m[1]) + (m[2] ? Number(m[2]) / 3 : 0);
+  const m = s.match(/^(?:(\d+)\s*)?(?:(\d)\/3)?$/);
+  if (!m || (!m[1] && !m[2])) { const n = Number(s); return Number.isFinite(n) ? n : 0; }
+  return Number(m[1] ?? 0) + (m[2] ? Number(m[2]) / 3 : 0);
 }
 
 /**

@@ -34,6 +34,12 @@ test('parseInnings handles fractional-third notation', () => {
   assert.equal(parseInnings('1 1/3'), 1 + 1 / 3);
 });
 
+test('parseInnings handles a bare fraction with no leading whole number (short relief appearances)', () => {
+  assert.equal(parseInnings('2/3'), 2 / 3);
+  assert.equal(parseInnings('1/3'), 1 / 3);
+  assert.equal(parseInnings('0'), 0);
+});
+
 test('parseTeamStatTable extracts rows by data-id, ignores header/footer rows', () => {
   const rows = parseTeamStatTable(HITTER1_HTML);
   assert.equal(rows.length, 2);
