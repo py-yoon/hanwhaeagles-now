@@ -65,7 +65,7 @@ function buildGamesHtml(importantGames, focusTeam) {
     return `<div class="game">
         <div class="date">${korDate(g.game_id)}</div>
         <div class="match">${away}<span class="vs">vs</span>${home}</div>
-        <div class="impact"><div class="bar"><i style="width:${width}%"></i></div><div class="num">±${(g.impact_range * 100).toFixed(2)}%p</div></div>
+        <div class="impact"><div class="bar"><i style="width:${width}%"></i></div></div>
         <div class="scenario"><span class="win">이기면 ${(win * 100).toFixed(2)}%</span><span class="loss">지면 ${(loss * 100).toFixed(2)}%</span></div>
       </div>`;
   }).join('\n      ');
