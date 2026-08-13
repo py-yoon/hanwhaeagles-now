@@ -2,8 +2,9 @@ name: Refresh production forecast
 
 on:
   schedule:
-    # 14:00 UTC = 23:00 KST — after the day's KBO games have finished.
-    - cron: '0 14 * * *'
+    # 18:00 UTC = 03:00 KST (next day) — after the day's KBO games (and any extra
+    # innings) have long finished.
+    - cron: '0 18 * * *'
   workflow_dispatch: {}
 
 permissions:
@@ -22,7 +23,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm ci
