@@ -32,6 +32,17 @@ function extractScores(playHtml){
   const nums=[...String(playHtml).replace(/<[^>]+>/g,' ').matchAll(/(?:^|\s)(\d{1,3})(?=\s|$)/g)].map(m=>Number(m[1]));
   return nums.slice(0,2);
 }
+/** Pulls KBO's own game id (e.g. "20260801LGOB0") out of the "게임센터"/리뷰 column's link
+ * (`.../GameCenter/Main.aspx?gameDate=...&gameId=20260801LGOB0&section=REVIEW`). This is a
+ * different id from this file's own synthetic `game_id` (`${date}-${away}-${home}-${n}`) and
+ * is what src/collector/box-score.js needs to fetch a box score — only present once KBO has
+ * published a review for the game (i.e. FINAL games; future/live games have no such link yet). */
+function extractKboGameId(row){
+  // The href's query string is HTML-entity-encoded ("...&amp;gameId=..."), so don't require a
+  // literal `&`/`?` immediately before "gameId=".
+  const m = String(row).match(/gameId=([0-9A-Za-z]+)/);
+  return m ? m[1] : null;
+}
 function statusFromCell(row, playBody, scores){
   const raw=text(row);
   if(/우천취소|폭염취소|취소|경기취소|CANCELLED/i.test(raw)) return 'CANCELLED';
@@ -67,7 +78,8 @@ export function parseScheduleTable(html,season,seriesType='REGULAR_SEASON',{mont
     const stadium=texts.find(v=>/(잠실|고척|문학|수원|대전|광주|대구|사직|창원)/.test(v)) ?? null;
     const base=`${currentDate.replaceAll('-','')}-${away}-${home}`;
     const n=counts.get(base)??1; counts.set(base,n+1);
-    out.push({game_id:`${base}-${n}`,date:currentDate,time,home,away,home_score:homeScore,away_score:awayScore,status,stadium,series_type:seriesType});
+    const kboGameId=extractKboGameId(row);
+    out.push({game_id:`${base}-${n}`,kbo_game_id:kboGameId,date:currentDate,time,home,away,home_score:homeScore,away_score:awayScore,status,stadium,series_type:seriesType});
   }
   return out;
 }
