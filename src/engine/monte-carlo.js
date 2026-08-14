@@ -1,4 +1,4 @@
-import { applyGames, rankTeams } from './standings.js';
+import { applyGames, rankTeamsFinal } from './standings.js';
 
 export const DEFAULT_PROBABILITIES = {
   HOME_WIN: 0.47,
@@ -59,6 +59,13 @@ export function simulateMonteCarlo(standings, games, options = {}) {
   const focusTeam = options.focusTeam ?? 'HANWHA';
   const defaults = normalizeProbabilities(options.defaultProbabilities);
   const random = options.random ?? Math.random;
+  // Already-completed games of the season (real FINALs before `games` starts, i.e. before
+  // this call's remaining/simulated schedule) — used only for head-to-head tiebreak lookups,
+  // not re-applied to `standings` (which already reflects their win/loss counts). A separate
+  // RNG stream is used for coin-flip tiebreaks so borrowing it never perturbs the per-game
+  // outcome sampling sequence below (which existing callers rely on for reproducibility).
+  const completedGames = options.completedGames ?? [];
+  const tiebreakRandom = options.tiebreakRandom ?? Math.random;
   if (!Number.isInteger(iterations) || iterations <= 0) throw new Error('iterations must be a positive integer');
   if (!Array.isArray(games)) throw new Error('games must be an array');
   if (!standings.some(t => t.team === focusTeam)) throw new Error(`Unknown focus team: ${focusTeam}`);
@@ -84,7 +91,7 @@ export function simulateMonteCarlo(standings, games, options = {}) {
       outcomeCounts[g.game_id][outcome]++;
       return materializeSample(g, outcome);
     });
-    const ranked = rankTeams(applyGames(standings, sampled));
+    const ranked = rankTeamsFinal(applyGames(standings, sampled), [...completedGames, ...sampled], { random: tiebreakRandom });
     const focus = ranked.find(t => t.team === focusTeam);
     rankCounts[focus.rank] = (rankCounts[focus.rank] ?? 0) + 1;
     rankSum += focus.rank;

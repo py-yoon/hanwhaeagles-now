@@ -41,3 +41,32 @@ test('certain outcome produces deterministic rank', () => {
   assert.equal(result.worst_rank, 1);
   assert.equal(result.rank_distribution['1'].probability, 1);
 });
+
+test('a win-rate tie at the final rank is broken by head-to-head record from completedGames, not shared', () => {
+  // HANWHA and B both finish 6-5 with nothing left to simulate; earlier in the season
+  // (already reflected in `standings`'s counts, not in `games`) HANWHA swept B 2-0.
+  const tiedStandings = [
+    { team: 'HANWHA', wins: 6, losses: 5, draws: 0 },
+    { team: 'B', wins: 6, losses: 5, draws: 0 },
+  ];
+  const completedGames = [
+    { home: 'HANWHA', away: 'B', status: 'FINAL', home_score: 4, away_score: 1 },
+    { home: 'B', away: 'HANWHA', status: 'FINAL', home_score: 1, away_score: 5 },
+  ];
+  const result = simulateMonteCarlo(tiedStandings, [], { iterations: 50, focusTeam: 'HANWHA', completedGames });
+  assert.equal(result.rank_distribution['1'].probability, 1);
+  assert.equal(result.rank_distribution['2'], undefined);
+});
+
+test('a win-rate tie with no completedGames and no remaining head-to-head games goes to the coin-flip fallback, not a shared rank', () => {
+  const tiedStandings = [
+    { team: 'HANWHA', wins: 6, losses: 5, draws: 0 },
+    { team: 'B', wins: 6, losses: 5, draws: 0 },
+  ];
+  const result = simulateMonteCarlo(tiedStandings, [], { iterations: 200, focusTeam: 'HANWHA', tiebreakRandom: createSeededRng(7) });
+  // every iteration must land on a definite rank 1 or 2 for HANWHA -- never a shared rank
+  const probs = Object.entries(result.rank_distribution).map(([r]) => Number(r));
+  assert.deepEqual(probs.sort(), [1, 2]);
+  const total = result.rank_distribution['1'].probability + result.rank_distribution['2'].probability;
+  assert.ok(Math.abs(total - 1) < 1e-9);
+});

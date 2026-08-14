@@ -32,11 +32,17 @@ export function runIntegratedMonteCarlo({standings, games, snapshots, focusTeam=
   if (!Array.isArray(games)) throw new Error('games required');
   if (!Number.isInteger(iterations) || iterations < 1000) throw new Error('iterations must be >= 1000');
   const forecasts = buildIntegratedFutureGames(games, snapshots, {asOf, weights});
+  const completedGames = games.filter(g => FINAL.has(String(g.status ?? '').toUpperCase()));
   const result = simulateMonteCarlo(standings, forecasts, {
     iterations,
     focusTeam,
     random: random ?? createSeededRng(seed),
-    retainSamples
+    retainSamples,
+    completedGames,
+    // Independent stream (seed offset, same convention as pipeline.js's uncertainty/+100
+    // and sensitivity/+200 runs) so tiebreak coin-flips never perturb the game-outcome
+    // sampling sequence above.
+    tiebreakRandom: createSeededRng(seed + 777),
   });
   psCutoff = Number.isFinite(Number(psCutoff)) ? Number(psCutoff) : 5;
   const playoffProbability = Object.entries(result.rank_distribution)
