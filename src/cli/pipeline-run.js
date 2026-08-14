@@ -227,7 +227,11 @@ export async function runProductionCliPipeline(options = {}) {
   // date sort). Powers the landing page's "가을야구, 어디까지 갈 수 있나" section.
   // Recomputed fresh on every run, so this tracks whichever 3 games are most
   // impactful today rather than a fixed date list. ---
-  const treeGameIds = importantGames.slice(0, 3).map((g) => g.game_id).sort();
+  // The next 3 games chronologically, not the 3 highest-impact games: importantGames is
+  // sorted by impact_range, which can (and did) put a later series ahead of the very next
+  // game on the schedule. focusFutureGameIds is already date-sorted (forecastSchedule
+  // sorts its input), so the first 3 entries are exactly "what happens next".
+  const treeGameIds = focusFutureGameIds.slice(0, 3).sort();
   const gameTree = treeGameIds.length === 3
     ? estimateGameTree({
         base: { ...pipelineInput, forecasts: simForImportance.forecasts, playoff_probability: simForImportance.playoff_probability },
