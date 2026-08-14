@@ -8,7 +8,6 @@ import { validateLiveCoverage } from '../verifier/live-coverage-gate.js';
 import { buildEloTimeline, eloSnapshotAtDate } from '../engine/elo.js';
 import { buildCurrentStrengthSnapshot, validateStrengthSnapshot } from '../engine/current-strength.js';
 import { aggregateTeamPlayerStats, teamFeatureVector } from '../model/player-features.js';
-import { runIntegratedMonteCarlo } from '../model/integrated-monte-carlo.js';
 import { runProductionPipeline } from '../model/pipeline.js';
 import { estimateGameImportance } from '../model/game-importance.js';
 import { estimateGameTree, headToHeadRecord } from '../model/game-tree.js';
@@ -203,7 +202,12 @@ export async function runProductionCliPipeline(options = {}) {
   const report = productionResult.report;
 
   // --- Game importance for the focus team's own upcoming games ---
-  const simForImportance = runIntegratedMonteCarlo({ ...pipelineInput, iterations: Math.min(iterations, 20000), seed });
+  // Reuses the production pipeline's own 100k-iteration simulation rather than
+  // re-running Monte Carlo at a lower, capped iteration count: two independent runs
+  // are stochastic and land on different numbers even with the same seed, which
+  // previously made the game-tree's "현재" figure disagree with the headline
+  // playoff probability shown elsewhere on the page.
+  const simForImportance = productionResult.simulation;
   const focusFutureGameIds = simForImportance.forecasts
     .filter((f) => f.home === focusTeam || f.away === focusTeam)
     .map((f) => f.game_id);

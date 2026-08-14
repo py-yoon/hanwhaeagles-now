@@ -13,5 +13,8 @@ export function runProductionPipeline(input={},options={}){
   const report=buildHanhwaNowReport({simulation,uncertainty,sensitivity});
   const validation=validateReport(report);
   if(validation.status!=='PASS') throw new Error('report validation failed');
-  return {status:'PASS',report};
+  // Exposed so callers (e.g. game importance / game-tree) can reuse this exact
+  // 100k-iteration result instead of re-running Monte Carlo at a lower iteration count,
+  // which would land on a different number purely from sampling noise.
+  return {status:'PASS',report,simulation};
 }
