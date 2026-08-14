@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>선수단 — HANWHA EAGLES NOW</title>
+<meta name="description" content="한화 이글스 2026 시즌 선수단 — 개인정보, 출생, 나이, 학교, 팀 이력, 포지션, 투타, 시즌별 수상 실적">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="players.css">
+</head>
+<body>
+
+<div class="eagles-players">
+  <header class="ep-header">
+    <div>
+      <div class="ep-brand">HANWHA EAGLES NOW</div>
+      <h1 class="ep-title">선수단 <em>ROSTER</em></h1>
+    </div>
+    <div class="ep-meta" id="epMeta"></div>
+  </header>
+
+  <div class="ep-toolbar">
+    <nav class="ep-jump" id="epJump"></nav>
+    <input class="ep-search" id="epSearch" type="text" placeholder="이름·등번호·학교 검색" aria-label="선수 검색">
+  </div>
+
+  <div id="epSections"></div>
+
+  <div class="ep-footer-note">
+    선수 정보는 KBO 공식 기록 및 공개된 선수단 정보를 바탕으로 정리했습니다. 수상 실적은 주요 선수 위주로 우선 반영되어 있으며 순차적으로 보강됩니다.<br>
+    HANWHA EAGLES NOW는 한화 이글스 구단·KBO와 무관한 비공식 팬 분석 프로젝트입니다.
+  </div>
+</div>
+
+<div class="ep-overlay" id="epOverlay" hidden>
+  <div class="ep-detail" id="epDetail" role="dialog" aria-modal="true"></div>
+</div>
+
+<script src="players-data.js"></script>
+<script src="players.js"></script>
+</body>
+</html>

@@ -49,6 +49,13 @@
     padding:5px 10px; border-radius:999px; display:flex; align-items:center; gap:6px;
   }
   .badge b{ color:#f4ede0; font-weight:700; }
+  .topbar-right{ display:flex; align-items:center; gap:10px; }
+  .navlink{
+    font-size:12px; font-weight:700; color:#bdb3a2; text-decoration:none;
+    border:1px solid rgba(244,237,224,0.16); padding:5px 12px; border-radius:999px;
+    transition:color .15s, border-color .15s;
+  }
+  .navlink:hover{ color:#f4ede0; border-color:rgba(244,237,224,0.32); }
 
   /* ---------------- Hero ---------------- */
   .hero{
@@ -260,7 +267,10 @@
 
 <div class="topbar">
   <div class="brand"><span class="dot"></span>HANWHA EAGLES NOW</div>
-  <div class="badge">🦅&nbsp;<b>2026-08-14</b>&nbsp;기준 · 라이브 데이터</div>
+  <div class="topbar-right">
+    <a class="navlink" href="players.html">선수단</a>
+    <div class="badge">🦅&nbsp;<b>2026-08-14</b>&nbsp;기준 · 라이브 데이터</div>
+  </div>
 </div>
 
 <section class="hero" style="border-top:none; padding-top:12px;">
