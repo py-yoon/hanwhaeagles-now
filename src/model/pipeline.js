@@ -9,7 +9,7 @@ export function runProductionPipeline(input={},options={}){
   if(sourceStatus!=='live'&&!allowFixture) throw new Error(`production gate blocked: source_status=${sourceStatus}`);
   const simulation={...runIntegratedMonteCarlo({...input,iterations:options.iterations??100000,seed:options.seed??20260812}),source_status:sourceStatus};
   const uncertainty=options.uncertainty===false?null:runModelUncertainty({...input},{members:options.members??12,iterations:options.uncertaintyIterations??5000,seed:(options.seed??20260812)+100});
-  const sensitivity=options.sensitivity===false?null:runStrengthSensitivity({...input},{focusTeam:input.focusTeam??'HANWHA',iterations:options.sensitivityIterations??5000,seed:(options.seed??20260812)+200});
+  const sensitivity=options.sensitivity===false?null:runStrengthSensitivity({...input},{focusTeam:input.focusTeam??'HANWHA',iterations:options.sensitivityIterations??5000,seed:(options.seed??20260812)+200,baseline:simulation});
   const report=buildHanhwaNowReport({simulation,uncertainty,sensitivity});
   const validation=validateReport(report);
   if(validation.status!=='PASS') throw new Error('report validation failed');
