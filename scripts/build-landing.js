@@ -178,6 +178,16 @@ function buildTreeHtml(gameTree) {
   return { descHtml, treeHtml, h2hHtml };
 }
 
+/** Counts the focus team's own not-yet-played games — distinct from report.future_games,
+ * which is every remaining game across the whole league (what the Monte Carlo actually
+ * simulates, since every other team's results affect the focus team's final rank). Fans
+ * reading a "잔여 경기" stat next to their own team's W-L record expect their own team's
+ * remaining schedule, not the league-wide count. */
+function countTeamRemainingGames(games, focusTeam) {
+  const FUTURE_STATUSES = new Set(['SCHEDULED', 'POSTPONED', 'RESCHEDULED']);
+  return games.filter((g) => (g.home === focusTeam || g.away === focusTeam) && FUTURE_STATUSES.has(g.status ?? 'SCHEDULED')).length;
+}
+
 function buildStandingsHtml(allRows, focusTeam) {
   const leader = allRows.find((r) => r.rank === 1) ?? allRows[0];
   const sorted = [...allRows].sort((a, b) => a.rank - b.rank);
@@ -197,7 +207,7 @@ function buildStandingsHtml(allRows, focusTeam) {
  * standings row for the focus team. Throws rather than silently rendering a page with
  * missing data — a broken build must fail the CI job, not publish a half-empty page.
  */
-export function buildLandingHtml({ template, report, focusRow, refRow, allRows, gamesCollected, officialCount }) {
+export function buildLandingHtml({ template, report, focusRow, refRow, allRows, gamesCollected, officialCount, games = [] }) {
   if (!report?.summary || !focusRow) throw new Error('buildLandingHtml: report and focusRow are required');
 
   const winRate = focusRow.wins + focusRow.losses > 0
@@ -215,6 +225,7 @@ export function buildLandingHtml({ template, report, focusRow, refRow, allRows, 
     DRAWS: String(focusRow.draws),
     WIN_RATE: winRate.toFixed(4).replace(/^0/, ''),
     REMAINING: String(report.future_games),
+    TEAM_REMAINING: String(countTeamRemainingGames(games, focusRow.team)),
     GAMES_COLLECTED: String(gamesCollected),
     RECONCILE_CHECKS: `${officialCount} / ${officialCount}`,
     PLAYOFF_PCT: (report.summary.playoff_probability * 100).toFixed(2),
