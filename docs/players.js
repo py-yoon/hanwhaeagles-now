@@ -251,6 +251,62 @@
       </svg>`;
   }
 
+  function findSeasonStats(p) {
+    const season = window.EAGLES_SEASON_2026;
+    if (!season) return null;
+    const byName = season.players[p.name];
+    if (byName) return byName;
+    // 외국인 선수는 박스스코어에 성(姓)만 기록되는 경우가 있음 (예: "오웬 화이트" → "화이트")
+    const key = Object.keys(season.players).find((k) => k !== p.name && p.name.endsWith(k));
+    return key ? season.players[key] : null;
+  }
+
+  function statRow(label, value) {
+    return `<div class="ep-stat"><div class="ep-stat-label">${label}</div><div class="ep-stat-value">${value}</div></div>`;
+  }
+
+  function seasonStatsHtml(p) {
+    const season = window.EAGLES_SEASON_2026;
+    const stats = findSeasonStats(p);
+    const meta = season?.meta;
+    const heading = `${meta?.season || 2026}시즌 기록${meta?.generated ? ` <span class="ep-stat-asof">(${meta.generated} 기준)</span>` : ""}`;
+
+    if (!stats || (!stats.batting && !stats.pitching)) {
+      return `<div class="ep-section-title">${heading}</div><div class="ep-no-award">1군 출전 기록이 아직 없습니다.</div>`;
+    }
+
+    const blocks = [];
+    if (stats.batting) {
+      const b = stats.batting;
+      // KBO 박스스코어는 타자 기록으로 타수·안타·타점만 제공합니다 (2루타/홈런/볼넷/삼진/도루 등은
+      // 텍스트 플레이 로그 파싱이 필요해 이 파이프라인에서는 수집하지 않음 — 잘못 분류된 값을
+      // 섞느니 아예 안 보여주는 쪽을 택함). 그래서 OPS 등은 계산하지 않고 타율만 제공합니다.
+      blocks.push(`
+        <div class="ep-stat-grid">
+          ${statRow("경기", b.G)}
+          ${statRow("타수", b.AB)}
+          ${statRow("안타", b.H)}
+          ${statRow("타점", b.RBI)}
+          ${statRow("타율", b.avg.toFixed(3))}
+        </div>`);
+    }
+    if (stats.pitching) {
+      const pt = stats.pitching;
+      blocks.push(`
+        <div class="ep-stat-grid">
+          ${statRow("등판", pt.G)}
+          ${statRow("이닝", pt.ip)}
+          ${statRow("평균자책", pt.era ?? "-")}
+          ${statRow("WHIP", pt.whip ?? "-")}
+          ${statRow("승-패", `${pt.W}-${pt.L}`)}
+          ${statRow("세이브", pt.SV)}
+          ${statRow("홀드", pt.HLD)}
+          ${statRow("탈삼진", pt.SO)}
+        </div>`);
+    }
+    return `<div class="ep-section-title">${heading}</div>${blocks.join("")}`;
+  }
+
   function awardsHtml(p) {
     if (!p.awards || !p.awards.length) {
       return `<div class="ep-no-award">등록된 수상 기록이 아직 없습니다.</div>`;
@@ -297,6 +353,9 @@
         </dl>
       </div>
       ${p.note ? `<div class="ep-section"><div class="ep-note">${p.note}</div></div>` : ""}
+      <div class="ep-section">
+        ${seasonStatsHtml(p)}
+      </div>
       <div class="ep-section">
         <div class="ep-section-title">시즌별 수상 실적</div>
         ${awardsHtml(p)}
