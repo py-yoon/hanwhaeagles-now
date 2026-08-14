@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRX1ZN41KQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRX1ZN41KQ');
+</script>
+<title>이글스 찐팬 감별기 — HANWHA EAGLES NOW</title>
+<meta name="description" content="한화 이글스 찐팬 감별기 — 20문항으로 알아보는 나의 이글스 팬심 등급">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fan-quiz.css">
+</head>
+<body>
+
+<div class="fq-wrap">
+  <header class="fq-header">
+    <div>
+      <a class="fq-brand" href="index.html">← HANWHA EAGLES NOW</a>
+      <h1 class="fq-title">찐팬 감별기</h1>
+    </div>
+    <div>
+      <a class="fq-brand" href="players.html">선수단 →</a>
+      <a class="fq-brand" href="games.html" style="margin-left:14px">경기기록 →</a>
+    </div>
+  </header>
+
+  <!-- 인트로 -->
+  <section class="fq-screen" id="fqIntro">
+    <div class="fq-intro-card">
+      <div class="fq-intro-emoji">🦅</div>
+      <h2>나, 진짜 이글스 찐팬 맞아?</h2>
+      <p class="fq-intro-desc">
+        입문 상식부터 팬 20년차만 아는 디테일까지, 난이도 5단계 총 300문항 중에서<br>
+        매번 다른 20문항이 무작위로 출제됩니다. 난이도가 높을수록 배점도 높아요.
+      </p>
+      <div class="fq-intro-meta">
+        <div><b>20</b>문항</div>
+        <div><b>5</b>단계 난이도</div>
+        <div><b>10</b>등급 판정</div>
+      </div>
+      <button class="fq-btn fq-btn-primary" id="fqStartBtn">테스트 시작</button>
+      <div class="fq-intro-note">비공식 팬 프로젝트의 자체 제작 퀴즈입니다. 정답에 이견이 있다면 애교로 봐주세요.</div>
+    </div>
+  </section>
+
+  <!-- 진행 -->
+  <section class="fq-screen" id="fqQuiz" hidden>
+    <div class="fq-progress-row">
+      <div class="fq-progress-bar"><div class="fq-progress-fill" id="fqProgressFill"></div></div>
+      <div class="fq-progress-label" id="fqProgressLabel"></div>
+    </div>
+    <div class="fq-tier-badge" id="fqTierBadge"></div>
+    <div class="fq-question-card">
+      <div class="fq-category" id="fqCategory"></div>
+      <h2 class="fq-question" id="fqQuestion"></h2>
+      <div class="fq-choices" id="fqChoices"></div>
+    </div>
+  </section>
+
+  <!-- 결과 -->
+  <section class="fq-screen" id="fqResult" hidden>
+    <div class="fq-result-card">
+      <div class="fq-result-grade-num" id="fqResultGradeNum"></div>
+      <div class="fq-result-grade-name" id="fqResultGradeName"></div>
+      <p class="fq-result-desc" id="fqResultDesc"></p>
+      <div class="fq-result-score" id="fqResultScore"></div>
+      <div class="fq-result-tierbars" id="fqResultTierbars"></div>
+      <div class="fq-result-actions">
+        <button class="fq-btn fq-btn-primary" id="fqRetryBtn">다시 도전하기</button>
+        <a class="fq-btn fq-btn-ghost" href="players.html">선수단 보러가기</a>
+      </div>
+    </div>
+    <div class="fq-review" id="fqReview"></div>
+  </section>
+
+  <div class="fq-footer-note">
+    HANWHA EAGLES NOW는 한화 이글스 구단·KBO와 무관한 비공식 팬 분석 프로젝트입니다.
+  </div>
+</div>
+
+<script src="fan-quiz-data.js"></script>
+<script src="fan-quiz.js"></script>
+</body>
+</html>
