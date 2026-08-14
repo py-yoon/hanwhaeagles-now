@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "model_version": "0.8.7",
-  "generated_at": "2026-08-14T02:17:21.119Z",
+  "generated_at": "2026-08-14T03:48:02.977Z",
   "as_of": "2026-08-14",
   "focus_team": "HANWHA",
   "iterations": 100000,
@@ -50,9 +50,9 @@
     "members": 12,
     "iterations": 5000,
     "playoff_probability": {
-      "p10": 0.0759,
-      "median": 0.0815,
-      "p90": 0.08746
+      "p10": 0.07552,
+      "median": 0.0818,
+      "p90": 0.0871
     },
     "rank_distribution": {
       "2": {
@@ -62,33 +62,33 @@
       },
       "3": {
         "p10": 0.00142,
-        "median": 0.0018,
-        "p90": 0.0024
+        "median": 0.0019,
+        "p90": 0.0026
       },
       "4": {
-        "p10": 0.01148,
-        "median": 0.0131,
+        "p10": 0.01146,
+        "median": 0.0132,
         "p90": 0.01418
       },
       "5": {
-        "p10": 0.06364,
+        "p10": 0.06366,
         "median": 0.0666,
-        "p90": 0.072
+        "p90": 0.07164
       },
       "6": {
-        "p10": 0.5393,
-        "median": 0.5465,
+        "p10": 0.53948,
+        "median": 0.5468,
         "p90": 0.5571
       },
       "7": {
-        "p10": 0.25948,
-        "median": 0.2742,
-        "p90": 0.28526
+        "p10": 0.25966,
+        "median": 0.2738,
+        "p90": 0.28582
       },
       "8": {
-        "p10": 0.09132,
+        "p10": 0.09106,
         "median": 0.0953,
-        "p90": 0.0992
+        "p90": 0.099
       },
       "9": {
         "p10": 0.00168,
@@ -105,77 +105,77 @@
   "sensitivity": {
     "model_version": "0.8.3",
     "focus_team": "HANWHA",
-    "baseline_playoff_probability": 0.0862,
+    "baseline_playoff_probability": 0.0825,
     "rows": [
       {
         "component": "starter",
         "direction": "positive",
         "delta": 0.2,
         "playoff_probability": 0.13,
-        "change": 0.0438
+        "change": 0.0475
       },
       {
         "component": "starter",
         "direction": "negative",
         "delta": -0.2,
         "playoff_probability": 0.0482,
-        "change": -0.038
+        "change": -0.0343
       },
       {
         "component": "offense",
         "direction": "negative",
         "delta": -0.15,
         "playoff_probability": 0.056,
-        "change": -0.0302
-      },
-      {
-        "component": "roster",
-        "direction": "negative",
-        "delta": -0.15,
-        "playoff_probability": 0.0592,
-        "change": -0.027
+        "change": -0.0265
       },
       {
         "component": "roster",
         "direction": "positive",
         "delta": 0.15,
         "playoff_probability": 0.1074,
-        "change": 0.0212
+        "change": 0.0249
       },
       {
         "component": "offense",
         "direction": "positive",
         "delta": 0.15,
         "playoff_probability": 0.107,
-        "change": 0.0208
+        "change": 0.0245
       },
       {
         "component": "bullpen",
         "direction": "positive",
         "delta": 0.15,
         "playoff_probability": 0.1068,
-        "change": 0.0206
+        "change": 0.0243
+      },
+      {
+        "component": "roster",
+        "direction": "negative",
+        "delta": -0.15,
+        "playoff_probability": 0.0592,
+        "change": -0.0233
       },
       {
         "component": "bullpen",
         "direction": "negative",
         "delta": -0.15,
         "playoff_probability": 0.0702,
-        "change": -0.016
+        "change": -0.0123
       },
       {
         "component": "recent",
         "direction": "negative",
         "delta": -0.1,
         "playoff_probability": 0.0752,
-        "change": -0.011
+        "change": -0.0073
       },
       {
         "component": "recent",
         "direction": "positive",
         "delta": 0.1,
         "playoff_probability": 0.086,
-        "change": -0.0002
+        "change": 0.0035
       }
     ]
   },
