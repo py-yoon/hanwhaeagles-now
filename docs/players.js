@@ -349,6 +349,7 @@
           <dt>투타</dt><dd>${p.throwBat}</dd>
           <dt>신장·체중</dt><dd>${h ? h + "cm" : "-"}, ${wt ? wt + "kg" : "-"}</dd>
           <dt>프로 입단</dt><dd>${p.proYear}년${p.proTeam ? " (" + p.proTeam + ")" : ""}</dd>
+          ${p.draftYear ? `<dt>드래프트</dt><dd>${p.draftYear}년 신인 드래프트 ${p.draftRound}라운드 (전체 ${p.draftPick}순위)</dd>` : ""}
           <dt>팀 이력</dt><dd>${teamHistoryHtml(p)}</dd>
         </dl>
       </div>
