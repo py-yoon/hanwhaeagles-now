@@ -1,0 +1,246 @@
+/* ==========================================================================
+   HANWHA EAGLES NOW — 경기기록
+   다크 · 데이터 중심 톤. players.css와 동일한 디자인 토큰 사용.
+   ========================================================================== */
+
+:root {
+  --bg: #0a0c0f;
+  --surface: #12151a;
+  --surface-2: #191d24;
+  --surface-hover: #1f242c;
+  --line: #262b33;
+  --line-soft: #1c2027;
+  --ink: #edece6;
+  --ink-dim: #9aa0ab;
+  --ink-faint: #5c626d;
+  --eagle: #ff6a1a;
+  --eagle-soft: #ff8a47;
+  --eagle-dim: #7a3717;
+  --eagle-wash: rgba(255, 106, 26, 0.1);
+  --win: #34c98f;
+  --win-wash: rgba(52, 201, 143, 0.1);
+  --loss: #ff5a6a;
+  --loss-wash: rgba(255, 90, 106, 0.1);
+  --radius: 3px;
+
+  --font-display: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 45 920;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.eg-games {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 20px 100px;
+}
+
+/* ---------- header ---------- */
+
+.eg-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.eg-brand {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--eagle);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: color .15s;
+}
+.eg-brand:hover { color: var(--eagle-soft); text-decoration: underline; }
+
+.eg-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 4vw, 34px);
+  letter-spacing: -0.01em;
+  margin: 4px 0 0;
+}
+.eg-title em { font-style: normal; color: var(--eagle); }
+
+.eg-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-align: right;
+  line-height: 1.7;
+}
+
+/* ---------- record summary ---------- */
+
+.eg-record {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.eg-stat { background: var(--surface); padding: 14px 10px; text-align: center; }
+.eg-stat-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.eg-stat-value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.eg-stat-value.eg-win { color: var(--win); }
+.eg-stat-value.eg-loss { color: var(--loss); }
+
+/* ---------- toolbar ---------- */
+
+.eg-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  padding: 10px 0;
+  margin-bottom: 6px;
+  background: linear-gradient(var(--bg) 82%, transparent);
+  flex-wrap: wrap;
+}
+.eg-filter { display: flex; gap: 8px; }
+.eg-filter button {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 7px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.eg-filter button:hover, .eg-filter button.active {
+  background: var(--eagle-wash);
+  border-color: var(--eagle-dim);
+  color: var(--eagle-soft);
+}
+.eg-search {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 7px 12px;
+  border-radius: var(--radius);
+  width: 190px;
+  outline: none;
+}
+.eg-search:focus { border-color: var(--eagle-dim); }
+.eg-search::placeholder { color: var(--ink-faint); }
+@media (max-width: 480px) {
+  .eg-search { width: 100%; margin-left: 0; }
+}
+
+/* ---------- table ---------- */
+
+.eg-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+}
+.eg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.eg-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.eg-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink-dim);
+}
+.eg-table tbody tr:hover { background: var(--surface-hover); }
+.eg-table tbody tr:last-child td { border-bottom: none; }
+
+.eg-date { font-family: var(--font-mono); color: var(--ink); }
+.eg-vs { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
+.eg-opponent { color: var(--ink); font-weight: 600; }
+.eg-score { font-family: var(--font-mono); color: var(--ink); font-variant-numeric: tabular-nums; }
+.eg-starter { color: var(--ink-dim); }
+.eg-starter.unknown { color: var(--ink-faint); font-style: italic; }
+
+.eg-result {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.eg-result.WIN { color: var(--win); background: var(--win-wash); }
+.eg-result.LOSS { color: var(--loss); background: var(--loss-wash); }
+.eg-result.DRAW { color: var(--ink-dim); background: var(--surface-2); }
+
+.eg-empty {
+  padding: 60px 10px;
+  text-align: center;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.eg-footer-note {
+  margin-top: 26px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  line-height: 1.8;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}

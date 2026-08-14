@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRX1ZN41KQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRX1ZN41KQ');
+</script>
+<title>경기기록 — HANWHA EAGLES NOW</title>
+<meta name="description" content="한화 이글스 2026 시즌 경기 결과 — 날짜, 상대, 홈/원정, 스코어, 양팀 선발투수, 승패">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="games.css">
+</head>
+<body>
+
+<div class="eg-games">
+  <header class="eg-header">
+    <div>
+      <a class="eg-brand" href="index.html">← HANWHA EAGLES NOW</a>
+      <h1 class="eg-title">경기기록 <em>2026</em></h1>
+    </div>
+    <div>
+      <a class="eg-brand" href="players.html">선수단 →</a>
+      <div class="eg-meta" id="egMeta"></div>
+    </div>
+  </header>
+
+  <div class="eg-record" id="egRecord"></div>
+
+  <div class="eg-toolbar">
+    <nav class="eg-filter" id="egFilter"></nav>
+    <input class="eg-search" id="egSearch" type="text" placeholder="상대팀·투수 검색" aria-label="경기 검색">
+  </div>
+
+  <div class="eg-table-wrap">
+    <table class="eg-table">
+      <thead>
+        <tr>
+          <th>날짜</th>
+          <th>구분</th>
+          <th>상대</th>
+          <th>스코어</th>
+          <th>한화 선발</th>
+          <th>상대 선발</th>
+          <th>결과</th>
+        </tr>
+      </thead>
+      <tbody id="egBody"></tbody>
+    </table>
+  </div>
+
+  <div class="eg-footer-note">
+    선발투수는 KBO 박스스코어의 투수 등판 순서 중 첫 번째 투수로 추정한 값입니다 (등판 순서 컬럼 자체가 명시적으로 제공되지 않아 근사치이며, 드물게 실제와 다를 수 있습니다).<br>
+    HANWHA EAGLES NOW는 한화 이글스 구단·KBO와 무관한 비공식 팬 분석 프로젝트입니다.
+  </div>
+</div>
+
+<script src="games-2026.js"></script>
+<script src="games.js"></script>
+</body>
+</html>
