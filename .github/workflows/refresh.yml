@@ -46,5 +46,17 @@ jobs:
             echo "No changes to publish."
           else
             git commit -m "Auto-refresh forecast $(date -u +%Y-%m-%d)"
-            git push
+            # Retry with rebase: an out-of-band push landing on master between our
+            # checkout and this push (a manual push, or an overlapping run) rejects a
+            # plain `git push` non-fast-forward, which previously just failed the whole
+            # job and silently discarded this cycle's freshly-computed report.
+            for i in 1 2 3 4 5; do
+              if git push; then
+                exit 0
+              fi
+              echo "push rejected (attempt $i/5) — rebasing onto origin/master and retrying"
+              git pull --rebase origin master
+            done
+            echo "::error::failed to push auto-refresh commit after 5 attempts"
+            exit 1
           fi
