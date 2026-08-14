@@ -28,9 +28,14 @@ async function writeJson(file, data) {
 async function main() {
   const asOf = process.env.AS_OF_OVERRIDE ?? kstToday();
   const season = Number(asOf.slice(0, 4));
-  const currentMonth = Number(asOf.slice(5, 7));
+  // The KBO schedule page publishes the whole regular season (through October) in
+  // advance, so collecting only through the current month silently dropped every
+  // still-SCHEDULED game after "today" from the simulation — future_games and every
+  // team's own remaining-game count were being computed against a truncated season
+  // that effectively ended in the current month, not the real one.
+  const SEASON_END_MONTH = 10;
   const months = [];
-  for (let m = 3; m <= Math.max(3, currentMonth); m++) months.push(m);
+  for (let m = 3; m <= SEASON_END_MONTH; m++) months.push(m);
 
   console.log(`[refresh] as_of=${asOf} season=${season} months=${months.join(',')}`);
 
