@@ -1023,7 +1023,7 @@ window.EAGLES_PLAYERS_DATA = {
       "joinYear": 2023,
       "group": "내야수",
       "role": "1루수",
-      "note": "2024년~ 팀 주장, 2025 한국시리즈 우승 멤버",
+      "note": "2024년~ 팀 주장, 2025 한국시리즈 준우승(LG 트윈스에 1승 4패) 멤버",
       "awards": []
     },
     {
