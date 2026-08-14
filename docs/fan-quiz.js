@@ -60,6 +60,10 @@
       console.error(err);
     });
 
+  // "위 A/B/C 다 ~아니다/없다" 식으로 다른 보기들을 지칭하는 보기는, 자리를 섞어버리면
+  // "위"가 가리키는 게 뭔지 알 수 없어져서 항상 마지막 자리에 고정한다.
+  const CATCH_ALL_CHOICE = /^(위|셋|넷|모두|둘).{0,10}(다|모두)?.{0,20}(아니|없|맞다|해당)/;
+
   function shuffle(arr) {
     const a = arr.slice();
     for (let i = a.length - 1; i > 0; i--) {
@@ -104,7 +108,9 @@
 
     $choices.innerHTML = "";
     const shuffled = q.choices.map((text, i) => ({ text, isCorrect: i === q.answerIndex }));
-    const order = shuffle(shuffled);
+    const pinned = shuffled.filter((c) => CATCH_ALL_CHOICE.test(c.text.trim()));
+    const rest = shuffled.filter((c) => !CATCH_ALL_CHOICE.test(c.text.trim()));
+    const order = [...shuffle(rest), ...pinned];
     for (const choice of order) {
       const btn = document.createElement("button");
       btn.className = "fq-choice";
