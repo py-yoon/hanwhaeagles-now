@@ -400,13 +400,20 @@
     requestAnimationFrame(step);
   }
 
-  // ladder fill animation
+  // ladder fill animation — bars are scaled relative to the largest rank probability
+  // (so the most likely rank reaches 100% and the rest are visually comparable to it),
+  // not to a flat x4 multiplier: that flat scaling clamped every rank at or above ~25%
+  // to the same 100%-wide bar, making differently-valued bars look identical in length.
   var rungs = document.querySelectorAll('.rung');
+  var maxPct = Math.max.apply(null, Array.prototype.map.call(rungs, function(r){
+    return parseFloat(r.getAttribute('data-pct')) || 0;
+  }));
   function fillLadder(){
     rungs.forEach(function(r){
       var pct = parseFloat(r.getAttribute('data-pct'));
-      var scaled = Math.max(pct, pct>0 ? Math.max(pct*4, 1.5) : 0); // visual floor so tiny bars are still visible
-      r.querySelector('.fill').style.width = Math.min(100, scaled) + '%';
+      var scaled = maxPct > 0 ? (pct / maxPct) * 100 : 0;
+      var visible = pct > 0 ? Math.max(scaled, 1.5) : 0; // visual floor so tiny bars are still visible
+      r.querySelector('.fill').style.width = Math.min(100, visible) + '%';
     });
   }
   if (reduced) { fillLadder(); }
