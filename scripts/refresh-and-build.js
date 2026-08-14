@@ -42,7 +42,21 @@ async function main() {
   console.log('[refresh] collecting schedule...');
   const games = [];
   for (const month of months) {
-    const monthGames = await collectMonth({ season, month });
+    let monthGames;
+    try {
+      monthGames = await collectMonth({ season, month });
+    } catch (err) {
+      // collectMonth throws when the schedule table has zero rows, which is also
+      // exactly what an empty post-season month (the regular season doesn't always
+      // run all the way through October) looks like. Months are walked in order, so
+      // once we hit one, every later month is empty too — stop instead of failing
+      // the whole refresh over a real end-of-season month.
+      if (/returned zero games/.test(err.message)) {
+        console.log(`[refresh]   ${season}-${String(month).padStart(2, '0')}: 0 games — treating as end of season, stopping collection`);
+        break;
+      }
+      throw err;
+    }
     console.log(`[refresh]   ${season}-${String(month).padStart(2, '0')}: ${monthGames.length} games`);
     games.push(...monthGames);
   }
