@@ -178,14 +178,18 @@ function buildTreeHtml(gameTree) {
   return { descHtml, treeHtml, h2hHtml };
 }
 
-/** Counts the focus team's own not-yet-played games — distinct from report.future_games,
- * which is every remaining game across the whole league (what the Monte Carlo actually
- * simulates, since every other team's results affect the focus team's final rank). Fans
- * reading a "잔여 경기" stat next to their own team's W-L record expect their own team's
- * remaining schedule, not the league-wide count. */
-function countTeamRemainingGames(games, focusTeam) {
-  const FUTURE_STATUSES = new Set(['SCHEDULED', 'POSTPONED', 'RESCHEDULED']);
-  return games.filter((g) => (g.home === focusTeam || g.away === focusTeam) && FUTURE_STATUSES.has(g.status ?? 'SCHEDULED')).length;
+const KBO_REGULAR_SEASON_GAMES = 144;
+
+/** HANWHA's own remaining games under the standard 144-game KBO regular season —
+ * distinct from report.future_games, which is every remaining game across the whole
+ * league (what the Monte Carlo actually simulates, since every other team's results
+ * affect the focus team's final rank). Deliberately 144 minus games played, not a count
+ * of currently-published SCHEDULED rows: KBO frequently finalizes rainout/doubleheader
+ * makeup dates only later in the season, so the schedule page's SCHEDULED count can run
+ * short of the real remaining total until KBO actually announces those dates. */
+function countTeamRemainingGames(focusRow) {
+  const played = focusRow.wins + focusRow.losses + focusRow.draws;
+  return Math.max(0, KBO_REGULAR_SEASON_GAMES - played);
 }
 
 function buildStandingsHtml(allRows, focusTeam) {
@@ -207,7 +211,7 @@ function buildStandingsHtml(allRows, focusTeam) {
  * standings row for the focus team. Throws rather than silently rendering a page with
  * missing data — a broken build must fail the CI job, not publish a half-empty page.
  */
-export function buildLandingHtml({ template, report, focusRow, refRow, allRows, gamesCollected, officialCount, games = [] }) {
+export function buildLandingHtml({ template, report, focusRow, refRow, allRows, gamesCollected, officialCount }) {
   if (!report?.summary || !focusRow) throw new Error('buildLandingHtml: report and focusRow are required');
 
   const winRate = focusRow.wins + focusRow.losses > 0
@@ -225,7 +229,7 @@ export function buildLandingHtml({ template, report, focusRow, refRow, allRows, 
     DRAWS: String(focusRow.draws),
     WIN_RATE: winRate.toFixed(4).replace(/^0/, ''),
     REMAINING: String(report.future_games),
-    TEAM_REMAINING: String(countTeamRemainingGames(games, focusRow.team)),
+    TEAM_REMAINING: String(countTeamRemainingGames(focusRow)),
     GAMES_COLLECTED: String(gamesCollected),
     RECONCILE_CHECKS: `${officialCount} / ${officialCount}`,
     PLAYOFF_PCT: (report.summary.playoff_probability * 100).toFixed(2),

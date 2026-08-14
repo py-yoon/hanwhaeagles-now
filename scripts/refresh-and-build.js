@@ -111,7 +111,6 @@ async function main() {
     allRows: standingsRowsRanked,
     gamesCollected: games.length,
     officialCount: 1,
-    games,
   });
 
   await fs.mkdir('docs', { recursive: true });
