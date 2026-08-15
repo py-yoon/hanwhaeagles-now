@@ -6,14 +6,29 @@ window.EAGLES_GAMES_2026 = {
     "source": "data/raw/production-2026.json + data/live/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
     "record": {
       "wins": 48,
-      "losses": 52,
+      "losses": 53,
       "draws": 3,
-      "games": 103
+      "games": 104
     },
-    "games_with_starters": 103,
-    "games_with_swings": 103
+    "games_with_starters": 104,
+    "games_with_swings": 104
   },
   "games": [
+    {
+      "game_id": "20260815-HANWHA-SAMSUNG-1",
+      "date": "2026-08-15",
+      "home": false,
+      "opponent": "SAMSUNG",
+      "hanwhaScore": 6,
+      "oppScore": 11,
+      "stadium": "대구",
+      "result": "LOSS",
+      "hanwhaStarter": "박준영",
+      "oppStarter": "양창섭",
+      "probabilityDeltaPct": -2.07,
+      "probabilityBefore": 0.0687,
+      "probabilityAfter": 0.048
+    },
     {
       "game_id": "20260814-HANWHA-SAMSUNG-1",
       "date": "2026-08-14",

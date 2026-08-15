@@ -726,6 +726,13 @@
       "before": 0.0779,
       "after": 0.0568,
       "delta_pct": -2.11
+    },
+    "20260815-HANWHA-SAMSUNG-1": {
+      "date": "2026-08-15",
+      "as_of": "2026-08-14",
+      "before": 0.0687,
+      "after": 0.048,
+      "delta_pct": -2.07
     }
   }
 }
