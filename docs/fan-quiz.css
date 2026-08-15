@@ -74,6 +74,7 @@ body {
   transition: color .15s;
 }
 .fq-brand:hover { color: var(--eagle-soft); text-decoration: underline; }
+.fq-brand.current, .fq-brand.current:hover { color: var(--ink-dim); text-decoration: none; cursor: default; }
 .fq-title {
   font-family: var(--font-display);
   font-weight: 900;

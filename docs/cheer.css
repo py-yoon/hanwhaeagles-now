@@ -71,6 +71,7 @@ body {
   transition: color .15s;
 }
 .ec-brand:hover { color: var(--eagle-soft); text-decoration: underline; }
+.ec-brand.current, .ec-brand.current:hover { color: var(--ink-dim); text-decoration: none; cursor: default; }
 
 .ec-title {
   font-family: var(--font-display);

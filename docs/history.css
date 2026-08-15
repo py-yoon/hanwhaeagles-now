@@ -74,6 +74,12 @@ body {
   transition: color .15s;
 }
 
+.eh-brand.current, .eh-brand.current:hover {
+  color: var(--ink-dim);
+  text-decoration: none;
+  cursor: default;
+}
+
 .eh-brand:hover {
   color: var(--eagle-soft);
   text-decoration: underline;
