@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRX1ZN41KQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LRX1ZN41KQ');
+  </script>
+  <title>이글스 응원가 & 등장곡 룸 | HANWHA EAGLES NOW</title>
+  <style>
+    :root {
+      --bg-dark: #0a0c0f;
+      --card-bg: #12151a;
+      --card-border: #262b33;
+      --primary-orange: #ff6a1a;
+      --primary-orange-hover: #ff8a47;
+      --text-white: #edece6;
+      --text-gray: #9aa0ab;
+      --text-muted: #5c626d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-white); min-height: 100vh; padding-bottom: 60px; }
+
+    header {
+      background-color: rgba(18, 21, 26, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span { color: var(--primary-orange); }
+    nav a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-left: 20px;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--primary-orange); }
+
+    .container { max-width: 1200px; margin: 32px auto 0; padding: 0 20px; }
+    .page-title-area { text-align: center; margin-bottom: 32px; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .page-title span { color: var(--primary-orange); }
+    .page-desc { color: var(--text-gray); font-size: 1rem; }
+
+    /* Layout Split */
+    .player-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+    }
+    @media (max-width: 860px) {
+      .player-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Left: List & Filters */
+    .list-panel {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: #262b33;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #edece6;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .tab-pills {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background-color: #262b33;
+      color: var(--text-gray);
+      border: 1px solid var(--card-border);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background-color: var(--primary-orange);
+      color: #edece6;
+      border-color: var(--primary-orange);
+    }
+
+    .song-list {
+      max-height: 520px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+    .song-item {
+      padding: 14px 16px;
+      background-color: rgba(255,255,255,0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s;
+    }
+    .song-item:hover, .song-item.active {
+      background-color: #1f242c;
+      border-color: var(--primary-orange);
+      transform: translateX(4px);
+    }
+    .song-name { font-weight: 700; font-size: 0.95rem; }
+    .song-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+    .song-badge {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      background-color: #191d24;
+      border-radius: 6px;
+      color: var(--primary-orange);
+      font-weight: 600;
+    }
+
+    /* Right: Lyrics & Player Display */
+    .view-panel {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 480px;
+    }
+    .view-header {
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .current-title { font-size: 1.5rem; font-weight: 800; color: var(--primary-orange); }
+    .current-target { font-size: 1rem; color: var(--text-gray); margin-top: 4px; }
+
+    .lyrics-box {
+      background-color: #12151a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      flex-grow: 1;
+      white-space: pre-line;
+      line-height: 1.9;
+      font-size: 1.05rem;
+      color: #edece6;
+      text-align: center;
+      margin-bottom: 24px;
+      overflow-y: auto;
+      max-height: 320px;
+    }
+    .lyrics-highlight {
+      color: var(--primary-orange);
+      font-weight: 700;
+    }
+
+    /* Audio visualizer simulation */
+    .audio-player-bar {
+      background-color: rgba(255,255,255,0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--primary-orange);
+      color: #edece6;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .play-btn:hover { background-color: var(--primary-orange-hover); }
+
+    .wave-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 24px;
+    }
+    .wave-bar {
+      width: 4px;
+      height: 6px;
+      background-color: var(--primary-orange);
+      border-radius: 2px;
+      animation: none;
+    }
+    .playing .wave-bar {
+      animation: waveAnim 0.8s ease-in-out infinite alternate;
+    }
+    .playing .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+    .playing .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+    .playing .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+    .playing .wave-bar:nth-child(5) { animation-delay: 0.3s; }
+
+    @keyframes waveAnim {
+      0% { height: 4px; }
+      100% { height: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        🦅 HANWHA EAGLES <span>NOW</span>
+      </a>
+      <nav>
+        <a href="scenario.html">시나리오 계산기</a>
+        <a href="my-record.html">직관 일기</a>
+        <a href="cheer.html" class="active">응원가 룸</a>
+        <a href="history.html">이글스 역사관</a>
+        <a href="players.html">선수단</a>
+        <a href="games.html">경기기록</a>
+        <a href="fan-quiz.html">찐팬 감별기</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title-area">
+      <h1 class="page-title">이글스 <span>응원가 & 등장곡 룸</span></h1>
+      <p class="page-desc">경기 직관과 집관의 필수품! 팀 대표 응원가와 선수별 응원가 및 등장곡 가사를 빠르게 찾아보세요.</p>
+    </div>
+
+    <div class="player-layout">
+      <!-- Left List -->
+      <div class="list-panel">
+        <input type="text" class="search-input" id="searchInput" placeholder="선수명, 응원가 제목 검색..." oninput="filterSongs()">
+        <div class="tab-pills">
+          <button class="tab-btn active" onclick="setCategory('all', this)">전체</button>
+          <button class="tab-btn" onclick="setCategory('team', this)">팀 응원가</button>
+          <button class="tab-btn" onclick="setCategory('batter', this)">타자 응원가</button>
+          <button class="tab-btn" onclick="setCategory('pitcher', this)">투수 등장곡</button>
+        </div>
+
+        <div class="song-list" id="songList">
+          <!-- Dynamic -->
+        </div>
+      </div>
+
+      <!-- Right View -->
+      <div class="view-panel">
+        <div class="view-header">
+          <div class="current-title" id="viewTitle">나는 행복합니다</div>
+          <div class="current-target" id="viewTarget">한화 이글스 대표 시그니처 응원가</div>
+        </div>
+
+        <div class="lyrics-box" id="viewLyrics">
+          나는 행복합니다~
+          나는 행복합니다~
+          나는 행복합니다~ 이글스라 행복합니다!
+        </div>
+
+        <div class="audio-player-bar">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+            <div>
+              <div style="font-size: 0.85rem; font-weight: 700;" id="playerTrackName">가사 모드 실행중</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">함께 부르며 응원해 보세요! 📢</div>
+            </div>
+          </div>
+          <div class="wave-container" id="waveContainer">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const songData = [
+      {
+        id: 1,
+        title: '나는 행복합니다',
+        category: 'team',
+        target: '한화 이글스 공식 대표 응원가',
+        lyrics: `(전주 후 다함께!)\n\n나는 행복합니다~\n나는 행복합니다~\n나는 행복합니다~\n이글스라 행복합니다!\n\n(반복)\n나는 행복합니다~\n나는 행복합니다~\n나는 행복합니다~\n최강한화 이글스!`
+      },
+      {
+        id: 2,
+        title: '영원한 불꽃',
+        category: 'team',
+        target: '팀 클라이맥스 응원가',
+        lyrics: `타올라라 불꽃이여! 승리의 그 이름 한화 이글스!\n\n워어어어 워어어어~\n승리를 향해 날아올라라!\n\n최! 강! 한! 화! 이! 글! 스!`
+      },
+      {
+        id: 3,
+        title: '최강한화 육성응원',
+        category: 'team',
+        target: '8회 말 육성응원 구호',
+        lyrics: `(북소리에 맞춰 다함께 외칩니다)\n\n(쿵쿵 쿵쿵쿵) 최! 강! 한! 화!\n(쿵쿵 쿵쿵쿵) 최! 강! 한! 화!\n(쿵쿵 쿵쿵쿵) 승! 리! 한! 화!`
+      },
+      {
+        id: 4,
+        title: '노시환 응원가',
+        category: 'batter',
+        target: 'No.8 노시환 (내야수)',
+        lyrics: `한화의 거포 노시환!\n날려라 홈런 노시환!\n\n워어어어어~ 노! 시! 환!\n워어어어어~ 날려버려라!\n\n한화의 노시환 안타를 날려줘요~\n한화의 노시환 홈런을 날려줘요~ 노! 시! 환!`
+      },
+      {
+        id: 5,
+        title: '채은성 응원가',
+        category: 'batter',
+        target: 'No.22 채은성 (내야수/주장)',
+        lyrics: `은성 은성 채은성~\n한화의 해결사 채은성!\n\n승리를 위하여 안타를 날려라~\n워어어 채은성 안타!`
+      },
+      {
+        id: 6,
+        title: '페라자 응원가',
+        category: 'batter',
+        target: 'No.30 페라자 (외야수)',
+        lyrics: `이글스의 페라자 워어어어어~\n안타 페라자! 홈런 페라자!\n\n열정의 불꽃을 태워라 페라자!\n승리를 위하여 페라자!`
+      },
+      {
+        id: 7,
+        title: '안치홍 응원가',
+        category: 'batter',
+        target: 'No.3 안치홍 (내야수)',
+        lyrics: `안치홍 안치홍 안타 안치홍~\n승리의 함성을 다 함께 외쳐라!\n\n한화의 안치홍 워어어어~\n안타 안치홍!`
+      },
+      {
+        id: 8,
+        title: '문현빈 응원가',
+        category: 'batter',
+        target: 'No.1 문현빈 (내야수)',
+        lyrics: `날려라 문현빈 안타 문현빈!\n승리를 향해 힘차게 뛰어라~\n\n최강한화의 아기독수리 문현빈!\n워어어어 문현빈!`
+      },
+      {
+        id: 9,
+        title: '류현진 등장곡',
+        category: 'pitcher',
+        target: 'No.99 류현진 (선발투수)',
+        lyrics: `[등장 테마곡: Evanescence - Bring Me To Life & The Monster]\n\n"몬스터의 귀환, 99번 류현진 등판!"\n\n(이글스파크를 뒤흔드는 괴물 투수의 카리스마 등장 사운드)`
+      },
+      {
+        id: 10,
+        title: '문동주 등장곡',
+        category: 'pitcher',
+        target: 'No.1 문동주 (선발투수)',
+        lyrics: `[등장 테마곡: AC/DC - Thunderstruck]\n\n"160km 광속구의 주역, 대전의 파이어볼러 문동주!"\n\n(천둥 같은 비트와 함께 마운드 등판)`
+      }
+    ];
+
+    let currentCategory = 'all';
+    let currentSongId = 1;
+    let isPlaying = false;
+
+    function renderList() {
+      const listElem = document.getElementById('songList');
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      listElem.innerHTML = '';
+
+      const filtered = songData.filter(s => {
+        const matchCat = currentCategory === 'all' || s.category === currentCategory;
+        const matchQuery = s.title.toLowerCase().includes(query) || s.target.toLowerCase().includes(query) || s.lyrics.toLowerCase().includes(query);
+        return matchCat && matchQuery;
+      });
+
+      if (filtered.length === 0) {
+        listElem.innerHTML = `<div style="text-align:center; padding: 30px; color: var(--text-muted); font-size: 0.9rem;">검색 결과가 없습니다.</div>`;
+        return;
+      }
+
+      filtered.forEach(s => {
+        const div = document.createElement('div');
+        div.className = `song-item ${s.id === currentSongId ? 'active' : ''}`;
+        div.onclick = () => selectSong(s.id);
+        div.innerHTML = `
+          <div>
+            <div class="song-name">${s.title}</div>
+            <div class="song-sub">${s.target}</div>
+          </div>
+          <span class="song-badge">${s.category === 'team' ? '팀' : s.category === 'batter' ? '타자' : '투수'}</span>
+        `;
+        listElem.appendChild(div);
+      });
+    }
+
+    function selectSong(id) {
+      currentSongId = id;
+      const song = songData.find(s => s.id === id);
+      if (!song) return;
+
+      document.getElementById('viewTitle').innerText = song.title;
+      document.getElementById('viewTarget').innerText = song.target;
+      document.getElementById('viewLyrics').innerText = song.lyrics;
+      document.getElementById('playerTrackName').innerText = `${song.title} (${song.target})`;
+
+      renderList();
+    }
+
+    function setCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderList();
+    }
+
+    function filterSongs() {
+      renderList();
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('playBtn');
+      const wave = document.getElementById('waveContainer');
+
+      if (isPlaying) {
+        btn.innerText = '⏸';
+        wave.classList.add('playing');
+      } else {
+        btn.innerText = '▶';
+        wave.classList.remove('playing');
+      }
+    }
+
+    // 초기 로드
+    selectSong(1);
+  </script>
+</body>
+</html>

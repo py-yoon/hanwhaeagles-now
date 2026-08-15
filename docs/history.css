@@ -1,0 +1,375 @@
+/* ==========================================================================
+   HANWHA EAGLES NOW — 구단 역사 / 역대 성적
+   players.css와 동일한 다크 · 데이터 중심 톤을 공유합니다.
+   ========================================================================== */
+
+:root {
+  --bg: #0a0c0f;
+  --surface: #12151a;
+  --surface-2: #191d24;
+  --surface-hover: #1f242c;
+  --line: #262b33;
+  --line-soft: #1c2027;
+  --ink: #edece6;
+  --ink-dim: #9aa0ab;
+  --ink-faint: #5c626d;
+  --eagle: #ff6a1a;
+  --eagle-soft: #ff8a47;
+  --eagle-dim: #7a3717;
+  --eagle-wash: rgba(255, 106, 26, 0.1);
+  --gold: #e6c34d;
+  --gold-dim: #7a6522;
+  --gold-wash: rgba(230, 195, 77, 0.1);
+  --radius: 3px;
+
+  --font-display: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 45 920;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.eh-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 20px 100px;
+}
+
+/* ---------- header ---------- */
+
+.eh-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.eh-brand {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--eagle);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: color .15s;
+}
+
+.eh-brand:hover {
+  color: var(--eagle-soft);
+  text-decoration: underline;
+}
+
+.eh-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 4vw, 34px);
+  letter-spacing: -0.01em;
+  margin: 4px 0 0;
+}
+
+.eh-title em { font-style: normal; color: var(--eagle); }
+
+.eh-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-align: right;
+  line-height: 1.7;
+}
+
+.eh-meta .eh-live { color: var(--eagle-soft); }
+.eh-meta .eh-dot {
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--eagle); margin-right: 6px; box-shadow: 0 0 6px var(--eagle);
+}
+
+/* ---------- hero stat cards ---------- */
+
+.eh-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  margin-bottom: 32px;
+}
+
+.eh-hero-card {
+  background: var(--surface);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.eh-hero-num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--eagle-soft);
+  letter-spacing: -0.01em;
+}
+
+.eh-hero-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+/* ---------- section heading ---------- */
+
+.eh-section-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 20px;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.eh-section-sub {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.eh-section {
+  margin-bottom: 40px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- timeline ---------- */
+
+.eh-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.eh-tl-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.eh-tl-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--eagle-soft);
+  padding-top: 1px;
+}
+
+.eh-tl-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.eh-tl-note { font-size: 12.5px; color: var(--ink-dim); line-height: 1.6; }
+
+/* ---------- era tabs ---------- */
+
+.eh-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.eh-tab {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 7px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+
+.eh-tab:hover, .eh-tab.active {
+  background: var(--eagle-wash);
+  border-color: var(--eagle-dim);
+  color: var(--eagle-soft);
+}
+
+/* ---------- legend ---------- */
+
+.eh-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+.eh-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.eh-legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.eh-legend i.champ { background: var(--gold); }
+.eh-legend i.runner { background: var(--eagle); }
+.eh-legend i.ps { background: var(--ink-dim); }
+.eh-legend i.na { background: var(--line); }
+
+/* ---------- season table ---------- */
+
+.eh-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.eh-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 720px;
+}
+
+.eh-table thead th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+}
+
+.eh-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line-soft);
+  white-space: nowrap;
+}
+
+.eh-table td.eh-wrap-cell { white-space: normal; min-width: 220px; }
+
+.eh-table tbody tr { background: var(--surface); transition: background .12s; }
+.eh-table tbody tr:hover { background: var(--surface-hover); }
+
+.eh-table tbody tr.champ { border-left: 3px solid var(--gold); background: var(--gold-wash); }
+.eh-table tbody tr.runner { border-left: 3px solid var(--eagle); background: var(--eagle-wash); }
+.eh-table tbody tr.ps { border-left: 3px solid var(--ink-dim); }
+.eh-table tbody tr.na { border-left: 3px solid transparent; }
+
+.eh-year { font-family: var(--font-mono); color: var(--ink); font-weight: 600; }
+.eh-team-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+.eh-pct { font-family: var(--font-mono); color: var(--eagle-soft); }
+.eh-wlt { font-family: var(--font-mono); color: var(--ink-dim); }
+.eh-unconfirmed { font-family: var(--font-mono); color: var(--ink-faint); font-style: italic; }
+.eh-result-text { color: var(--ink-dim); font-size: 12px; }
+
+.eh-final-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 2px;
+  background: var(--surface-2);
+  color: var(--ink-dim);
+}
+.eh-final-tag.champ { background: var(--gold-wash); color: var(--gold); }
+.eh-final-tag.runner { background: var(--eagle-wash); color: var(--eagle-soft); }
+
+.eh-note-flag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0 4px;
+  margin-left: 6px;
+  cursor: help;
+}
+
+/* ---------- retired numbers ---------- */
+
+.eh-retired-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+
+.eh-retired-card {
+  background: var(--surface);
+  padding: 18px 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.eh-retired-no {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--eagle-soft);
+  min-width: 44px;
+}
+
+.eh-retired-name { font-weight: 800; font-size: 15px; margin-bottom: 4px; }
+.eh-retired-note { font-size: 12px; color: var(--ink-dim); line-height: 1.5; }
+
+/* ---------- coaches ---------- */
+
+.eh-coach-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.eh-coach-row {
+  display: grid;
+  grid-template-columns: 110px 100px 1fr;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+
+.eh-coach-period { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); }
+.eh-coach-name { font-weight: 700; font-size: 14px; }
+.eh-coach-note { font-size: 12px; color: var(--ink-dim); }
+
+@media (max-width: 560px) {
+  .eh-coach-row { grid-template-columns: 1fr; gap: 3px; padding: 12px 0; }
+}
+
+.eh-footer-note {
+  margin-top: 30px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  line-height: 1.8;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}

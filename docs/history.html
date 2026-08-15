@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRX1ZN41KQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRX1ZN41KQ');
+</script>
+<title>구단 역사 — HANWHA EAGLES NOW</title>
+<meta name="description" content="한화 이글스 구단 역사 — 1986년 창단부터 현재까지 시즌별 성적, 역대 감독, 영구결번">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="history.css">
+</head>
+<body>
+
+<div class="eh-wrap">
+  <header class="eh-header">
+    <div>
+      <a class="eh-brand" href="index.html">← HANWHA EAGLES NOW</a>
+      <h1 class="eh-title">구단 역사 <em>HISTORY</em></h1>
+    </div>
+    <div>
+      <a class="eh-brand" href="players.html">선수단 →</a>
+      <a class="eh-brand" href="games.html" style="margin-left:14px">경기기록 →</a>
+      <a class="eh-brand" href="fan-quiz.html" style="margin-left:14px">찐팬 감별기 →</a>
+      <a class="eh-brand" href="scenario.html" style="margin-left:14px">가을야구 시나리오 →</a>
+      <div class="eh-meta" id="ehMeta"></div>
+    </div>
+  </header>
+
+  <div class="eh-hero" id="ehHero"></div>
+
+  <section class="eh-section">
+    <h2 class="eh-section-title">주요 연혁</h2>
+    <div class="eh-timeline" id="ehTimeline"></div>
+  </section>
+
+  <section class="eh-section">
+    <h2 class="eh-section-title">시즌별 성적</h2>
+    <div class="eh-section-sub">1986년 창단 이후 전 시즌 · 일부 시즌(1999·2000·2001·2004·2005)은 정확한 승-무-패 숫자가 아직 확인되지 않아 순위·결과만 표기했습니다.</div>
+
+    <div class="eh-tabs" id="ehTabs"></div>
+
+    <div class="eh-legend">
+      <span><i class="champ"></i>우승</span>
+      <span><i class="runner"></i>준우승</span>
+      <span><i class="ps"></i>포스트시즌 진출</span>
+      <span><i class="na"></i>미진출</span>
+    </div>
+
+    <div class="eh-table-wrap">
+      <table class="eh-table">
+        <thead>
+          <tr>
+            <th>연도</th>
+            <th>구단명</th>
+            <th>정규시즌</th>
+            <th>최종순위</th>
+            <th>승-무-패</th>
+            <th>승률</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody id="ehTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="eh-section">
+    <h2 class="eh-section-title">영구결번</h2>
+    <div class="eh-retired-grid" id="ehRetired"></div>
+  </section>
+
+  <section class="eh-section">
+    <h2 class="eh-section-title">역대 감독</h2>
+    <div class="eh-coach-list" id="ehCoaches"></div>
+  </section>
+
+  <div class="eh-footer-note">
+    구단 연혁 및 시즌 기록은 KBO 공식 기록과 공개된 자료를 바탕으로 정리했습니다. 일부 초기 시즌의 승-무-패 숫자는 순차적으로 보강됩니다.<br>
+    HANWHA EAGLES NOW는 한화 이글스 구단·KBO와 무관한 비공식 팬 분석 프로젝트입니다.
+  </div>
+</div>
+
+<script src="games-2026.js"></script>
+<script src="history-data.js"></script>
+<script src="history.js"></script>
+</body>
+</html>

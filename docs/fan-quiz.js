@@ -37,6 +37,8 @@
   const $result = document.getElementById("fqResult");
   const $startBtn = document.getElementById("fqStartBtn");
   const $retryBtn = document.getElementById("fqRetryBtn");
+  const $shareBtn = document.getElementById("fqShareBtn");
+  const $shareCanvas = document.getElementById("fqShareCanvas");
   const $progressFill = document.getElementById("fqProgressFill");
   const $progressLabel = document.getElementById("fqProgressLabel");
   const $tierBadge = document.getElementById("fqTierBadge");
@@ -190,5 +192,19 @@
           <div class="fq-review-a ${correct ? "correct" : "wrong"}">${correct ? "✓ 정답" : "✕ 오답"} — ${q.choices[q.answerIndex]}</div>
         </div>`)
       .join("");
+
+    if ($shareBtn && window.QuizCardGenerator) {
+      $shareBtn.onclick = () => {
+        const correctCount = answered.filter((a) => a.correct).length;
+        QuizCardGenerator.generateCard({
+          canvas: $shareCanvas,
+          score,
+          maxScore: 60,
+          correctCount,
+          totalQuestions: session.length,
+        });
+        QuizCardGenerator.downloadPNG($shareCanvas);
+      };
+    }
   }
 })();

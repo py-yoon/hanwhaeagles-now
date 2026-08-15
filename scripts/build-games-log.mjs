@@ -68,6 +68,7 @@ async function main() {
       opponent,
       hanwhaScore: isHome ? g.home_score : g.away_score,
       oppScore: isHome ? g.away_score : g.home_score,
+      stadium: g.stadium || null,
       result,
       hanwhaStarter,
       oppStarter,

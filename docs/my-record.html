@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRX1ZN41KQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LRX1ZN41KQ');
+  </script>
+  <title>나의 이글스 직관 일기 | HANWHA EAGLES NOW</title>
+  <style>
+    :root {
+      --bg-dark: #0a0c0f;
+      --card-bg: #12151a;
+      --card-border: #262b33;
+      --primary-orange: #ff6a1a;
+      --primary-orange-hover: #ff8a47;
+      --text-white: #edece6;
+      --text-gray: #9aa0ab;
+      --text-muted: #5c626d;
+      --win-color: #34c98f;
+      --loss-color: #ff5a6a;
+      --draw-color: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: rgba(18, 21, 26, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span { color: var(--primary-orange); }
+    nav a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-left: 20px;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--primary-orange); }
+
+    .container {
+      max-width: 1200px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+
+    .page-title-area {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .page-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .page-title span { color: var(--primary-orange); }
+    .page-desc {
+      color: var(--text-gray);
+      font-size: 1rem;
+    }
+
+    /* Summary Card Grid */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+    }
+    .stat-title {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-white);
+    }
+    .stat-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .fairy-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background-color: rgba(255, 106, 26, 0.15);
+      color: var(--primary-orange);
+      border: 1px solid rgba(255, 106, 26, 0.3);
+      margin-top: 8px;
+    }
+
+    /* Action bar */
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn {
+      background-color: #262b33;
+      color: var(--text-white);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background-color: #1f242c;
+      border-color: var(--primary-orange);
+    }
+    .btn-orange {
+      background-color: var(--primary-orange);
+      border-color: var(--primary-orange);
+    }
+    .btn-orange:hover {
+      background-color: var(--primary-orange-hover);
+    }
+
+    /* Table */
+    .table-container {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th {
+      background-color: #191d24;
+      padding: 14px 16px;
+      color: var(--text-gray);
+      font-weight: 600;
+      border-bottom: 1px solid var(--card-border);
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-white);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr.attended-row {
+      background-color: rgba(255, 106, 26, 0.05);
+    }
+
+    .badge-win { color: var(--win-color); font-weight: 700; }
+    .badge-loss { color: var(--loss-color); font-weight: 700; }
+    .badge-draw { color: var(--draw-color); font-weight: 700; }
+
+    /* Custom Checkbox */
+    .custom-check {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .custom-check input {
+      accent-color: var(--primary-orange);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* Canvas (hidden) */
+    #reportCanvas {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        🦅 HANWHA EAGLES <span>NOW</span>
+      </a>
+      <nav>
+        <a href="scenario.html">시나리오 계산기</a>
+        <a href="my-record.html" class="active">직관 일기</a>
+        <a href="cheer.html">응원가 룸</a>
+        <a href="history.html">이글스 역사관</a>
+        <a href="players.html">선수단</a>
+        <a href="games.html">경기기록</a>
+        <a href="fan-quiz.html">찐팬 감별기</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title-area">
+      <h1 class="page-title">나의 <span>이글스 직관 일기</span></h1>
+      <p class="page-desc">2026 시즌 직관한 경기들을 체크해 보세요. 나의 직관 승률과 승리 요정 지수를 실시간 분석해 드립니다.</p>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="summary-grid">
+      <div class="stat-card">
+        <div class="stat-title">나의 직관 승률</div>
+        <div class="stat-value" id="statWinRate" style="color: var(--primary-orange);">0.0%</div>
+        <div class="stat-sub" id="statRecord">0경기 (0승 0패 0무)</div>
+        <div class="fairy-badge" id="fairyTitle">직관 기록 없음</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">홈 vs 원정 직관 전적</div>
+        <div class="stat-value" id="statHomeAway">0승 / 0승</div>
+        <div class="stat-sub" id="statHomeAwaySub">홈 0경기 · 원정 0경기</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">나의 승리 요정 투수</div>
+        <div class="stat-value" id="statFavPitcher" style="font-size: 1.5rem; line-height: 2rem;">-</div>
+        <div class="stat-sub" id="statFavPitcherSub">직관 시 최다 승리 투수</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-title">직관 득실점 마진</div>
+        <div class="stat-value" id="statScoreMargin">0점</div>
+        <div class="stat-sub" id="statScoreDetail">총 0득점 / 0실점</div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-bar">
+      <div class="filter-group">
+        <span style="font-size: 0.85rem; color: var(--text-gray);">필터:</span>
+        <button class="btn" id="filterAll" onclick="filterTable('all')">전체 경기</button>
+        <button class="btn" id="filterAttended" onclick="filterTable('attended')">내가 직관한 경기만</button>
+      </div>
+      <div>
+        <button class="btn btn-orange" onclick="downloadReportCard()">📸 직관 리포트 카드(PNG) 다운로드</button>
+      </div>
+    </div>
+
+    <!-- Match Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 110px;">직관 체크</th>
+            <th>일자</th>
+            <th>구분</th>
+            <th>상대팀</th>
+            <th>결과 / 스코어</th>
+            <th>한화 선발</th>
+            <th>상대 선발</th>
+            <th>장소</th>
+          </tr>
+        </thead>
+        <tbody id="gamesTableBody">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <canvas id="reportCanvas" width="800" height="900"></canvas>
+
+  <script src="games-2026.js"></script>
+  <script>
+    // 2026 시즌 완료 경기 실데이터 (docs/games-2026.js, scripts/build-games-log.mjs가 매일 밤 재생성)
+    const TEAM_NAME = {
+      HANWHA: '한화', KIWOOM: '키움', KT: 'KT', LG: 'LG', KIA: 'KIA',
+      DOOSAN: '두산', NC: 'NC', LOTTE: '롯데', SSG: 'SSG', SAMSUNG: '삼성',
+    };
+    const RESULT_MAP = { WIN: 'W', LOSS: 'L', DRAW: 'D' };
+    const GAMES_2026 = window.EAGLES_GAMES_2026 || { games: [] };
+    const rawMatches = GAMES_2026.games.map((g) => ({
+      id: g.game_id,
+      date: g.date,
+      home: g.home,
+      opp: TEAM_NAME[g.opponent] || g.opponent,
+      res: RESULT_MAP[g.result] || g.result,
+      score: `${g.hanwhaScore}:${g.oppScore}`,
+      pitcherH: g.hanwhaStarter || '정보 없음',
+      pitcherO: g.oppStarter || '정보 없음',
+      stadium: g.stadium || '-',
+      rH: g.hanwhaScore,
+      rO: g.oppScore,
+    })).sort((a, b) => b.date.localeCompare(a.date));
+
+    // LocalStorage 로드
+    let attendedIds = JSON.parse(localStorage.getItem('hanwha_attended_games') || '[]');
+    let currentFilter = 'all';
+
+    function saveAttendance() {
+      localStorage.setItem('hanwha_attended_games', JSON.stringify(attendedIds));
+      updateStats();
+    }
+
+    function toggleAttendance(id) {
+      if (attendedIds.includes(id)) {
+        attendedIds = attendedIds.filter(x => x !== id);
+      } else {
+        attendedIds.push(id);
+      }
+      saveAttendance();
+      renderTable();
+    }
+
+    function filterTable(filter) {
+      currentFilter = filter;
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('gamesTableBody');
+      tbody.innerHTML = '';
+
+      const filtered = rawMatches.filter(m => {
+        if (currentFilter === 'attended') return attendedIds.includes(m.id);
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 40px; color: var(--text-gray);">표시할 직관 경기가 없습니다. 체크박스를 눌러 직관한 경기를 기록해 보세요!</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(m => {
+        const isAttended = attendedIds.includes(m.id);
+        const tr = document.createElement('tr');
+        if (isAttended) tr.className = 'attended-row';
+
+        let resBadge = '';
+        if (m.res === 'W') resBadge = `<span class="badge-win">승 (${m.score})</span>`;
+        else if (m.res === 'L') resBadge = `<span class="badge-loss">패 (${m.score})</span>`;
+        else resBadge = `<span class="badge-draw">무 (${m.score})</span>`;
+
+        tr.innerHTML = `
+          <td>
+            <label class="custom-check">
+              <input type="checkbox" ${isAttended ? 'checked' : ''} onchange="toggleAttendance('${m.id}')">
+              <span>${isAttended ? '직관완료' : '미체크'}</span>
+            </label>
+          </td>
+          <td>${m.date}</td>
+          <td>${m.home ? '🏠 홈' : '✈️ 원정'}</td>
+          <td style="font-weight: 700;">${m.opp}</td>
+          <td>${resBadge}</td>
+          <td style="color: var(--primary-orange); font-weight: 600;">${m.pitcherH}</td>
+          <td>${m.pitcherO}</td>
+          <td>${m.stadium}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateStats() {
+      const attendedMatches = rawMatches.filter(m => attendedIds.includes(m.id));
+      const total = attendedMatches.length;
+
+      let wins = 0, losses = 0, draws = 0;
+      let homeWins = 0, homeTotal = 0, awayWins = 0, awayTotal = 0;
+      let scored = 0, conceded = 0;
+      const pitcherWins = {};
+
+      attendedMatches.forEach(m => {
+        scored += m.rH;
+        conceded += m.rO;
+
+        if (m.res === 'W') {
+          wins++;
+          pitcherWins[m.pitcherH] = (pitcherWins[m.pitcherH] || 0) + 1;
+          if (m.home) homeWins++; else awayWins++;
+        } else if (m.res === 'L') {
+          losses++;
+        } else {
+          draws++;
+        }
+
+        if (m.home) homeTotal++; else awayTotal++;
+      });
+
+      const winRate = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0';
+
+      document.getElementById('statWinRate').innerText = `${winRate}%`;
+      document.getElementById('statRecord').innerText = `${total}경기 (${wins}승 ${losses}패 ${draws}무)`;
+
+      // 칭호 결정
+      const badgeElem = document.getElementById('fairyTitle');
+      if (total === 0) {
+        badgeElem.innerText = '직관 기록 없음';
+      } else if (parseFloat(winRate) >= 75) {
+        badgeElem.innerText = '✨ 무적의 100% 승리 요정';
+      } else if (parseFloat(winRate) >= 55) {
+        badgeElem.innerText = '🦅 든든한 승리 수호신';
+      } else if (parseFloat(winRate) >= 40) {
+        badgeElem.innerText = '🙏 진정한 의리의 보살 팬';
+      } else {
+        badgeElem.innerText = '🛡️ 고난을 함께하는 진정한 의리파';
+      }
+
+      document.getElementById('statHomeAway').innerText = `홈 ${homeWins}승 / 원정 ${awayWins}승`;
+      document.getElementById('statHomeAwaySub').innerText = `홈 ${homeTotal}경기 · 원정 ${awayTotal}경기`;
+
+      // 최다 승리 투수
+      let topPitcher = '-';
+      let topWins = 0;
+      for (const p in pitcherWins) {
+        if (pitcherWins[p] > topWins) {
+          topWins = pitcherWins[p];
+          topPitcher = `${p} (${topWins}승)`;
+        }
+      }
+      document.getElementById('statFavPitcher').innerText = topPitcher;
+      document.getElementById('statFavPitcherSub').innerText = topWins > 0 ? `직관 시 승률 1등 선발` : '승리 경기 없음';
+
+      // 마진
+      const margin = scored - conceded;
+      const marginStr = margin > 0 ? `+${margin}점` : `${margin}점`;
+      document.getElementById('statScoreMargin').innerText = marginStr;
+      document.getElementById('statScoreMargin').style.color = margin >= 0 ? 'var(--win-color)' : 'var(--loss-color)';
+      document.getElementById('statScoreDetail').innerText = `총 ${scored}득점 / ${conceded}실점`;
+    }
+
+    // 직관 리포트 카드 Canvas 렌더링 & 다운로드
+    function downloadReportCard() {
+      const canvas = document.getElementById('reportCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const attendedMatches = rawMatches.filter(m => attendedIds.includes(m.id));
+      const total = attendedMatches.length;
+      let wins = 0, losses = 0, draws = 0;
+      attendedMatches.forEach(m => {
+        if (m.res === 'W') wins++;
+        else if (m.res === 'L') losses++;
+        else draws++;
+      });
+      const winRate = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0';
+      const fairyTitle = document.getElementById('fairyTitle').innerText;
+
+      // 1. 배경
+      ctx.fillStyle = '#0a0c0f';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // 2. 테두리 & 오렌지 헤더 배너
+      ctx.strokeStyle = '#262b33';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+      // 상단 오렌지 포인트 라인
+      ctx.fillStyle = '#ff6a1a';
+      ctx.fillRect(20, 20, canvas.width - 40, 10);
+
+      // 3. 텍스트 & 로고
+      ctx.fillStyle = '#edece6';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.fillText('HANWHA EAGLES 2026', 50, 90);
+      
+      ctx.fillStyle = '#ff6a1a';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.fillText('나의 시즌 직관 리포트', 50, 130);
+
+      // 구분선
+      ctx.strokeStyle = '#262b33';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(50, 160);
+      ctx.lineTo(canvas.width - 50, 160);
+      ctx.stroke();
+
+      // 직관 승률 박스
+      ctx.fillStyle = '#12151a';
+      ctx.roundRect(50, 190, 700, 200, 16);
+      ctx.fill();
+      ctx.strokeStyle = '#ff6a1a';
+      ctx.stroke();
+
+      ctx.fillStyle = '#9aa0ab';
+      ctx.font = '20px sans-serif';
+      ctx.fillText('2026 시즌 직관 승률', 80, 235);
+
+      ctx.fillStyle = '#ff6a1a';
+      ctx.font = 'bold 72px sans-serif';
+      ctx.fillText(`${winRate}%`, 80, 320);
+
+      ctx.fillStyle = '#edece6';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.fillText(`총 ${total}경기  ${wins}승 ${losses}패 ${draws}무`, 80, 365);
+
+      // 칭호 박스
+      ctx.fillStyle = '#262b33';
+      ctx.roundRect(50, 420, 700, 80, 12);
+      ctx.fill();
+
+      ctx.fillStyle = '#ff6a1a';
+      ctx.font = 'bold 26px sans-serif';
+      ctx.fillText(`🏅 ${fairyTitle}`, 80, 470);
+
+      // 세부 기록 그리드
+      ctx.fillStyle = '#12151a';
+      ctx.roundRect(50, 530, 335, 140, 12);
+      ctx.fill();
+      ctx.fillStyle = '#9aa0ab';
+      ctx.font = '18px sans-serif';
+      ctx.fillText('홈 / 원정 직관 전적', 75, 570);
+      ctx.fillStyle = '#edece6';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.fillText(document.getElementById('statHomeAway').innerText, 75, 620);
+
+      ctx.fillStyle = '#12151a';
+      ctx.roundRect(415, 530, 335, 140, 12);
+      ctx.fill();
+      ctx.fillStyle = '#9aa0ab';
+      ctx.font = '18px sans-serif';
+      ctx.fillText('승리 요정 선발 투수', 440, 570);
+      ctx.fillStyle = '#edece6';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.fillText(document.getElementById('statFavPitcher').innerText, 440, 620);
+
+      // 하단 워터마크
+      ctx.fillStyle = '#5c626d';
+      ctx.font = '16px sans-serif';
+      ctx.fillText('HANWHA EAGLES NOW · https://hanwhaeagles.kr', 50, 830);
+      ctx.fillText(`발급일시: ${new Date().toLocaleDateString('ko-KR')}`, 50, 855);
+
+      // 다운로드 트리거
+      const link = document.createElement('a');
+      link.download = `hanwha_eagles_matchday_report_${new Date().toISOString().slice(0,10)}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // 초기 실행
+    updateStats();
+    renderTable();
+  </script>
+</body>
+</html>
