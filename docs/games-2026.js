@@ -2,27 +2,45 @@ window.EAGLES_GAMES_2026 = {
   "meta": {
     "season": 2026,
     "team": "HANWHA",
-    "generated": "2026-08-14",
+    "generated": "2026-08-15",
     "source": "data/raw/production-2026.json + data/raw/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
     "record": {
       "wins": 48,
-      "losses": 50,
-      "draws": 4,
-      "games": 102
+      "losses": 52,
+      "draws": 3,
+      "games": 103
     },
-    "games_with_starters": 101
+    "games_with_starters": 101,
+    "games_with_swings": 103
   },
   "games": [
+    {
+      "game_id": "20260814-HANWHA-SAMSUNG-1",
+      "date": "2026-08-14",
+      "home": false,
+      "opponent": "SAMSUNG",
+      "hanwhaScore": 5,
+      "oppScore": 8,
+      "result": "LOSS",
+      "hanwhaStarter": null,
+      "oppStarter": null,
+      "probabilityDeltaPct": -2.11,
+      "probabilityBefore": 0.0779,
+      "probabilityAfter": 0.0568
+    },
     {
       "game_id": "20260813-HANWHA-DOOSAN-1",
       "date": "2026-08-13",
       "home": false,
       "opponent": "DOOSAN",
-      "hanwhaScore": 0,
-      "oppScore": 0,
-      "result": "DRAW",
+      "hanwhaScore": 6,
+      "oppScore": 9,
+      "result": "LOSS",
       "hanwhaStarter": null,
-      "oppStarter": null
+      "oppStarter": null,
+      "probabilityDeltaPct": -4.47,
+      "probabilityBefore": 0.1276,
+      "probabilityAfter": 0.0829
     },
     {
       "game_id": "20260812-HANWHA-DOOSAN-1",
@@ -33,7 +51,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "벤자민"
+      "oppStarter": "벤자민",
+      "probabilityDeltaPct": 3.95,
+      "probabilityBefore": 0.0829,
+      "probabilityAfter": 0.1224
     },
     {
       "game_id": "20260811-HANWHA-DOOSAN-1",
@@ -44,7 +65,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "곽빈"
+      "oppStarter": "곽빈",
+      "probabilityDeltaPct": -4.22,
+      "probabilityBefore": 0.1613,
+      "probabilityAfter": 0.1191
     },
     {
       "game_id": "20260804-HANWHA-SAMSUNG-1",
@@ -55,7 +79,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "양창섭"
+      "oppStarter": "양창섭",
+      "probabilityDeltaPct": 3.24,
+      "probabilityBefore": 0.1042,
+      "probabilityAfter": 0.1366
     },
     {
       "game_id": "20260802-HANWHA-KT-1",
@@ -66,7 +93,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 12,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "고영표"
+      "oppStarter": "고영표",
+      "probabilityDeltaPct": -2.85,
+      "probabilityBefore": 0.1472,
+      "probabilityAfter": 0.1187
     },
     {
       "game_id": "20260801-HANWHA-KT-1",
@@ -77,7 +107,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "짐머맨",
-      "oppStarter": "배제성"
+      "oppStarter": "배제성",
+      "probabilityDeltaPct": -3.63,
+      "probabilityBefore": 0.1969,
+      "probabilityAfter": 0.1606
     },
     {
       "game_id": "20260731-HANWHA-KT-1",
@@ -88,7 +121,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "소형준"
+      "oppStarter": "소형준",
+      "probabilityDeltaPct": -3.95,
+      "probabilityBefore": 0.2382,
+      "probabilityAfter": 0.1987
     },
     {
       "game_id": "20260730-LOTTE-HANWHA-1",
@@ -99,7 +135,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "박준영",
-      "oppStarter": "나균안"
+      "oppStarter": "나균안",
+      "probabilityDeltaPct": 4.29,
+      "probabilityBefore": 0.2377,
+      "probabilityAfter": 0.2806
     },
     {
       "game_id": "20260729-LOTTE-HANWHA-1",
@@ -110,7 +149,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "로드리게스"
+      "oppStarter": "로드리게스",
+      "probabilityDeltaPct": 3.76,
+      "probabilityBefore": 0.1809,
+      "probabilityAfter": 0.2185
     },
     {
       "game_id": "20260728-LOTTE-HANWHA-1",
@@ -121,7 +163,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "박세웅"
+      "oppStarter": "박세웅",
+      "probabilityDeltaPct": -5.64,
+      "probabilityBefore": 0.264,
+      "probabilityAfter": 0.2076
     },
     {
       "game_id": "20260726-LG-HANWHA-1",
@@ -132,7 +177,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "WIN",
       "hanwhaStarter": "짐머맨",
-      "oppStarter": "박시원"
+      "oppStarter": "박시원",
+      "probabilityDeltaPct": 4.06,
+      "probabilityBefore": 0.2037,
+      "probabilityAfter": 0.2443
     },
     {
       "game_id": "20260725-LG-HANWHA-1",
@@ -143,7 +191,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 15,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "송승기"
+      "oppStarter": "송승기",
+      "probabilityDeltaPct": -4.97,
+      "probabilityBefore": 0.2414,
+      "probabilityAfter": 0.1917
     },
     {
       "game_id": "20260724-LG-HANWHA-1",
@@ -154,7 +205,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "WIN",
       "hanwhaStarter": "박준영",
-      "oppStarter": "임찬규"
+      "oppStarter": "임찬규",
+      "probabilityDeltaPct": 3.34,
+      "probabilityBefore": 0.1554,
+      "probabilityAfter": 0.1888
     },
     {
       "game_id": "20260723-HANWHA-KIA-1",
@@ -165,7 +219,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "시라카와"
+      "oppStarter": "시라카와",
+      "probabilityDeltaPct": 4.06,
+      "probabilityBefore": 0.1157,
+      "probabilityAfter": 0.1563
     },
     {
       "game_id": "20260722-HANWHA-KIA-1",
@@ -176,7 +233,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "올러"
+      "oppStarter": "올러",
+      "probabilityDeltaPct": 2.66,
+      "probabilityBefore": 0.0756,
+      "probabilityAfter": 0.1022
     },
     {
       "game_id": "20260721-HANWHA-KIA-1",
@@ -187,7 +247,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "황동하"
+      "oppStarter": "황동하",
+      "probabilityDeltaPct": -2.77,
+      "probabilityBefore": 0.1087,
+      "probabilityAfter": 0.081
     },
     {
       "game_id": "20260719-KIWOOM-HANWHA-1",
@@ -198,7 +261,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "DRAW",
       "hanwhaStarter": "류현진",
-      "oppStarter": "박준현"
+      "oppStarter": "박준현",
+      "probabilityDeltaPct": -0.66,
+      "probabilityBefore": 0.1459,
+      "probabilityAfter": 0.1393
     },
     {
       "game_id": "20260718-KIWOOM-HANWHA-1",
@@ -209,7 +275,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "안우진"
+      "oppStarter": "안우진",
+      "probabilityDeltaPct": -4.16,
+      "probabilityBefore": 0.2073,
+      "probabilityAfter": 0.1657
     },
     {
       "game_id": "20260717-KIWOOM-HANWHA-1",
@@ -220,7 +289,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "하영민"
+      "oppStarter": "하영민",
+      "probabilityDeltaPct": -4.92,
+      "probabilityBefore": 0.2916,
+      "probabilityAfter": 0.2424
     },
     {
       "game_id": "20260716-KIWOOM-HANWHA-1",
@@ -231,7 +303,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 14,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "알칸타라"
+      "oppStarter": "알칸타라",
+      "probabilityDeltaPct": -5.6,
+      "probabilityBefore": 0.3448,
+      "probabilityAfter": 0.2888
     },
     {
       "game_id": "20260709-NC-HANWHA-1",
@@ -242,7 +317,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "구창모"
+      "oppStarter": "구창모",
+      "probabilityDeltaPct": 5.45,
+      "probabilityBefore": 0.3082,
+      "probabilityAfter": 0.3627
     },
     {
       "game_id": "20260707-NC-HANWHA-1",
@@ -253,7 +331,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "테일러"
+      "oppStarter": "테일러",
+      "probabilityDeltaPct": -6.23,
+      "probabilityBefore": 0.3793,
+      "probabilityAfter": 0.317
     },
     {
       "game_id": "20260704-HANWHA-LG-1",
@@ -264,7 +345,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "장현식"
+      "oppStarter": "장현식",
+      "probabilityDeltaPct": -4.46,
+      "probabilityBefore": 0.4815,
+      "probabilityAfter": 0.4369
     },
     {
       "game_id": "20260703-HANWHA-LG-1",
@@ -275,7 +359,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "웰스"
+      "oppStarter": "웰스",
+      "probabilityDeltaPct": 5.16,
+      "probabilityBefore": 0.3837,
+      "probabilityAfter": 0.4353
     },
     {
       "game_id": "20260702-KT-HANWHA-1",
@@ -286,7 +373,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "오원석"
+      "oppStarter": "오원석",
+      "probabilityDeltaPct": 4.51,
+      "probabilityBefore": 0.3293,
+      "probabilityAfter": 0.3744
     },
     {
       "game_id": "20260701-KT-HANWHA-1",
@@ -297,7 +387,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "소형준"
+      "oppStarter": "소형준",
+      "probabilityDeltaPct": -5.24,
+      "probabilityBefore": 0.3849,
+      "probabilityAfter": 0.3325
     },
     {
       "game_id": "20260628-HANWHA-SSG-1",
@@ -308,7 +401,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "최민준"
+      "oppStarter": "최민준",
+      "probabilityDeltaPct": 4.63,
+      "probabilityBefore": 0.3381,
+      "probabilityAfter": 0.3844
     },
     {
       "game_id": "20260627-HANWHA-SSG-1",
@@ -319,7 +415,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "타케다"
+      "oppStarter": "타케다",
+      "probabilityDeltaPct": 4.23,
+      "probabilityBefore": 0.2757,
+      "probabilityAfter": 0.318
     },
     {
       "game_id": "20260626-HANWHA-SSG-1",
@@ -330,7 +429,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "해치"
+      "oppStarter": "해치",
+      "probabilityDeltaPct": 4.01,
+      "probabilityBefore": 0.2504,
+      "probabilityAfter": 0.2905
     },
     {
       "game_id": "20260625-DOOSAN-HANWHA-1",
@@ -341,7 +443,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "벤자민"
+      "oppStarter": "벤자민",
+      "probabilityDeltaPct": -6.29,
+      "probabilityBefore": 0.3518,
+      "probabilityAfter": 0.2889
     },
     {
       "game_id": "20260624-DOOSAN-HANWHA-1",
@@ -352,7 +457,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "최민석"
+      "oppStarter": "최민석",
+      "probabilityDeltaPct": -6.58,
+      "probabilityBefore": 0.4296,
+      "probabilityAfter": 0.3638
     },
     {
       "game_id": "20260623-DOOSAN-HANWHA-1",
@@ -363,7 +471,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "타카다"
+      "oppStarter": "타카다",
+      "probabilityDeltaPct": 5.28,
+      "probabilityBefore": 0.3532,
+      "probabilityAfter": 0.406
     },
     {
       "game_id": "20260621-SAMSUNG-HANWHA-1",
@@ -374,7 +485,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "양창섭"
+      "oppStarter": "양창섭",
+      "probabilityDeltaPct": -4.57,
+      "probabilityBefore": 0.394,
+      "probabilityAfter": 0.3483
     },
     {
       "game_id": "20260620-SAMSUNG-HANWHA-1",
@@ -385,7 +499,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "장찬희"
+      "oppStarter": "장찬희",
+      "probabilityDeltaPct": 4.05,
+      "probabilityBefore": 0.3054,
+      "probabilityAfter": 0.3459
     },
     {
       "game_id": "20260619-SAMSUNG-HANWHA-1",
@@ -396,7 +513,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "DRAW",
       "hanwhaStarter": "박준영",
-      "oppStarter": "후라도"
+      "oppStarter": "후라도",
+      "probabilityDeltaPct": -0.14,
+      "probabilityBefore": 0.317,
+      "probabilityAfter": 0.3156
     },
     {
       "game_id": "20260618-HANWHA-NC-1",
@@ -407,7 +527,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "테일러"
+      "oppStarter": "테일러",
+      "probabilityDeltaPct": -4.64,
+      "probabilityBefore": 0.4104,
+      "probabilityAfter": 0.364
     },
     {
       "game_id": "20260617-HANWHA-NC-1",
@@ -418,7 +541,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "라일리"
+      "oppStarter": "라일리",
+      "probabilityDeltaPct": -5.06,
+      "probabilityBefore": 0.4819,
+      "probabilityAfter": 0.4313
     },
     {
       "game_id": "20260616-HANWHA-NC-1",
@@ -429,7 +555,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "구창모"
+      "oppStarter": "구창모",
+      "probabilityDeltaPct": -5.12,
+      "probabilityBefore": 0.5384,
+      "probabilityAfter": 0.4872
     },
     {
       "game_id": "20260614-HANWHA-KIWOOM-1",
@@ -440,7 +569,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "로젠버그"
+      "oppStarter": "로젠버그",
+      "probabilityDeltaPct": -4.3,
+      "probabilityBefore": 0.5984,
+      "probabilityAfter": 0.5554
     },
     {
       "game_id": "20260613-HANWHA-KIWOOM-1",
@@ -451,7 +583,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "알칸타라"
+      "oppStarter": "알칸타라",
+      "probabilityDeltaPct": -3.88,
+      "probabilityBefore": 0.6577,
+      "probabilityAfter": 0.6189
     },
     {
       "game_id": "20260612-HANWHA-KIWOOM-1",
@@ -462,7 +597,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "안우진"
+      "oppStarter": "안우진",
+      "probabilityDeltaPct": -3.87,
+      "probabilityBefore": 0.6966,
+      "probabilityAfter": 0.6579
     },
     {
       "game_id": "20260611-KIA-HANWHA-1",
@@ -473,7 +611,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "올러"
+      "oppStarter": "올러",
+      "probabilityDeltaPct": 4.11,
+      "probabilityBefore": 0.6761,
+      "probabilityAfter": 0.7172
     },
     {
       "game_id": "20260610-KIA-HANWHA-1",
@@ -484,7 +625,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "시라카와"
+      "oppStarter": "시라카와",
+      "probabilityDeltaPct": 4.57,
+      "probabilityBefore": 0.5907,
+      "probabilityAfter": 0.6364
     },
     {
       "game_id": "20260609-KIA-HANWHA-1",
@@ -495,7 +639,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "황동하"
+      "oppStarter": "황동하",
+      "probabilityDeltaPct": -4.44,
+      "probabilityBefore": 0.6549,
+      "probabilityAfter": 0.6105
     },
     {
       "game_id": "20260607-HANWHA-LOTTE-1",
@@ -506,7 +653,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 8,
       "result": "WIN",
       "hanwhaStarter": "황준서",
-      "oppStarter": "비슬리"
+      "oppStarter": "비슬리",
+      "probabilityDeltaPct": 4.07,
+      "probabilityBefore": 0.5985,
+      "probabilityAfter": 0.6392
     },
     {
       "game_id": "20260606-HANWHA-LOTTE-1",
@@ -517,7 +667,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "이민석"
+      "oppStarter": "이민석",
+      "probabilityDeltaPct": 4.46,
+      "probabilityBefore": 0.5567,
+      "probabilityAfter": 0.6013
     },
     {
       "game_id": "20260605-HANWHA-LOTTE-1",
@@ -528,7 +681,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "로드리게스"
+      "oppStarter": "로드리게스",
+      "probabilityDeltaPct": 4.59,
+      "probabilityBefore": 0.5055,
+      "probabilityAfter": 0.5514
     },
     {
       "game_id": "20260604-HANWHA-DOOSAN-1",
@@ -539,7 +695,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "잭로그"
+      "oppStarter": "잭로그",
+      "probabilityDeltaPct": -4.83,
+      "probabilityBefore": 0.5922,
+      "probabilityAfter": 0.5439
     },
     {
       "game_id": "20260603-HANWHA-DOOSAN-1",
@@ -550,7 +709,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "DRAW",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "박신지"
+      "oppStarter": "박신지",
+      "probabilityDeltaPct": 0.45,
+      "probabilityBefore": 0.5895,
+      "probabilityAfter": 0.594
     },
     {
       "game_id": "20260602-HANWHA-DOOSAN-1",
@@ -561,7 +723,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "벤자민"
+      "oppStarter": "벤자민",
+      "probabilityDeltaPct": -4.21,
+      "probabilityBefore": 0.6552,
+      "probabilityAfter": 0.6131
     },
     {
       "game_id": "20260531-SSG-HANWHA-1",
@@ -572,7 +737,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "타케다"
+      "oppStarter": "타케다",
+      "probabilityDeltaPct": 3.7,
+      "probabilityBefore": 0.5796,
+      "probabilityAfter": 0.6166
     },
     {
       "game_id": "20260530-SSG-HANWHA-1",
@@ -583,7 +751,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 10,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "김건우"
+      "oppStarter": "김건우",
+      "probabilityDeltaPct": 4.02,
+      "probabilityBefore": 0.5313,
+      "probabilityAfter": 0.5715
     },
     {
       "game_id": "20260529-SSG-HANWHA-1",
@@ -594,7 +765,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "최민준"
+      "oppStarter": "최민준",
+      "probabilityDeltaPct": 4.31,
+      "probabilityBefore": 0.487,
+      "probabilityAfter": 0.5301
     },
     {
       "game_id": "20260528-HANWHA-NC-1",
@@ -605,7 +779,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "김태경"
+      "oppStarter": "김태경",
+      "probabilityDeltaPct": 4.56,
+      "probabilityBefore": 0.4156,
+      "probabilityAfter": 0.4612
     },
     {
       "game_id": "20260527-HANWHA-NC-1",
@@ -616,7 +793,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "토다"
+      "oppStarter": "토다",
+      "probabilityDeltaPct": -4.08,
+      "probabilityBefore": 0.4823,
+      "probabilityAfter": 0.4415
     },
     {
       "game_id": "20260524-DOOSAN-HANWHA-1",
@@ -627,7 +807,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "최승용"
+      "oppStarter": "최승용",
+      "probabilityDeltaPct": 4.22,
+      "probabilityBefore": 0.4069,
+      "probabilityAfter": 0.4491
     },
     {
       "game_id": "20260523-DOOSAN-HANWHA-1",
@@ -638,7 +821,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "잭로그"
+      "oppStarter": "잭로그",
+      "probabilityDeltaPct": 3.73,
+      "probabilityBefore": 0.3392,
+      "probabilityAfter": 0.3765
     },
     {
       "game_id": "20260522-DOOSAN-HANWHA-1",
@@ -649,7 +835,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "곽빈"
+      "oppStarter": "곽빈",
+      "probabilityDeltaPct": 3.62,
+      "probabilityBefore": 0.2769,
+      "probabilityAfter": 0.3131
     },
     {
       "game_id": "20260521-LOTTE-HANWHA-1",
@@ -660,7 +849,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 8,
       "result": "LOSS",
       "hanwhaStarter": "정우주",
-      "oppStarter": "나균안"
+      "oppStarter": "나균안",
+      "probabilityDeltaPct": -4.36,
+      "probabilityBefore": 0.3375,
+      "probabilityAfter": 0.2939
     },
     {
       "game_id": "20260519-LOTTE-HANWHA-1",
@@ -671,7 +863,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "비슬리"
+      "oppStarter": "비슬리",
+      "probabilityDeltaPct": -4.33,
+      "probabilityBefore": 0.4019,
+      "probabilityAfter": 0.3586
     },
     {
       "game_id": "20260517-HANWHA-KT-1",
@@ -682,7 +877,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 8,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "사우어"
+      "oppStarter": "사우어",
+      "probabilityDeltaPct": -3.68,
+      "probabilityBefore": 0.4605,
+      "probabilityAfter": 0.4237
     },
     {
       "game_id": "20260516-HANWHA-KT-1",
@@ -693,7 +891,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "WIN",
       "hanwhaStarter": "화이트",
-      "oppStarter": "배제성"
+      "oppStarter": "배제성",
+      "probabilityDeltaPct": 4.31,
+      "probabilityBefore": 0.4001,
+      "probabilityAfter": 0.4432
     },
     {
       "game_id": "20260515-HANWHA-KT-1",
@@ -704,7 +905,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "고영표"
+      "oppStarter": "고영표",
+      "probabilityDeltaPct": 4.08,
+      "probabilityBefore": 0.322,
+      "probabilityAfter": 0.3628
     },
     {
       "game_id": "20260514-HANWHA-KIWOOM-1",
@@ -715,7 +919,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "정우주",
-      "oppStarter": "안우진"
+      "oppStarter": "안우진",
+      "probabilityDeltaPct": 3.54,
+      "probabilityBefore": 0.2723,
+      "probabilityAfter": 0.3077
     },
     {
       "game_id": "20260513-HANWHA-KIWOOM-1",
@@ -726,7 +933,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "박정훈"
+      "oppStarter": "박정훈",
+      "probabilityDeltaPct": -3.55,
+      "probabilityBefore": 0.322,
+      "probabilityAfter": 0.2865
     },
     {
       "game_id": "20260512-HANWHA-KIWOOM-1",
@@ -737,7 +947,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "배동현"
+      "oppStarter": "배동현",
+      "probabilityDeltaPct": 3.62,
+      "probabilityBefore": 0.2828,
+      "probabilityAfter": 0.319
     },
     {
       "game_id": "20260510-LG-HANWHA-1",
@@ -748,7 +961,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "박준영",
-      "oppStarter": "웰스"
+      "oppStarter": "웰스",
+      "probabilityDeltaPct": 2.59,
+      "probabilityBefore": 0.229,
+      "probabilityAfter": 0.2549
     },
     {
       "game_id": "20260509-LG-HANWHA-1",
@@ -759,7 +975,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "치리노스"
+      "oppStarter": "치리노스",
+      "probabilityDeltaPct": 2.59,
+      "probabilityBefore": 0.1816,
+      "probabilityAfter": 0.2075
     },
     {
       "game_id": "20260508-LG-HANWHA-1",
@@ -770,7 +989,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "LOSS",
       "hanwhaStarter": "박준영",
-      "oppStarter": "송승기"
+      "oppStarter": "송승기",
+      "probabilityDeltaPct": -2.74,
+      "probabilityBefore": 0.2163,
+      "probabilityAfter": 0.1889
     },
     {
       "game_id": "20260507-HANWHA-KIA-1",
@@ -781,7 +1003,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 8,
       "result": "WIN",
       "hanwhaStarter": "정우주",
-      "oppStarter": "양현종"
+      "oppStarter": "양현종",
+      "probabilityDeltaPct": 2.94,
+      "probabilityBefore": 0.175,
+      "probabilityAfter": 0.2044
     },
     {
       "game_id": "20260506-HANWHA-KIA-1",
@@ -792,7 +1017,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "올러"
+      "oppStarter": "올러",
+      "probabilityDeltaPct": 2.29,
+      "probabilityBefore": 0.1386,
+      "probabilityAfter": 0.1615
     },
     {
       "game_id": "20260505-HANWHA-KIA-1",
@@ -803,7 +1031,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 12,
       "result": "LOSS",
       "hanwhaStarter": "강건우",
-      "oppStarter": "이의리"
+      "oppStarter": "이의리",
+      "probabilityDeltaPct": -2.61,
+      "probabilityBefore": 0.1795,
+      "probabilityAfter": 0.1534
     },
     {
       "game_id": "20260503-HANWHA-SAMSUNG-1",
@@ -814,7 +1045,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "후라도"
+      "oppStarter": "후라도",
+      "probabilityDeltaPct": -2.72,
+      "probabilityBefore": 0.2164,
+      "probabilityAfter": 0.1892
     },
     {
       "game_id": "20260502-HANWHA-SAMSUNG-1",
@@ -825,7 +1059,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "문동주",
-      "oppStarter": "장찬희"
+      "oppStarter": "장찬희",
+      "probabilityDeltaPct": 2.62,
+      "probabilityBefore": 0.166,
+      "probabilityAfter": 0.1922
     },
     {
       "game_id": "20260501-HANWHA-SAMSUNG-1",
@@ -836,7 +1073,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "원태인"
+      "oppStarter": "원태인",
+      "probabilityDeltaPct": -2.58,
+      "probabilityBefore": 0.1966,
+      "probabilityAfter": 0.1708
     },
     {
       "game_id": "20260430-SSG-HANWHA-1",
@@ -847,7 +1087,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 14,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "김건우"
+      "oppStarter": "김건우",
+      "probabilityDeltaPct": -3.09,
+      "probabilityBefore": 0.2459,
+      "probabilityAfter": 0.215
     },
     {
       "game_id": "20260429-SSG-HANWHA-1",
@@ -858,7 +1101,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "황준서",
-      "oppStarter": "화이트"
+      "oppStarter": "화이트",
+      "probabilityDeltaPct": -3.69,
+      "probabilityBefore": 0.311,
+      "probabilityAfter": 0.2741
     },
     {
       "game_id": "20260428-SSG-HANWHA-1",
@@ -869,7 +1115,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "최민준"
+      "oppStarter": "최민준",
+      "probabilityDeltaPct": 2.79,
+      "probabilityBefore": 0.2392,
+      "probabilityAfter": 0.2671
     },
     {
       "game_id": "20260426-NC-HANWHA-1",
@@ -880,7 +1129,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 5,
       "result": "LOSS",
       "hanwhaStarter": "문동주",
-      "oppStarter": "버하겐"
+      "oppStarter": "버하겐",
+      "probabilityDeltaPct": -3.7,
+      "probabilityBefore": 0.3088,
+      "probabilityAfter": 0.2718
     },
     {
       "game_id": "20260425-NC-HANWHA-1",
@@ -891,7 +1143,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "토다"
+      "oppStarter": "토다",
+      "probabilityDeltaPct": 2.95,
+      "probabilityBefore": 0.2554,
+      "probabilityAfter": 0.2849
     },
     {
       "game_id": "20260424-NC-HANWHA-1",
@@ -902,7 +1157,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 7,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "테일러"
+      "oppStarter": "테일러",
+      "probabilityDeltaPct": -3.76,
+      "probabilityBefore": 0.3131,
+      "probabilityAfter": 0.2755
     },
     {
       "game_id": "20260423-HANWHA-LG-1",
@@ -913,7 +1171,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "WIN",
       "hanwhaStarter": "황준서",
-      "oppStarter": "이정용"
+      "oppStarter": "이정용",
+      "probabilityDeltaPct": 3.36,
+      "probabilityBefore": 0.2543,
+      "probabilityAfter": 0.2879
     },
     {
       "game_id": "20260422-HANWHA-LG-1",
@@ -924,7 +1185,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "웰스"
+      "oppStarter": "웰스",
+      "probabilityDeltaPct": -2.97,
+      "probabilityBefore": 0.2914,
+      "probabilityAfter": 0.2617
     },
     {
       "game_id": "20260421-HANWHA-LG-1",
@@ -935,7 +1199,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "문동주",
-      "oppStarter": "송승기"
+      "oppStarter": "송승기",
+      "probabilityDeltaPct": -2.94,
+      "probabilityBefore": 0.3485,
+      "probabilityAfter": 0.3191
     },
     {
       "game_id": "20260419-HANWHA-LOTTE-1",
@@ -946,7 +1213,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 1,
       "result": "WIN",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "박세웅"
+      "oppStarter": "박세웅",
+      "probabilityDeltaPct": 3.42,
+      "probabilityBefore": 0.2878,
+      "probabilityAfter": 0.322
     },
     {
       "game_id": "20260418-HANWHA-LOTTE-1",
@@ -957,7 +1227,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 0,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "비슬리"
+      "oppStarter": "비슬리",
+      "probabilityDeltaPct": 2.97,
+      "probabilityBefore": 0.2302,
+      "probabilityAfter": 0.2599
     },
     {
       "game_id": "20260416-SAMSUNG-HANWHA-1",
@@ -968,7 +1241,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "후라도"
+      "oppStarter": "후라도",
+      "probabilityDeltaPct": -3.13,
+      "probabilityBefore": 0.2791,
+      "probabilityAfter": 0.2478
     },
     {
       "game_id": "20260415-SAMSUNG-HANWHA-1",
@@ -979,7 +1255,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 13,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "양창섭"
+      "oppStarter": "양창섭",
+      "probabilityDeltaPct": -3.24,
+      "probabilityBefore": 0.3407,
+      "probabilityAfter": 0.3083
     },
     {
       "game_id": "20260414-SAMSUNG-HANWHA-1",
@@ -990,7 +1269,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "문동주",
-      "oppStarter": "최원태"
+      "oppStarter": "최원태",
+      "probabilityDeltaPct": -4.04,
+      "probabilityBefore": 0.404,
+      "probabilityAfter": 0.3636
     },
     {
       "game_id": "20260412-KIA-HANWHA-1",
@@ -1001,7 +1283,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "LOSS",
       "hanwhaStarter": "쿠싱",
-      "oppStarter": "올러"
+      "oppStarter": "올러",
+      "probabilityDeltaPct": -4.01,
+      "probabilityBefore": 0.4689,
+      "probabilityAfter": 0.4288
     },
     {
       "game_id": "20260411-KIA-HANWHA-1",
@@ -1012,7 +1297,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "이의리"
+      "oppStarter": "이의리",
+      "probabilityDeltaPct": -3.77,
+      "probabilityBefore": 0.5473,
+      "probabilityAfter": 0.5096
     },
     {
       "game_id": "20260410-KIA-HANWHA-1",
@@ -1023,7 +1311,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "LOSS",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "네일"
+      "oppStarter": "네일",
+      "probabilityDeltaPct": -4.07,
+      "probabilityBefore": 0.6177,
+      "probabilityAfter": 0.577
     },
     {
       "game_id": "20260408-HANWHA-SSG-1",
@@ -1034,7 +1325,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "문동주",
-      "oppStarter": "최민준"
+      "oppStarter": "최민준",
+      "probabilityDeltaPct": 3.77,
+      "probabilityBefore": 0.5495,
+      "probabilityAfter": 0.5872
     },
     {
       "game_id": "20260407-HANWHA-SSG-1",
@@ -1045,7 +1339,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 2,
       "result": "WIN",
       "hanwhaStarter": "류현진",
-      "oppStarter": "타케다"
+      "oppStarter": "타케다",
+      "probabilityDeltaPct": 4.1,
+      "probabilityBefore": 0.4774,
+      "probabilityAfter": 0.5184
     },
     {
       "game_id": "20260405-HANWHA-DOOSAN-1",
@@ -1056,7 +1353,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 8,
       "result": "LOSS",
       "hanwhaStarter": "황준서",
-      "oppStarter": "잭로그"
+      "oppStarter": "잭로그",
+      "probabilityDeltaPct": -3.74,
+      "probabilityBefore": 0.5389,
+      "probabilityAfter": 0.5015
     },
     {
       "game_id": "20260404-HANWHA-DOOSAN-1",
@@ -1067,7 +1367,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 3,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "곽빈"
+      "oppStarter": "곽빈",
+      "probabilityDeltaPct": 3.45,
+      "probabilityBefore": 0.4728,
+      "probabilityAfter": 0.5073
     },
     {
       "game_id": "20260403-HANWHA-DOOSAN-1",
@@ -1078,7 +1381,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 6,
       "result": "WIN",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "플렉센"
+      "oppStarter": "플렉센",
+      "probabilityDeltaPct": 3.94,
+      "probabilityBefore": 0.4085,
+      "probabilityAfter": 0.4479
     },
     {
       "game_id": "20260402-KT-HANWHA-1",
@@ -1089,7 +1395,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 13,
       "result": "LOSS",
       "hanwhaStarter": "문동주",
-      "oppStarter": "오원석"
+      "oppStarter": "오원석",
+      "probabilityDeltaPct": -3.55,
+      "probabilityBefore": 0.4781,
+      "probabilityAfter": 0.4426
     },
     {
       "game_id": "20260401-KT-HANWHA-1",
@@ -1100,7 +1409,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 14,
       "result": "LOSS",
       "hanwhaStarter": "류현진",
-      "oppStarter": "고영표"
+      "oppStarter": "고영표",
+      "probabilityDeltaPct": -3.67,
+      "probabilityBefore": 0.5434,
+      "probabilityAfter": 0.5067
     },
     {
       "game_id": "20260331-KT-HANWHA-1",
@@ -1111,7 +1423,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "LOSS",
       "hanwhaStarter": "화이트",
-      "oppStarter": "보쉴리"
+      "oppStarter": "보쉴리",
+      "probabilityDeltaPct": -3.56,
+      "probabilityBefore": 0.6087,
+      "probabilityAfter": 0.5731
     },
     {
       "game_id": "20260329-KIWOOM-HANWHA-1",
@@ -1122,7 +1437,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 4,
       "result": "WIN",
       "hanwhaStarter": "왕옌청",
-      "oppStarter": "하영민"
+      "oppStarter": "하영민",
+      "probabilityDeltaPct": 3.16,
+      "probabilityBefore": 0.5566,
+      "probabilityAfter": 0.5882
     },
     {
       "game_id": "20260328-KIWOOM-HANWHA-1",
@@ -1133,7 +1451,10 @@ window.EAGLES_GAMES_2026 = {
       "oppScore": 9,
       "result": "WIN",
       "hanwhaStarter": "에르난데스",
-      "oppStarter": "알칸타라"
+      "oppStarter": "알칸타라",
+      "probabilityDeltaPct": 3.2,
+      "probabilityBefore": 0.4923,
+      "probabilityAfter": 0.5243
     }
   ]
 };

@@ -4,6 +4,7 @@ const SEASON = 2026;
 const TEAM = 'HANWHA';
 const GAMES_PATH = `data/raw/production-${SEASON}.json`;
 const BOX_SCORES_PATH = `data/raw/box-scores-${SEASON}.json`;
+const SWINGS_PATH = `data/live/game-swings-${SEASON}.json`;
 const OUT_PATH = `docs/games-${SEASON}.js`;
 
 function starterOf(boxGame, team) {
@@ -28,11 +29,22 @@ async function main() {
   const boxPayload = JSON.parse(await fs.readFile(BOX_SCORES_PATH, 'utf8'));
   const boxByKey = boxPayload.boxScoresByGameId ?? {};
 
+  // Swing data (see build-game-swings.mjs) is an optional enrichment — a game log without it
+  // still renders fine, just without the probability-swing chip, so a missing/partial cache
+  // must not fail this build.
+  let swingsByKey = {};
+  try {
+    const swingsPayload = JSON.parse(await fs.readFile(SWINGS_PATH, 'utf8'));
+    swingsByKey = swingsPayload.games ?? {};
+  } catch {
+    console.log(`[games-log] no swing cache at ${SWINGS_PATH} — building without probability swings`);
+  }
+
   const finalGames = (gamesPayload.games ?? [])
     .filter((g) => (g.home === TEAM || g.away === TEAM) && String(g.status).toUpperCase() === 'FINAL')
     .sort((a, b) => b.date.localeCompare(a.date) || String(b.game_id).localeCompare(String(a.game_id)));
 
-  let wins = 0, losses = 0, draws = 0, withStarters = 0;
+  let wins = 0, losses = 0, draws = 0, withStarters = 0, withSwings = 0;
   const games = finalGames.map((g) => {
     const isHome = g.home === TEAM;
     const opponent = isHome ? g.away : g.home;
@@ -42,6 +54,8 @@ async function main() {
     const result = resultFor(g);
     if (result === 'WIN') wins++; else if (result === 'LOSS') losses++; else draws++;
     if (hanwhaStarter && oppStarter) withStarters++;
+    const swing = swingsByKey[g.game_id] ?? null;
+    if (swing) withSwings++;
     return {
       game_id: g.game_id,
       date: g.date,
@@ -52,6 +66,9 @@ async function main() {
       result,
       hanwhaStarter,
       oppStarter,
+      probabilityDeltaPct: swing ? swing.delta_pct : null,
+      probabilityBefore: swing ? swing.before : null,
+      probabilityAfter: swing ? swing.after : null,
     };
   });
 
@@ -63,13 +80,14 @@ async function main() {
       source: `${GAMES_PATH} + ${BOX_SCORES_PATH} (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)`,
       record: { wins, losses, draws, games: games.length },
       games_with_starters: withStarters,
+      games_with_swings: withSwings,
     },
     games,
   };
 
   const js = `window.EAGLES_GAMES_${SEASON} = ${JSON.stringify(payload, null, 2)};\n`;
   await fs.writeFile(OUT_PATH, js);
-  console.log(`Wrote ${OUT_PATH} — ${games.length} games (${wins}W ${losses}L ${draws}D), starters known for ${withStarters}`);
+  console.log(`Wrote ${OUT_PATH} — ${games.length} games (${wins}W ${losses}L ${draws}D), starters known for ${withStarters}, swings known for ${withSwings}`);
 }
 
 main().catch((err) => {

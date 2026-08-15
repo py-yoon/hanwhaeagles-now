@@ -46,7 +46,7 @@
       bindEvents();
     })
     .catch((err) => {
-      $body.innerHTML = `<tr><td colspan="7" class="eg-empty">경기 데이터를 불러오지 못했습니다. games.html과 같은 폴더에 games-2026.js 파일이 있는지 확인해주세요.</td></tr>`;
+      $body.innerHTML = `<tr><td colspan="8" class="eg-empty">경기 데이터를 불러오지 못했습니다. games.html과 같은 폴더에 games-2026.js 파일이 있는지 확인해주세요.</td></tr>`;
       console.error(err);
     });
 
@@ -99,6 +99,18 @@
     );
   }
 
+  function swingHtml(g) {
+    const d = g.probabilityDeltaPct;
+    if (d == null) return `<span class="eg-swing unknown">—</span>`;
+    const dir = d > 0 ? "up" : d < 0 ? "down" : "flat";
+    const arrow = d > 0 ? "▲" : d < 0 ? "▼" : "▬";
+    const sign = d > 0 ? "+" : "";
+    const title = g.probabilityBefore != null && g.probabilityAfter != null
+      ? `이 경기만 실제 결과로 반영, 나머지는 전날 기준 시뮬레이션 · ${(g.probabilityBefore * 100).toFixed(2)}% → ${(g.probabilityAfter * 100).toFixed(2)}%`
+      : "";
+    return `<span class="eg-swing ${dir}" title="${title}">${arrow} ${sign}${d.toFixed(2)}p</span>`;
+  }
+
   function rowHtml(g) {
     const resultLabel = { WIN: "승", LOSS: "패", DRAW: "무" }[g.result] || g.result;
     return `
@@ -110,6 +122,7 @@
         <td class="eg-starter${g.hanwhaStarter ? "" : " unknown"}">${g.hanwhaStarter || "정보 없음"}</td>
         <td class="eg-starter${g.oppStarter ? "" : " unknown"}">${g.oppStarter || "정보 없음"}</td>
         <td><span class="eg-result ${g.result}">${resultLabel}</span></td>
+        <td>${swingHtml(g)}</td>
       </tr>`;
   }
 
@@ -117,6 +130,6 @@
     const list = GAMES.filter((g) => (activeFilter === "ALL" || g.result === activeFilter) && matchesQuery(g));
     $body.innerHTML = list.length
       ? list.map(rowHtml).join("")
-      : `<tr><td colspan="7" class="eg-empty">"${query}"에 해당하는 경기를 찾을 수 없습니다.</td></tr>`;
+      : `<tr><td colspan="8" class="eg-empty">"${query}"에 해당하는 경기를 찾을 수 없습니다.</td></tr>`;
   }
 })();
