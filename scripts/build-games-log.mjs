@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const SEASON = 2026;
 const TEAM = 'HANWHA';
 const GAMES_PATH = `data/raw/production-${SEASON}.json`;
-const BOX_SCORES_PATH = `data/raw/box-scores-${SEASON}.json`;
+const BOX_SCORES_PATH = `data/live/box-scores-${SEASON}.json`;
 const SWINGS_PATH = `data/live/game-swings-${SEASON}.json`;
 const OUT_PATH = `docs/games-${SEASON}.js`;
 
@@ -26,8 +26,13 @@ function resultFor(g) {
 
 async function main() {
   const gamesPayload = JSON.parse(await fs.readFile(GAMES_PATH, 'utf8'));
-  const boxPayload = JSON.parse(await fs.readFile(BOX_SCORES_PATH, 'utf8'));
-  const boxByKey = boxPayload.boxScoresByGameId ?? {};
+  let boxByKey = {};
+  try {
+    const boxPayload = JSON.parse(await fs.readFile(BOX_SCORES_PATH, 'utf8'));
+    boxByKey = boxPayload.boxScoresByGameId ?? {};
+  } catch {
+    console.log(`[games-log] no box-score cache at ${BOX_SCORES_PATH} — building without starters`);
+  }
 
   // Swing data (see build-game-swings.mjs) is an optional enrichment — a game log without it
   // still renders fine, just without the probability-swing chip, so a missing/partial cache

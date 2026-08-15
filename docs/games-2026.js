@@ -3,14 +3,14 @@ window.EAGLES_GAMES_2026 = {
     "season": 2026,
     "team": "HANWHA",
     "generated": "2026-08-15",
-    "source": "data/raw/production-2026.json + data/raw/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
+    "source": "data/raw/production-2026.json + data/live/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
     "record": {
       "wins": 48,
       "losses": 52,
       "draws": 3,
       "games": 103
     },
-    "games_with_starters": 101,
+    "games_with_starters": 103,
     "games_with_swings": 103
   },
   "games": [
@@ -22,8 +22,8 @@ window.EAGLES_GAMES_2026 = {
       "hanwhaScore": 5,
       "oppScore": 8,
       "result": "LOSS",
-      "hanwhaStarter": null,
-      "oppStarter": null,
+      "hanwhaStarter": "짐머맨",
+      "oppStarter": "최원태",
       "probabilityDeltaPct": -2.11,
       "probabilityBefore": 0.0779,
       "probabilityAfter": 0.0568
@@ -36,8 +36,8 @@ window.EAGLES_GAMES_2026 = {
       "hanwhaScore": 6,
       "oppScore": 9,
       "result": "LOSS",
-      "hanwhaStarter": null,
-      "oppStarter": null,
+      "hanwhaStarter": "류현진",
+      "oppStarter": "최민석",
       "probabilityDeltaPct": -4.47,
       "probabilityBefore": 0.1276,
       "probabilityAfter": 0.0829

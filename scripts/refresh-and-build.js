@@ -4,6 +4,7 @@
 // broken or stale-looking data.
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 import { collectMonth } from '../src/collector/kbo.js';
 import { collectDailyStandings } from '../src/collector/daily-standings.js';
@@ -117,6 +118,19 @@ async function main() {
   await fs.writeFile('docs/index.html', html);
   await fs.writeFile('docs/.nojekyll', '');
   console.log('[refresh] wrote docs/index.html');
+
+  // Game log (docs/games.html): box scores + per-game probability swings, both cached in
+  // data/live/ so a normal night only fetches/computes the 1 (or 2, on a doubleheader) game
+  // played since the last run. Kept non-fatal — a hiccup here (e.g. KBO hasn't published a
+  // box score yet) must not roll back the main forecast page, which already published above.
+  console.log('[refresh] building game log (box scores + probability swings)...');
+  try {
+    execFileSync('node', ['scripts/build-box-scores.mjs', String(season)], { stdio: 'inherit' });
+    execFileSync('node', ['scripts/build-game-swings.mjs', String(season)], { stdio: 'inherit' });
+    execFileSync('node', ['scripts/build-games-log.mjs'], { stdio: 'inherit' });
+  } catch (err) {
+    console.error('[refresh] game log build failed (non-fatal — main forecast page above is unaffected):', err.message);
+  }
 }
 
 main().catch((err) => {
