@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "model_version": "0.8.7",
-  "generated_at": "2026-08-14T18:43:38.024Z",
+  "generated_at": "2026-08-15T02:09:37.422Z",
   "as_of": "2026-08-15",
   "focus_team": "HANWHA",
   "iterations": 100000,
@@ -710,7 +710,7 @@
               "result": "WIN"
             }
           ],
-          "playoff_probability": 0.1253,
+          "playoff_probability": 0.1252,
           "game": {
             "game_id": "20260818-KIA-HANWHA-1",
             "date": "2026-08-18",
