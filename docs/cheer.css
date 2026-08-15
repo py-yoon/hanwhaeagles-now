@@ -1,0 +1,303 @@
+/* ==========================================================================
+   HANWHA EAGLES NOW — 응원가 & 등장곡 룸
+   players.css / games.css / history.css와 동일한 디자인 토큰을 공유합니다.
+   ========================================================================== */
+
+:root {
+  --bg: #0a0c0f;
+  --surface: #12151a;
+  --surface-2: #191d24;
+  --surface-hover: #1f242c;
+  --line: #262b33;
+  --line-soft: #1c2027;
+  --ink: #edece6;
+  --ink-dim: #9aa0ab;
+  --ink-faint: #5c626d;
+  --eagle: #ff6a1a;
+  --eagle-soft: #ff8a47;
+  --eagle-dim: #7a3717;
+  --eagle-wash: rgba(255, 106, 26, 0.1);
+  --radius: 3px;
+
+  --font-display: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 45 920;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ec-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 20px 100px;
+}
+
+/* ---------- header ---------- */
+
+.ec-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.ec-brand {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--eagle);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: color .15s;
+}
+.ec-brand:hover { color: var(--eagle-soft); text-decoration: underline; }
+
+.ec-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 4vw, 34px);
+  letter-spacing: -0.01em;
+  margin: 4px 0 0;
+}
+.ec-title em { font-style: normal; color: var(--eagle); }
+
+.ec-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-align: right;
+  line-height: 1.7;
+}
+
+.ec-desc {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* ---------- layout ---------- */
+
+.ec-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+@media (max-width: 780px) {
+  .ec-layout { grid-template-columns: 1fr; }
+}
+
+/* ---------- left: list & filters ---------- */
+
+.ec-list-panel {
+  background: var(--surface);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ec-search {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.ec-search::placeholder { color: var(--ink-faint); }
+.ec-search:focus { outline: none; border-color: var(--eagle-dim); }
+
+.ec-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.ec-tab {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 7px 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.ec-tab:hover, .ec-tab.active {
+  background: var(--eagle-wash);
+  border-color: var(--eagle-dim);
+  color: var(--eagle-soft);
+}
+
+.ec-song-list {
+  max-height: 520px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+
+.ec-song-item {
+  background: var(--surface);
+  padding: 13px 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  transition: background .12s;
+}
+.ec-song-item:hover { background: var(--surface-hover); }
+.ec-song-item.active { background: var(--eagle-wash); box-shadow: inset 3px 0 0 var(--eagle); }
+
+.ec-song-name { font-weight: 700; font-size: 13.5px; }
+.ec-song-sub { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
+.ec-song-badge {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  color: var(--eagle-soft);
+  font-weight: 600;
+}
+
+.ec-empty {
+  text-align: center;
+  padding: 30px 16px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* ---------- right: lyrics & player ---------- */
+
+.ec-view-panel {
+  background: var(--surface);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+.ec-view-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.ec-current-title { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--eagle-soft); }
+.ec-current-target { font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); margin-top: 5px; }
+
+.ec-lyrics-box {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  flex-grow: 1;
+  white-space: pre-line;
+  line-height: 1.9;
+  font-size: 14.5px;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 18px;
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+.ec-audio-bar {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.ec-audio-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+
+.ec-play-btn {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--eagle);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.ec-play-btn:hover { background: var(--eagle-soft); }
+
+.ec-track-name { font-family: var(--font-mono); font-size: 12.5px; font-weight: 700; }
+.ec-track-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
+
+.ec-wave {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 20px;
+}
+.ec-wave i {
+  width: 3px;
+  height: 5px;
+  background: var(--eagle);
+  border-radius: 1px;
+  display: inline-block;
+}
+.ec-wave.playing i { animation: ec-wave-anim .8s ease-in-out infinite alternate; }
+.ec-wave.playing i:nth-child(2) { animation-delay: .2s; }
+.ec-wave.playing i:nth-child(3) { animation-delay: .4s; }
+.ec-wave.playing i:nth-child(4) { animation-delay: .1s; }
+.ec-wave.playing i:nth-child(5) { animation-delay: .3s; }
+
+@keyframes ec-wave-anim {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+
+.ec-footer-note {
+  margin-top: 30px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  line-height: 1.8;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}

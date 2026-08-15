@@ -132,16 +132,6 @@ async function main() {
     console.error('[refresh] game log build failed (non-fatal — main forecast page above is unaffected):', err.message);
   }
 
-  // Scenario calculator data (docs/scenario-data.js): real remaining schedule + current
-  // record + playoff probability for scenario.html. Same non-fatal treatment as the game
-  // log — a hiccup here must not roll back the main forecast page published above.
-  console.log('[refresh] building scenario calculator data...');
-  try {
-    execFileSync('node', ['scripts/build-scenario-data.mjs'], { stdio: 'inherit' });
-  } catch (err) {
-    console.error('[refresh] scenario data build failed (non-fatal — main forecast page above is unaffected):', err.message);
-  }
-
   // Community embed badge (docs/badge.svg): reuses this run's report instead of a second
   // simulation. Same non-fatal treatment.
   console.log('[refresh] building embed badge...');
