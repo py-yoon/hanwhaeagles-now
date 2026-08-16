@@ -192,6 +192,73 @@ body {
 .eh-tl-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
 .eh-tl-note { font-size: 12.5px; color: var(--ink-dim); line-height: 1.6; }
 
+/* ---------- rank trend chart ---------- */
+
+.eh-chart-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+
+.eh-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.eh-chart-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.eh-chart-legend i.normal { background: var(--eagle); }
+.eh-chart-legend i.champ { background: var(--gold); }
+.eh-chart-legend i.runner { background: var(--surface); border: 2px solid var(--eagle); width: 6px; height: 6px; }
+.eh-chart-legend i.step { background: none; border-radius: 0; border-top: 1px dashed var(--ink-faint); width: 14px; height: 0; }
+
+.eh-chart-wrap {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  padding: 12px 4px 0;
+  margin-bottom: 4px;
+}
+
+.eh-chart { width: 100%; height: auto; display: block; touch-action: pan-y; }
+
+.eh-chart-grid { stroke: var(--line-soft); stroke-width: 1; }
+.eh-chart-axis { font-family: var(--font-mono); font-size: 9px; fill: var(--ink-faint); }
+.eh-chart-step { fill: none; stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 3 3; opacity: .7; }
+.eh-chart-line { fill: none; stroke: var(--eagle); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.eh-chart-dot { fill: var(--eagle); stroke: var(--surface); stroke-width: 1.5; cursor: pointer; }
+.eh-chart-dot.champ { fill: var(--gold); }
+.eh-chart-dot.runner { fill: var(--surface); stroke: var(--eagle); stroke-width: 2; }
+
+.eh-chart-crosshair { stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 2 2; pointer-events: none; }
+
+.eh-chart-tip {
+  position: absolute;
+  display: none;
+  z-index: 5;
+  pointer-events: none;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .4);
+}
+
+.eh-chart-tip b { color: var(--ink); font-family: var(--font-mono); }
+
+.eh-chart-note {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  line-height: 1.6;
+  margin: 10px 0 22px;
+}
+
 /* ---------- era tabs ---------- */
 
 .eh-tabs {
@@ -250,7 +317,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  min-width: 720px;
+  min-width: 780px;
 }
 
 .eh-table thead th {

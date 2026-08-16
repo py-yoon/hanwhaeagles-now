@@ -55,6 +55,18 @@
     <h2 class="eh-section-title">시즌별 성적</h2>
     <div class="eh-section-sub">1986년 창단 이후 전 시즌 · 일부 시즌(1999·2000·2001·2004·2005)은 정확한 승-무-패 숫자가 아직 확인되지 않아 순위·결과만 표기했습니다.</div>
 
+    <div class="eh-chart-legend">
+      <span><i class="normal"></i>정규시즌 순위</span>
+      <span><i class="champ"></i>우승</span>
+      <span><i class="runner"></i>준우승</span>
+      <span><i class="step"></i>그 해 리그 참가팀 수(최하위선)</span>
+    </div>
+    <div class="eh-chart-wrap">
+      <svg id="ehChart" class="eh-chart" viewBox="0 0 920 240" preserveAspectRatio="none"></svg>
+      <div id="ehChartTip" class="eh-chart-tip"></div>
+    </div>
+    <div class="eh-chart-note">Y축은 위쪽이 1위(최고 성적)입니다. KBO는 1986년 7개 구단 → 1991년 8개 구단 → 2013년 9개 구단 → 2015년 10개 구단으로 늘어나, 같은 "7위"라도 시대별로 의미가 다릅니다 — 점선이 그 해의 리그 최하위선(참가팀 수)입니다. 2026시즌은 진행 중이라 확정 순위가 없어 제외했습니다.</div>
+
     <div class="eh-tabs" id="ehTabs"></div>
 
     <div class="eh-legend">
@@ -71,6 +83,7 @@
             <th>연도</th>
             <th>구단명</th>
             <th>정규시즌</th>
+            <th>참가팀</th>
             <th>최종순위</th>
             <th>승-무-패</th>
             <th>승률</th>
