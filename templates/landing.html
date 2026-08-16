@@ -59,6 +59,7 @@
   }
   .badge b{ color:#f4ede0; font-weight:700; }
   .topbar-right{ display:flex; align-items:center; gap:10px; }
+  .navlinks{ display:flex; align-items:center; gap:10px; }
   .navlink{
     font-size:13px; font-weight:800; color:#ef5f1c; text-decoration:none;
     border:1px solid rgba(239,95,28,0.5); background:rgba(239,95,28,0.1);
@@ -66,6 +67,28 @@
     transition:color .15s, border-color .15s, background .15s;
   }
   .navlink:hover{ color:#0b0906; background:#ef5f1c; border-color:#ef5f1c; }
+
+  .nav-toggle{
+    display:none; flex-direction:column; justify-content:center; align-items:center; gap:4px;
+    width:34px; height:34px; padding:0; flex:none;
+    border:1px solid rgba(244,237,224,0.16); border-radius:8px; background:transparent; cursor:pointer;
+  }
+  .nav-toggle span{ display:block; width:16px; height:2px; background:#f4ede0; border-radius:1px; transition:.2s; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  @media (max-width:760px){
+    .nav-toggle{ display:flex; }
+    .navlinks{
+      display:none; position:absolute; top:calc(100% + 8px); left:16px; right:16px; z-index:20;
+      flex-direction:column; align-items:stretch; gap:8px; padding:14px;
+      border:1px solid rgba(244,237,224,0.14); border-radius:14px; background:#100d09;
+      box-shadow:0 18px 40px rgba(0,0,0,.45);
+    }
+    .navlinks.open{ display:flex; }
+    .navlinks .navlink{ text-align:center; }
+  }
 
   /* ---------------- Hero ---------------- */
   .hero{
@@ -299,13 +322,18 @@
 <div class="topbar">
   <div class="brand"><span class="dot"></span>HANWHA EAGLES NOW</div>
   <div class="topbar-right">
-    <a class="navlink" href="players.html">선수단</a>
-    <a class="navlink" href="games.html">경기기록</a>
-    <a class="navlink" href="fan-quiz.html">찐팬 감별기</a>
-    <a class="navlink" href="cheer.html">응원가 룸</a>
-    <a class="navlink" href="history.html">역사관</a>
-    <a class="navlink" href="share-card-square.svg" target="_blank" rel="noopener">공유 카드</a>
+    <nav class="navlinks" id="navLinks">
+      <a class="navlink" href="players.html">선수단</a>
+      <a class="navlink" href="games.html">경기기록</a>
+      <a class="navlink" href="fan-quiz.html">찐팬 감별기</a>
+      <a class="navlink" href="cheer.html">응원가 룸</a>
+      <a class="navlink" href="history.html">역사관</a>
+      <a class="navlink" href="share-card-square.svg" target="_blank" rel="noopener">공유 카드</a>
+    </nav>
     <div class="badge">🦅&nbsp;<b>{{AS_OF}}</b>&nbsp;기준 · 라이브 데이터</div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </div>
 
@@ -443,6 +471,27 @@
 </footer>
 
 <script>
+(function(){
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    function closeNav(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+    navToggle.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.addEventListener('click', function(e){
+      if (e.target.classList.contains('navlink')) closeNav();
+    });
+    document.addEventListener('click', function(e){
+      if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) closeNav();
+    });
+  }
+})();
+
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
