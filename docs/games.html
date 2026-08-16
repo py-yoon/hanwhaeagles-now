@@ -17,7 +17,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="games.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ef5f1c">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="이글스 NOW">
 </head>
+
 <body>
 
 <div class="eg-games">
@@ -71,5 +78,14 @@
 
 <script src="games-2026.js"></script>
 <script src="games.js"></script>
+<button id="pwa-install-btn" style="display:none; position:fixed; right:16px; bottom:16px; z-index:999; padding:10px 16px; border:none; border-radius:999px; background:#ef5f1c; color:#fff; font-weight:600; box-shadow:0 4px 14px rgba(0,0,0,.25); cursor:pointer;">
+  📲 홈 화면에 추가
+</button>
+<div id="ios-install-banner" style="display:none; position:fixed; left:0; right:0; bottom:0; z-index:999; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#0b0906; color:#fff; font-size:14px;">
+  <span>iOS에서 추가하려면: 하단 공유 버튼 → <strong>"홈 화면에 추가"</strong></span>
+  <button id="ios-banner-dismiss" style="border:none; background:transparent; color:#fff; opacity:.7; font-size:16px; cursor:pointer;">✕</button>
+</div>
+<script src="/pwa-install.js" defer></script>
 </body>
+
 </html>

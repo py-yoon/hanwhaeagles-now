@@ -14,6 +14,12 @@
 </script>
 <title>HANWHA EAGLES NOW — 가을야구, 아직 살아있다</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuODc1ZW0iIGZvbnQtc2l6ZT0iOTAiPuKavjwvdGV4dD48L3N2Zz4=">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ef5f1c">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="이글스 NOW">
 <!--
   Deliberate single-theme (night stadium broadcast) design — the whole page IS the
   jumbotron/scoreboard concept, so a "light mode" would dilute the idea rather than
@@ -686,5 +692,14 @@ if (window.PageComments) {
   window.PageComments.mount(document.getElementById('commentsMount'));
 }
 </script>
+
+<button id="pwa-install-btn" style="display:none; position:fixed; right:16px; bottom:16px; z-index:999; padding:10px 16px; border:none; border-radius:999px; background:#ef5f1c; color:#fff; font-weight:600; box-shadow:0 4px 14px rgba(0,0,0,.25); cursor:pointer;">
+  📲 홈 화면에 추가
+</button>
+<div id="ios-install-banner" style="display:none; position:fixed; left:0; right:0; bottom:0; z-index:999; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#0b0906; color:#fff; font-size:14px;">
+  <span>iOS에서 추가하려면: 하단 공유 버튼 → <strong>"홈 화면에 추가"</strong></span>
+  <button id="ios-banner-dismiss" style="border:none; background:transparent; color:#fff; opacity:.7; font-size:16px; cursor:pointer;">✕</button>
+</div>
+<script src="/pwa-install.js" defer></script>
 </body>
 </html>
