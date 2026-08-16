@@ -11,16 +11,16 @@
   <text x="64" y="80" fill="#ff6a1a" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace" font-size="24"
     font-weight="600" letter-spacing="0.1em">🦅 HANWHA EAGLES NOW</text>
   <text x="1016" y="80" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace" font-size="21"
-    text-anchor="end">2026-08-15 기준</text>
+    text-anchor="end">2026-08-16 기준</text>
   <line x1="64" y1="108" x2="1016" y2="108" stroke="#262b33"/>
 
   <text x="540" y="204" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
     font-size="24" text-anchor="middle">가을야구 확률</text>
 
   <text x="540" y="470" fill="#ff6a1a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="260"
-    font-weight="800" text-anchor="middle">6.66%</text>
+    font-weight="800" text-anchor="middle">3.56%</text>
   <text x="540" y="516" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-    font-size="22" text-anchor="middle">중앙값 · 6.30–6.96% 구간</text>
+    font-size="22" text-anchor="middle">중앙값 · 3.32–3.95% 구간</text>
 
   <line x1="381.3333333333333" y1="660" x2="381.3333333333333" y2="892" stroke="#1c2027"/><line x1="698.6666666666666" y1="660" x2="698.6666666666666" y2="892" stroke="#1c2027"/><line x1="64" y1="776" x2="1016" y2="776" stroke="#1c2027"/>
   <rect x="64.5" y="660.5" width="951" height="231"
@@ -33,11 +33,11 @@
       <text x="540" y="706" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
         font-size="17" text-anchor="middle" letter-spacing="0.04em">5위 격차</text>
       <text x="540" y="742" fill="#edece6" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-        font-size="32" font-weight="700" text-anchor="middle">5.0G</text>
+        font-size="32" font-weight="700" text-anchor="middle">6.0G</text>
       <text x="857.3333333333333" y="706" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
         font-size="17" text-anchor="middle" letter-spacing="0.04em">잔여경기</text>
       <text x="857.3333333333333" y="742" fill="#edece6" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-        font-size="32" font-weight="700" text-anchor="middle">41</text>
+        font-size="32" font-weight="700" text-anchor="middle">40</text>
       <text x="222.66666666666666" y="822" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
         font-size="17" text-anchor="middle" letter-spacing="0.04em">승</text>
       <text x="222.66666666666666" y="858" fill="#34c98f" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
@@ -45,11 +45,11 @@
       <text x="540" y="822" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
         font-size="17" text-anchor="middle" letter-spacing="0.04em">패</text>
       <text x="540" y="858" fill="#ff5a6a" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-        font-size="32" font-weight="700" text-anchor="middle">52</text>
+        font-size="32" font-weight="700" text-anchor="middle">53</text>
       <text x="857.3333333333333" y="822" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
         font-size="17" text-anchor="middle" letter-spacing="0.04em">승률</text>
       <text x="857.3333333333333" y="858" fill="#edece6" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-        font-size="32" font-weight="700" text-anchor="middle">.4800</text>
+        font-size="32" font-weight="700" text-anchor="middle">.4750</text>
 
   <text x="64" y="962" fill="#5c626d" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
     font-size="24" letter-spacing="0.06em">갈림길 · 다음 SAMSUNG·KIA 3연전</text>
@@ -65,11 +65,11 @@
   
     <rect x="736" y="982" width="208" height="40" rx="20" fill="rgba(52,201,143,.12)"/>
     <text x="840" y="1009" fill="#34c98f" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-      font-size="20" font-weight="700" text-anchor="middle">▲ 3연승 · 17.88%</text>
+      font-size="20" font-weight="700" text-anchor="middle">▲ 3연승 · 11.65%</text>
   
     <rect x="736" y="1202" width="196" height="40" rx="20" fill="rgba(255,90,106,.12)"/>
     <text x="834" y="1229" fill="#ff5a6a" font-family="ui-monospace, 'SF Mono', 'IBM Plex Mono', Consolas, monospace"
-      font-size="20" font-weight="700" text-anchor="middle">▼ 3연패 · 1.21%</text>
+      font-size="20" font-weight="700" text-anchor="middle">▼ 3연패 · 0.25%</text>
 
   <text x="540" y="1312" fill="#ff6a1a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
     font-size="40" font-weight="800" text-anchor="middle">가을야구, 아직 살아있다</text>
