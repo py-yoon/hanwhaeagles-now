@@ -140,6 +140,15 @@ async function main() {
   } catch (err) {
     console.error('[refresh] badge build failed (non-fatal — main forecast page above is unaffected):', err.message);
   }
+
+  // SNS share cards (docs/share-card-story.svg, docs/share-card-square.svg): same
+  // report reuse, same non-fatal treatment.
+  console.log('[refresh] building share cards...');
+  try {
+    execFileSync('node', ['scripts/build-share-card.mjs'], { stdio: 'inherit' });
+  } catch (err) {
+    console.error('[refresh] share card build failed (non-fatal — main forecast page above is unaffected):', err.message);
+  }
 }
 
 main().catch((err) => {
