@@ -225,7 +225,7 @@ body {
 .ep-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: 15px 15px 13px;
+  padding: 15px 15px 36px;
   cursor: pointer;
   transition: background .12s, border-color .12s, transform .12s;
   position: relative;
@@ -234,6 +234,49 @@ body {
   gap: 6px;
   border-radius: 4px;
 }
+
+.ep-heart-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-faint);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1;
+  transition: border-color .15s, color .15s, background .15s, transform .1s;
+}
+
+.ep-heart-btn:hover { border-color: var(--eagle-dim); color: var(--eagle-soft); }
+.ep-heart-btn:active { transform: scale(.92); }
+.ep-heart-btn:disabled { cursor: default; opacity: .7; }
+
+.ep-heart-icon {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.ep-heart-btn.is-liked {
+  color: var(--eagle);
+  border-color: var(--eagle-dim);
+  background: var(--eagle-wash);
+  cursor: default;
+}
+
+.ep-heart-btn.is-liked .ep-heart-icon { fill: var(--eagle); stroke: var(--eagle); }
+
+.ep-heart-count { min-width: 6px; text-align: left; }
 
 .ep-card:hover {
   background: var(--surface-hover);

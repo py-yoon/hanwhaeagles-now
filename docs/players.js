@@ -32,9 +32,13 @@
   let PLAYERS = [];
   let META = {};
   let query = "";
+  let sortMode = "default"; // "default" | "popular"
+  let likeCounts = {}; // playerId -> 하트 수 (Supabase에서 비동기로 채워짐)
+  const pendingLikes = new Set(); // 응답 오기 전 중복 클릭 방지용
 
   const $sections = document.getElementById("epSections");
   const $jump = document.getElementById("epJump");
+  const $sort = document.getElementById("epSort");
   const $search = document.getElementById("epSearch");
   const $overlay = document.getElementById("epOverlay");
   const $detail = document.getElementById("epDetail");
@@ -57,10 +61,12 @@
       META = data.meta || {};
       renderMeta();
       renderJump();
+      renderSort();
       renderSections();
       bindEvents();
       handleHash();
       window.addEventListener("hashchange", handleHash);
+      loadLikeCounts();
     })
     .catch((err) => {
       $sections.innerHTML = `<div class="ep-empty">선수 데이터를 불러오지 못했습니다. players.html과 같은 폴더에 players-data.js 파일이 있는지 확인해주세요.</div>`;
@@ -78,6 +84,20 @@
     ).join("");
   }
 
+  function renderSort() {
+    $sort.innerHTML = `
+      <button data-sort="default" class="${sortMode === "default" ? "active" : ""}">포지션순</button>
+      <button data-sort="popular" class="${sortMode === "popular" ? "active" : ""}">인기순 ❤️</button>`;
+  }
+
+  function loadLikeCounts() {
+    if (!window.PlayerLikes) return;
+    window.PlayerLikes.loadCounts().then((counts) => {
+      likeCounts = counts;
+      renderSections();
+    });
+  }
+
   function bindEvents() {
     $jump.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
@@ -85,7 +105,21 @@
       document.getElementById(btn.dataset.target)?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
+    $sort.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      sortMode = btn.dataset.sort;
+      renderSort();
+      renderSections();
+    });
+
     $sections.addEventListener("click", (e) => {
+      const heartBtn = e.target.closest(".ep-heart-btn");
+      if (heartBtn) {
+        e.stopPropagation();
+        handleHeartClick(heartBtn);
+        return;
+      }
       const card = e.target.closest(".ep-card");
       if (!card) return;
       location.hash = card.dataset.id;
@@ -112,14 +146,48 @@
     return `${p.no}-${p.name}`;
   }
 
+  function heartHtml(id) {
+    const liked = window.PlayerLikes ? window.PlayerLikes.hasLikedToday(id) : false;
+    const count = likeCounts[id] || 0;
+    return `
+      <button type="button" class="ep-heart-btn${liked ? " is-liked" : ""}" data-heart-id="${id}" aria-pressed="${liked}" aria-label="응원 하트 (하루 한 번)">
+        <svg class="ep-heart-icon" viewBox="0 0 24 24"><path d="M12 21s-7.6-4.6-10.3-9.2C.1 8.5 1.4 4.6 5.1 3.8c2.1-.5 4.1.5 5.1 2.3 1-1.8 3-2.8 5.1-2.3 3.7.8 5 4.7 3.4 8-2.7 4.6-10.3 9.2-10.3 9.2z"/></svg>
+        <span class="ep-heart-count">${count}</span>
+      </button>`;
+  }
+
+  // 카드 안의 하트는 클릭해도 상세 페이지로 이동하지 않도록 $sections 클릭 델리게이션에서
+  // .ep-heart-btn을 먼저 가로챈다 (bindEvents 참고).
+  function handleHeartClick(btn) {
+    const id = btn.dataset.heartId;
+    if (!window.PlayerLikes || btn.classList.contains("is-liked") || pendingLikes.has(id)) return;
+    pendingLikes.add(id);
+    btn.disabled = true;
+    window.PlayerLikes.like(id).then((res) => {
+      pendingLikes.delete(id);
+      btn.disabled = false;
+      if (res.ok) {
+        likeCounts[id] = (likeCounts[id] || 0) + 1;
+      }
+      // "already"(다른 기기 등에서 이미 오늘 누름)든 성공이든, 서버 판정에 맞춰 채워진 상태로 표시.
+      if (res.ok || res.reason === "already") {
+        btn.classList.add("is-liked");
+        btn.setAttribute("aria-pressed", "true");
+        btn.querySelector(".ep-heart-count").textContent = String(likeCounts[id] || 0);
+      }
+    });
+  }
+
   function cardHtml(p) {
     const age = calcAge(p.birth);
+    const id = playerId(p);
     return `
-      <div class="ep-card" data-id="${playerId(p)}">
+      <div class="ep-card" data-id="${id}">
         <div class="ep-no">No.${p.no}</div>
         <div class="ep-name">${p.name}</div>
         <div class="ep-tag">${p.role || p.group}</div>
         <div class="ep-sub">만 ${age}세 · ${p.throwBat}</div>
+        ${heartHtml(id)}
       </div>`;
   }
 
@@ -133,7 +201,31 @@
     );
   }
 
+  function renderPopularSection() {
+    const list = PLAYERS.filter(matchesQuery)
+      .slice()
+      .sort((a, b) => (likeCounts[playerId(b)] || 0) - (likeCounts[playerId(a)] || 0) || a.no.localeCompare(b.no));
+
+    if (!list.length) {
+      $sections.innerHTML = `<div class="ep-empty">"${query}"에 해당하는 선수를 찾을 수 없습니다.</div>`;
+      return;
+    }
+
+    $sections.innerHTML = `
+      <section class="ep-section-block" id="sec-popular">
+        <div class="ep-section-head">
+          <h2>인기순 ❤️</h2>
+          <div class="ep-section-count">${list.length}명</div>
+        </div>
+        <div class="ep-grid">${list.map(cardHtml).join("")}</div>
+      </section>`;
+  }
+
   function renderSections() {
+    if (sortMode === "popular") {
+      renderPopularSection();
+      return;
+    }
     const blocks = SECTIONS.map((sec) => {
       const list = PLAYERS.filter((p) => sec.groups.includes(p.group) && matchesQuery(p));
       if (sec.groups.length === 1) {
@@ -205,6 +297,13 @@
   }
 
   function orderedVisiblePlayers() {
+    // 상세 화면의 이전/다음 탐색이 지금 보고 있는 카드 순서(포지션순 또는 인기순)와
+    // 일치하도록, 카드 렌더링과 같은 정렬 로직을 그대로 따라간다.
+    if (sortMode === "popular") {
+      return PLAYERS.filter(matchesQuery)
+        .slice()
+        .sort((a, b) => (likeCounts[playerId(b)] || 0) - (likeCounts[playerId(a)] || 0) || a.no.localeCompare(b.no));
+    }
     const out = [];
     SECTIONS.forEach((sec) => {
       sec.groups.forEach((g) => {

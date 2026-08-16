@@ -54,3 +54,36 @@ drop trigger if exists hanwhaeagles_comments_rate_limit on public.hanwhaeagles_c
 create trigger hanwhaeagles_comments_rate_limit
   before insert on public.hanwhaeagles_comments
   for each row execute function public.enforce_hanwhaeagles_comment_rate_limit();
+
+-- 선수단 페이지 하트(응원). 같은 사용자(익명 세션 포함)가 같은 선수에게 하루 한 번만
+-- 누를 수 있도록 (player_id, user_id, like_date) 유니크 제약으로 막습니다 — 트리거로
+-- 시간 간격을 재는 게 아니라 DB가 자체적으로 중복 삽입을 거부하는 방식이라 동시 클릭에도
+-- 안전합니다. like_date는 KST 기준 날짜(자정에 초기화)입니다.
+create table if not exists public.hanwhaeagles_player_likes (
+  id uuid primary key default gen_random_uuid(),
+  player_id text not null check (char_length(player_id) between 1 and 80),
+  user_id uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  like_date date not null default ((now() at time zone 'Asia/Seoul')::date),
+  created_at timestamptz not null default now(),
+  unique (player_id, user_id, like_date)
+);
+
+create index if not exists hanwhaeagles_player_likes_player_id_idx
+  on public.hanwhaeagles_player_likes (player_id);
+
+alter table public.hanwhaeagles_player_likes enable row level security;
+
+grant usage on schema public to anon, authenticated;
+grant select on public.hanwhaeagles_player_likes to anon;
+grant select, insert on public.hanwhaeagles_player_likes to authenticated;
+
+drop policy if exists "누구나 하트 개수를 읽을 수 있음" on public.hanwhaeagles_player_likes;
+create policy "누구나 하트 개수를 읽을 수 있음"
+  on public.hanwhaeagles_player_likes for select
+  using (true);
+
+drop policy if exists "로그인한 사용자만 하트를 남길 수 있음" on public.hanwhaeagles_player_likes;
+create policy "로그인한 사용자만 하트를 남길 수 있음"
+  on public.hanwhaeagles_player_likes for insert
+  to authenticated
+  with check (auth.uid() = user_id);
