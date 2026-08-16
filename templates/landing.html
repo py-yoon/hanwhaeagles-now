@@ -61,11 +61,12 @@
   .topbar-right{ display:flex; align-items:center; gap:10px; }
   .navlinks{ display:flex; align-items:center; gap:10px; }
   .navlink{
-    font-size:13px; font-weight:800; color:#ef5f1c; text-decoration:none;
+    font-size:13px; font-weight:800; font-family:inherit; color:#ef5f1c; text-decoration:none;
     border:1px solid rgba(239,95,28,0.5); background:rgba(239,95,28,0.1);
-    padding:6px 14px; border-radius:999px;
+    padding:6px 14px; border-radius:999px; cursor:pointer;
     transition:color .15s, border-color .15s, background .15s;
   }
+  .navlink:disabled{ opacity:.55; cursor:wait; }
   .navlink:hover{ color:#0b0906; background:#ef5f1c; border-color:#ef5f1c; }
 
   .nav-toggle{
@@ -418,10 +419,12 @@
       </a>
       <div class="body">
         <h3>이 갈림길, 카드로 공유하기</h3>
-        <p>오늘 기준 순위·확률을 담은 이미지 카드. 저장하거나 SNS에 그대로 올릴 수 있다.</p>
+        <p>오늘 기준 순위·확률을 담은 이미지 카드. 이미지를 복사해 바로 붙여넣거나, 저장할 수 있다.</p>
         <div class="actions">
-          <a class="navlink" href="share-card-square.svg" target="_blank" rel="noopener">정사각형</a>
-          <a class="navlink" href="share-card-story.svg" target="_blank" rel="noopener">스토리형</a>
+          <a class="navlink" href="share-card-square.svg" target="_blank" rel="noopener">정사각형 보기</a>
+          <button class="navlink" type="button" data-copy-card="share-card-square.svg">정사각형 복사</button>
+          <a class="navlink" href="share-card-story.svg" target="_blank" rel="noopener">스토리형 보기</a>
+          <button class="navlink" type="button" data-copy-card="share-card-story.svg">스토리형 복사</button>
         </div>
       </div>
     </div>
@@ -490,6 +493,55 @@
       if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) closeNav();
     });
   }
+})();
+
+(function(){
+  // SVG -> PNG so it can go on the clipboard: clipboard.write only accepts raster
+  // formats, and pasting a raw SVG blob is a no-op in KakaoTalk/Slack/etc.
+  function svgUrlToPngBlob(url){
+    return fetch(url)
+      .then(function(r){ return r.text(); })
+      .then(function(svgText){
+        return new Promise(function(resolve, reject){
+          var svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+          var svgUrl = URL.createObjectURL(svgBlob);
+          var img = new Image();
+          img.onload = function(){
+            var canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            canvas.getContext('2d').drawImage(img, 0, 0);
+            URL.revokeObjectURL(svgUrl);
+            canvas.toBlob(function(blob){
+              if (blob) resolve(blob); else reject(new Error('canvas toBlob failed'));
+            }, 'image/png');
+          };
+          img.onerror = function(){ URL.revokeObjectURL(svgUrl); reject(new Error('svg load failed')); };
+          img.src = svgUrl;
+        });
+      });
+  }
+
+  var copyBtns = document.querySelectorAll('[data-copy-card]');
+  var canCopyImages = !!(navigator.clipboard && window.ClipboardItem);
+  copyBtns.forEach(function(btn){
+    if (!canCopyImages) { btn.hidden = true; return; }
+    var original = btn.textContent;
+    btn.addEventListener('click', function(){
+      btn.disabled = true;
+      btn.textContent = '복사 중…';
+      svgUrlToPngBlob(btn.dataset.copyCard)
+        .then(function(blob){ return navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]); })
+        .then(function(){ btn.textContent = '복사 완료!'; })
+        .catch(function(err){
+          console.error(err);
+          btn.textContent = '복사 실패';
+        })
+        .finally(function(){
+          setTimeout(function(){ btn.textContent = original; btn.disabled = false; }, 1500);
+        });
+    });
+  });
 })();
 
 (function(){
