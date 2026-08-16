@@ -278,6 +278,33 @@ body {
 
 .ep-heart-count { min-width: 6px; text-align: left; }
 
+.ep-heart-btn.is-locked {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.ep-heart-btn.is-locked:hover { border-color: var(--line); color: var(--ink-faint); }
+
+.ep-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translate(-50%, 8px);
+  z-index: 1000;
+  background: var(--surface-2);
+  border: 1px solid var(--eagle-dim);
+  color: var(--ink);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+  pointer-events: none;
+}
+
+.ep-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
 .ep-card:hover {
   background: var(--surface-hover);
   border-color: var(--eagle-dim);

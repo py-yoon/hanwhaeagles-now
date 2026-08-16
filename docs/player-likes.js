@@ -1,5 +1,5 @@
-/* 선수단 페이지용 하트(응원) — Supabase에 (선수, 익명세션, 날짜) 유니크 제약으로
-   하루 한 번만 기록되고, 전체 하트 수는 그 테이블의 행 개수를 세서 구합니다. */
+/* 선수단 페이지용 하트(응원) — Supabase에 (익명세션, 날짜) 유니크 제약으로 하루
+   선수단 전체 통틀어 한 번만 기록되고, 전체 하트 수는 그 테이블의 행 개수를 세서 구합니다. */
 (function () {
   const SUPABASE_URL = 'https://wxjpctyotwstntunwvbs.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_hXj9vHN7LosFwIzHUkZSsw_jBcHlQ6o';
@@ -25,18 +25,21 @@
     return new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
   }
 
-  function likedKey(playerId) {
-    return `hem_liked_${playerId}_${kstDateStr()}`;
+  function dailyKey() {
+    return `hem_daily_like_${kstDateStr()}`;
   }
 
-  // 서버가 최종 판정이지만(유니크 제약), 페이지를 새로고침할 때마다 다시 물어보지
-  // 않도록 "오늘 이미 눌렀음"을 로컬에도 남겨서 하트를 바로 채워진 상태로 보여준다.
-  function hasLikedToday(playerId) {
-    try { return localStorage.getItem(likedKey(playerId)) === '1'; } catch { return false; }
+  // 하루에 선수단 전체 통틀어 하트 한 번 — 특정 선수 한정이 아니라 "오늘 이미 썼는지"를
+  // 하루 단위로 하나만 기록한다. 서버가 최종 판정이지만(유니크 제약), 새로고침할 때마다
+  // 다시 물어보지 않도록 로컬에도 남겨서 바로 채워진/잠긴 상태로 보여준다.
+  // 반환값: 오늘 하트를 준 선수 id, 아직 안 썼으면 null, 다른 기기 등에서 이미 썼지만
+  // 어느 선수인지는 이 브라우저가 모르는 경우 '(unknown)'.
+  function todaysLikedPlayer() {
+    try { return localStorage.getItem(dailyKey()); } catch { return null; }
   }
 
-  function markLikedToday(playerId) {
-    try { localStorage.setItem(likedKey(playerId), '1'); } catch { /* 무시 */ }
+  function markTodaysLikedPlayer(playerId) {
+    try { localStorage.setItem(dailyKey(), playerId); } catch { /* 무시 */ }
   }
 
   async function loadCounts() {
@@ -51,21 +54,22 @@
   }
 
   async function like(playerId) {
-    if (hasLikedToday(playerId)) return { ok: false, reason: 'already' };
+    const already = todaysLikedPlayer();
+    if (already) return { ok: false, reason: 'already', playerId: already === '(unknown)' ? null : already };
     try {
       await ensureSession();
       const { error } = await client.from(TABLE).insert({ player_id: playerId });
       if (error) {
-        // 23505 = unique_violation. 같은 사용자가 같은 날 같은 선수에게 이미 하트를 남긴 경우다 —
+        // 23505 = unique_violation. 같은 사용자가 오늘 이미 (다른 선수에게든) 하트를 남긴 경우다 —
         // 다른 기기/시크릿창처럼 로컬 기록은 없지만 서버 유니크 제약에 걸린 경우로, 에러가 아니라
-        // "이미 눌렀음"으로 취급하고 로컬 상태를 서버와 맞춘다.
+        // "이미 오늘치를 씀"으로 취급한다. 이 브라우저는 어느 선수였는지 모르므로 '(unknown)'로 남긴다.
         if (error.code === '23505') {
-          markLikedToday(playerId);
-          return { ok: false, reason: 'already' };
+          markTodaysLikedPlayer('(unknown)');
+          return { ok: false, reason: 'already', playerId: null };
         }
         throw error;
       }
-      markLikedToday(playerId);
+      markTodaysLikedPlayer(playerId);
       return { ok: true };
     } catch (err) {
       console.error('[player-likes] like failed', err);
@@ -73,5 +77,5 @@
     }
   }
 
-  window.PlayerLikes = { loadCounts, like, hasLikedToday };
+  window.PlayerLikes = { loadCounts, like, todaysLikedPlayer };
 })();

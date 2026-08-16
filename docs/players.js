@@ -32,9 +32,28 @@
   let PLAYERS = [];
   let META = {};
   let query = "";
-  let sortMode = "default"; // "default" | "popular"
+  let sortMode = "default"; // "default" | FLAT_SORTS의 키 중 하나
   let likeCounts = {}; // playerId -> 하트 수 (Supabase에서 비동기로 채워짐)
   const pendingLikes = new Set(); // 응답 오기 전 중복 클릭 방지용
+
+  // "default"(포지션순)를 뺀 나머지 정렬 — 전부 포지션 구분 없이 한 그리드로 펼쳐서 보여준다.
+  const FLAT_SORTS = {
+    popular: {
+      label: "인기순 ❤️",
+      compare: (a, b) =>
+        (likeCounts[playerId(b)] || 0) - (likeCounts[playerId(a)] || 0) ||
+        a.no.localeCompare(b.no, undefined, { numeric: true })
+    },
+    age: {
+      // 생년월일이 이를수록(=나이가 많을수록) 먼저 — 선배 순.
+      label: "나이순",
+      compare: (a, b) => new Date(a.birth) - new Date(b.birth) || a.no.localeCompare(b.no, undefined, { numeric: true })
+    },
+    number: {
+      label: "등번호순",
+      compare: (a, b) => (parseInt(a.no, 10) - parseInt(b.no, 10)) || a.no.localeCompare(b.no)
+    }
+  };
 
   const $sections = document.getElementById("epSections");
   const $jump = document.getElementById("epJump");
@@ -85,9 +104,10 @@
   }
 
   function renderSort() {
-    $sort.innerHTML = `
-      <button data-sort="default" class="${sortMode === "default" ? "active" : ""}">포지션순</button>
-      <button data-sort="popular" class="${sortMode === "popular" ? "active" : ""}">인기순 ❤️</button>`;
+    const items = [["default", "포지션순"], ...Object.entries(FLAT_SORTS).map(([key, s]) => [key, s.label])];
+    $sort.innerHTML = items
+      .map(([key, label]) => `<button data-sort="${key}" class="${sortMode === key ? "active" : ""}">${label}</button>`)
+      .join("");
   }
 
   function loadLikeCounts() {
@@ -147,34 +167,64 @@
   }
 
   function heartHtml(id) {
-    const liked = window.PlayerLikes ? window.PlayerLikes.hasLikedToday(id) : false;
+    const likedPlayer = window.PlayerLikes ? window.PlayerLikes.todaysLikedPlayer() : null;
+    const isThis = likedPlayer === id;
+    const locked = likedPlayer && !isThis; // 오늘 하트를 이미 다른 선수에게 줌
     const count = likeCounts[id] || 0;
+    const cls = isThis ? " is-liked" : locked ? " is-locked" : "";
+    const label = isThis
+      ? "오늘 이 선수에게 하트를 줬어요"
+      : locked
+      ? "오늘 하트는 이미 다른 선수에게 줬어요 (하루 전체 한 번)"
+      : "응원 하트 (하루 전체 한 번)";
     return `
-      <button type="button" class="ep-heart-btn${liked ? " is-liked" : ""}" data-heart-id="${id}" aria-pressed="${liked}" aria-label="응원 하트 (하루 한 번)">
+      <button type="button" class="ep-heart-btn${cls}" data-heart-id="${id}" aria-pressed="${isThis}" aria-label="${label}" title="${label}">
         <svg class="ep-heart-icon" viewBox="0 0 24 24"><path d="M12 21s-7.6-4.6-10.3-9.2C.1 8.5 1.4 4.6 5.1 3.8c2.1-.5 4.1.5 5.1 2.3 1-1.8 3-2.8 5.1-2.3 3.7.8 5 4.7 3.4 8-2.7 4.6-10.3 9.2-10.3 9.2z"/></svg>
         <span class="ep-heart-count">${count}</span>
       </button>`;
+  }
+
+  let toastTimer = null;
+  function showToast(message) {
+    const el = document.getElementById("epToast");
+    if (!el) return;
+    el.textContent = message;
+    el.hidden = false;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      el.classList.remove("show");
+      setTimeout(() => { el.hidden = true; }, 200);
+    }, 2200);
   }
 
   // 카드 안의 하트는 클릭해도 상세 페이지로 이동하지 않도록 $sections 클릭 델리게이션에서
   // .ep-heart-btn을 먼저 가로챈다 (bindEvents 참고).
   function handleHeartClick(btn) {
     const id = btn.dataset.heartId;
-    if (!window.PlayerLikes || btn.classList.contains("is-liked") || pendingLikes.has(id)) return;
+    if (!window.PlayerLikes) return;
+    if (btn.classList.contains("is-liked") || btn.classList.contains("is-locked")) {
+      showToast("하루에 한 번만 가능합니다");
+      return;
+    }
+    if (pendingLikes.has(id)) return;
     pendingLikes.add(id);
     btn.disabled = true;
     window.PlayerLikes.like(id).then((res) => {
       pendingLikes.delete(id);
-      btn.disabled = false;
       if (res.ok) {
         likeCounts[id] = (likeCounts[id] || 0) + 1;
+        // 하루 하트를 다 썼으니 이 카드는 채워진 하트로, 나머지 모든 카드는 잠긴 하트로
+        // 다시 그려야 해서 이 버튼 하나만이 아니라 전체를 다시 렌더링한다.
+        renderSections();
+        return;
       }
-      // "already"(다른 기기 등에서 이미 오늘 누름)든 성공이든, 서버 판정에 맞춰 채워진 상태로 표시.
-      if (res.ok || res.reason === "already") {
-        btn.classList.add("is-liked");
-        btn.setAttribute("aria-pressed", "true");
-        btn.querySelector(".ep-heart-count").textContent = String(likeCounts[id] || 0);
+      if (res.reason === "already") {
+        showToast("하루에 한 번만 가능합니다");
+        renderSections();
+        return;
       }
+      btn.disabled = false;
     });
   }
 
@@ -201,10 +251,12 @@
     );
   }
 
-  function renderPopularSection() {
-    const list = PLAYERS.filter(matchesQuery)
-      .slice()
-      .sort((a, b) => (likeCounts[playerId(b)] || 0) - (likeCounts[playerId(a)] || 0) || a.no.localeCompare(b.no));
+  function flatSortedPlayers(mode) {
+    return PLAYERS.filter(matchesQuery).slice().sort(FLAT_SORTS[mode].compare);
+  }
+
+  function renderFlatSection(mode) {
+    const list = flatSortedPlayers(mode);
 
     if (!list.length) {
       $sections.innerHTML = `<div class="ep-empty">"${query}"에 해당하는 선수를 찾을 수 없습니다.</div>`;
@@ -212,9 +264,9 @@
     }
 
     $sections.innerHTML = `
-      <section class="ep-section-block" id="sec-popular">
+      <section class="ep-section-block" id="sec-${mode}">
         <div class="ep-section-head">
-          <h2>인기순 ❤️</h2>
+          <h2>${FLAT_SORTS[mode].label}</h2>
           <div class="ep-section-count">${list.length}명</div>
         </div>
         <div class="ep-grid">${list.map(cardHtml).join("")}</div>
@@ -222,8 +274,8 @@
   }
 
   function renderSections() {
-    if (sortMode === "popular") {
-      renderPopularSection();
+    if (sortMode !== "default") {
+      renderFlatSection(sortMode);
       return;
     }
     const blocks = SECTIONS.map((sec) => {
@@ -297,13 +349,9 @@
   }
 
   function orderedVisiblePlayers() {
-    // 상세 화면의 이전/다음 탐색이 지금 보고 있는 카드 순서(포지션순 또는 인기순)와
-    // 일치하도록, 카드 렌더링과 같은 정렬 로직을 그대로 따라간다.
-    if (sortMode === "popular") {
-      return PLAYERS.filter(matchesQuery)
-        .slice()
-        .sort((a, b) => (likeCounts[playerId(b)] || 0) - (likeCounts[playerId(a)] || 0) || a.no.localeCompare(b.no));
-    }
+    // 상세 화면의 이전/다음 탐색이 지금 보고 있는 카드 순서와 일치하도록,
+    // 카드 렌더링과 같은 정렬 로직을 그대로 따라간다.
+    if (sortMode !== "default") return flatSortedPlayers(sortMode);
     const out = [];
     SECTIONS.forEach((sec) => {
       sec.groups.forEach((g) => {

@@ -55,8 +55,8 @@ create trigger hanwhaeagles_comments_rate_limit
   before insert on public.hanwhaeagles_comments
   for each row execute function public.enforce_hanwhaeagles_comment_rate_limit();
 
--- 선수단 페이지 하트(응원). 같은 사용자(익명 세션 포함)가 같은 선수에게 하루 한 번만
--- 누를 수 있도록 (player_id, user_id, like_date) 유니크 제약으로 막습니다 — 트리거로
+-- 선수단 페이지 하트(응원). 같은 사용자(익명 세션 포함)는 선수단 전체를 통틀어 하루
+-- 한 번만 하트를 줄 수 있도록 (user_id, like_date) 유니크 제약으로 막습니다 — 트리거로
 -- 시간 간격을 재는 게 아니라 DB가 자체적으로 중복 삽입을 거부하는 방식이라 동시 클릭에도
 -- 안전합니다. like_date는 KST 기준 날짜(자정에 초기화)입니다.
 create table if not exists public.hanwhaeagles_player_likes (
@@ -65,7 +65,7 @@ create table if not exists public.hanwhaeagles_player_likes (
   user_id uuid not null default auth.uid() references auth.users(id) on delete cascade,
   like_date date not null default ((now() at time zone 'Asia/Seoul')::date),
   created_at timestamptz not null default now(),
-  unique (player_id, user_id, like_date)
+  unique (user_id, like_date)
 );
 
 create index if not exists hanwhaeagles_player_likes_player_id_idx
@@ -87,3 +87,24 @@ create policy "로그인한 사용자만 하트를 남길 수 있음"
   on public.hanwhaeagles_player_likes for insert
   to authenticated
   with check (auth.uid() = user_id);
+
+-- ============================================================================
+-- 마이그레이션: 하트 제약을 "선수 1명당 하루 1번"에서 "선수단 전체 통틀어 하루 1번"으로
+-- 좁힙니다. 위 create table 블록을 이미 실행해서 테이블이 있는 경우에만 이 아래를
+-- 추가로 실행하세요 (새 프로젝트라면 위 블록이 이미 새 제약으로 만들어서 필요 없습니다).
+-- ============================================================================
+
+-- 제약을 좁히기 전에, 테스트 등으로 이미 같은 사용자가 같은 날 서로 다른 선수에게
+-- 하트를 남긴 행이 있다면 가장 먼저 남긴 것만 남기고 나머지는 지웁니다 — 안 지우면
+-- 아래 유니크 제약 추가가 기존 데이터와 충돌해서 실패합니다.
+delete from public.hanwhaeagles_player_likes a
+using public.hanwhaeagles_player_likes b
+where a.user_id = b.user_id
+  and a.like_date = b.like_date
+  and a.created_at > b.created_at;
+
+alter table public.hanwhaeagles_player_likes
+  drop constraint if exists hanwhaeagles_player_likes_player_id_user_id_like_date_key;
+
+alter table public.hanwhaeagles_player_likes
+  add constraint hanwhaeagles_player_likes_user_id_like_date_key unique (user_id, like_date);
