@@ -29,7 +29,7 @@ window.EAGLES_CHEER_DATA = {
       title: "노시환 응원가",
       category: "batter",
       target: "No.8 노시환 (내야수)",
-      lyrics: "한화의 거포 노시환!\n날려라 홈런 노시환!\n\n워어어어어~ 노! 시! 환!\n워어어어어~ 날려버려라!\n\n한화의 노시환 안타를 날려줘요~\n한화의 노시환 홈런을 날려줘요~ 노! 시! 환!",
+      lyrics: "오! 노시환 워어어 워어어어 날려줘요 환상적으로! 날려버려 노시환!\n오! 노시환 워어어 워어어어 날려줘요 환상적으로!\n안타! 홈런! 워어어어 노!시!환!",
       youtubeId: "S5LCqEdaBZ4",
     },
     {
@@ -37,7 +37,7 @@ window.EAGLES_CHEER_DATA = {
       title: "채은성 응원가",
       category: "batter",
       target: "No.22 채은성 (내야수/주장)",
-      lyrics: "은성 은성 채은성~\n한화의 해결사 채은성!\n\n승리를 위하여 안타를 날려라~\n워어어 채은성 안타!",
+      lyrics: "최강한화 채은성 워어어어~\n최강한화 채은성 워어어어~\n저! 하늘로 날아올라 빛이 되리라 워어어어\n한화 채은성 (×2)",
       youtubeId: "rISwHdbWAAU",
     },
     {
@@ -45,23 +45,23 @@ window.EAGLES_CHEER_DATA = {
       title: "페라자 응원가",
       category: "batter",
       target: "No.30 페라자 (외야수)",
-      lyrics: "이글스의 페라자 워어어어어~\n안타 페라자! 홈런 페라자!\n\n열정의 불꽃을 태워라 페라자!\n승리를 위하여 페라자!",
+      lyrics: "페! 페! 페라자~ 워어어 워어어 워어어 안타!\n페! 페! 페라자~ 워어어 워어어 워어어 홈런! (×2)",
       youtubeId: "P4d4Z-xAwDM",
     },
     {
       id: 8,
       title: "문현빈 응원가",
       category: "batter",
-      target: "No.1 문현빈 (내야수)",
-      lyrics: "날려라 문현빈 안타 문현빈!\n승리를 향해 힘차게 뛰어라~\n\n최강한화의 아기독수리 문현빈!\n워어어어 문현빈!",
+      target: "No.51 문현빈 (내야수)",
+      lyrics: "한화 문현빈 워어어어어\n한화 문현빈 워어어어어\n최강 한화의 승리를 위해 워어어어 어어어어 (×2)",
       youtubeId: "WgGtut5ZWes",
     },
     {
       id: 9,
-      title: "류현진 등장곡",
+      title: "류현진 응원가",
       category: "pitcher",
       target: "No.99 류현진 (선발투수)",
-      lyrics: "[등장 테마곡: Evanescence - Bring Me To Life & The Monster]\n\n\"몬스터의 귀환, 99번 류현진 등판!\"\n\n(이글스파크를 뒤흔드는 괴물 투수의 카리스마 등장 사운드)",
+      lyrics: "써클 써클 체인지업~ 못 치겠어~\n너 너 너 너 너의 강속구~ 난 지겨워~\n굿볼 굿볼 굿볼 굿볼~ 삼진아웃~\n한화 이글스~ 꼭!꼭!꼭! 승리하리라~\n\n타자가 미친날~ 공땜에 미친날~\n류현진 강속구~ 돌아버릴 것만 같아~\n타자가 미친날~ 공땜에 미친날~\n승리의 탈삼진~ 괴물투수 류현진이야~",
       youtubeId: "ViM1oDqapqM",
     },
     {
@@ -69,7 +69,7 @@ window.EAGLES_CHEER_DATA = {
       title: "문동주 등장곡",
       category: "pitcher",
       target: "No.1 문동주 (선발투수)",
-      lyrics: "[등장 테마곡: AC/DC - Thunderstruck]\n\n\"160km 광속구의 주역, 대전의 파이어볼러 문동주!\"\n\n(천둥 같은 비트와 함께 마운드 등판)",
+      lyrics: "[등장곡: DJ Khaled - All I Do Is Win (feat. T-Pain, Ludacris, Snoop Dogg & Rick Ross)]\n\n\"100마일의 사나이, 한화의 파이어볼러 문동주 등판!\"\n\n(위풍당당한 힙합 비트와 함께 마운드에 오른다)",
       youtubeId: "6OsKROspfGE",
     },
     {
@@ -77,7 +77,7 @@ window.EAGLES_CHEER_DATA = {
       title: "심우준 응원가",
       category: "batter",
       target: "No.7 심우준 (유격수)",
-      lyrics: "질주하라 심우준! 내야를 지켜라 심우준!\n\n워어어어어~ 심! 우! 준!\n워어어어어~ 안타를 날려라!\n\n한화의 심우준 안타를 날려줘요~\n한화의 심우준 승리를 위하여! 심! 우! 준!",
+      lyrics: "한화 심우준~ 한화 심우준~ 오오오\n이글스의 심우준~\n한화 심우준~ 한화 심우준~ 오오오\n너는 슈퍼 판타스틱~",
       youtubeId: "MMCKU5IMyQA",
     },
     {
@@ -85,7 +85,7 @@ window.EAGLES_CHEER_DATA = {
       title: "강백호 응원가",
       category: "batter",
       target: "No.50 강백호 (1루수)",
-      lyrics: "강백호 강백호 최강한화 강백호!\n\n워어어어어~ 홈런을 날려라!\n워어어어어~ 강! 백! 호!\n\n한화의 거포 강백호 안타를 날려줘요~\n한화의 강백호 홈런을 날려줘요! 강! 백! 호!",
+      lyrics: "워어어어 최강한화 강백호\n찬란하게 빛이나는 그대여~ (×2)",
       youtubeId: "RZxX5LDzQEo",
     },
     {
@@ -93,7 +93,7 @@ window.EAGLES_CHEER_DATA = {
       title: "이도윤 응원가",
       category: "batter",
       target: "No.5 이도윤 (2루수)",
-      lyrics: "날쌘 이도윤 내야를 누벼라!\n\n워어어어어~ 이! 도! 윤!\n워어어어어~ 안타를 날려라!\n\n한화의 이도윤 안타를 날려줘요~\n승리를 위하여 이도윤!",
+      lyrics: "한화의(의!) 이도윤(윤!) 워어어어어어어\n힘차게 날려라 승리를 위하여\n한화의(의!) 이도윤(윤!) 워어어어어어어\n힘차게 날려라 이도윤 (이!도!윤!) (×2)",
       youtubeId: "fCG3Cno4wbw",
     },
     {
@@ -101,7 +101,7 @@ window.EAGLES_CHEER_DATA = {
       title: "김태연 응원가",
       category: "batter",
       target: "No.25 김태연 (외야수)",
-      lyrics: "김태연 김태연 한화의 김태연!\n\n워어어어어~ 안타 김태연!\n워어어어어~ 날려버려라!\n\n외야를 지켜라 김태연~\n한화의 김태연 승리를 위하여!",
+      lyrics: "한화의 김태연(Let's go×2) 힘차게 날려라(Let's go×2)\n승리는 언제나 우리의 것(Let's go 탱구) (×2)\nLet's go 탱구 (×2)",
       youtubeId: "eBMSRQin36s",
     },
     {
@@ -109,7 +109,7 @@ window.EAGLES_CHEER_DATA = {
       title: "이원석 응원가",
       category: "batter",
       target: "No.37 이원석 (외야수)",
-      lyrics: "와다다다 이원석 내달려라!\n\n워어어어어~ 이! 원! 석!\n워어어어어~ 안타를 날려라!\n\n한화의 이원석 안타를 날려줘요~\n승리를 위하여 이원석!",
+      lyrics: "한화의 이원석 승리를 위하여\n치고 달려(우! 아! 우! 아!)\n이원석 여기서 멈추지 않을 거야 간!다!\n와다다다다다다다 (×2)",
       youtubeId: "R-nc9WhkU9Y",
     },
     {
@@ -117,7 +117,7 @@ window.EAGLES_CHEER_DATA = {
       title: "허인서 응원가",
       category: "batter",
       target: "No.59 허인서 (포수)",
-      lyrics: "안방마님 허인서 굳건히 지켜라!\n\n워어어어어~ 허! 인! 서!\n워어어어어~ 안타를 날려라!\n\n한화의 허인서 안타를 날려줘요~\n승리를 위하여 허인서!",
+      lyrics: "허인서! 이글스의 허인서~\n이글스의 허인서~\n홈런 날려라~ 저 하늘로 지금! (×3)\n허인서~",
       youtubeId: "2kHIcxeFGqg",
     },
     {
