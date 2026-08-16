@@ -6,13 +6,15 @@ window.EAGLES_CHEER_DATA = {
       category: "team",
       target: "한화 이글스 공식 대표 응원가",
       lyrics: "(전주 후 다함께!)\n\n나는 행복합니다~\n나는 행복합니다~\n나는 행복합니다~\n이글스라 행복합니다!\n\n(반복)\n나는 행복합니다~\n나는 행복합니다~\n나는 행복합니다~\n최강한화 이글스!",
+      youtubeId: "ucNR9zLqmDs",
     },
     {
       id: 2,
-      title: "영원한 불꽃",
+      title: "영원한 챔프",
       category: "team",
       target: "팀 클라이맥스 응원가",
       lyrics: "타올라라 불꽃이여! 승리의 그 이름 한화 이글스!\n\n워어어어 워어어어~\n승리를 향해 날아올라라!\n\n최! 강! 한! 화! 이! 글! 스!",
+      youtubeId: "SLQR34EhG34",
     },
     {
       id: 3,
@@ -20,6 +22,7 @@ window.EAGLES_CHEER_DATA = {
       category: "team",
       target: "8회 말 육성응원 구호",
       lyrics: "(북소리에 맞춰 다함께 외칩니다)\n\n(쿵쿵 쿵쿵쿵) 최! 강! 한! 화!\n(쿵쿵 쿵쿵쿵) 최! 강! 한! 화!\n(쿵쿵 쿵쿵쿵) 승! 리! 한! 화!",
+      youtubeId: null,
     },
     {
       id: 4,
@@ -27,6 +30,7 @@ window.EAGLES_CHEER_DATA = {
       category: "batter",
       target: "No.8 노시환 (내야수)",
       lyrics: "한화의 거포 노시환!\n날려라 홈런 노시환!\n\n워어어어어~ 노! 시! 환!\n워어어어어~ 날려버려라!\n\n한화의 노시환 안타를 날려줘요~\n한화의 노시환 홈런을 날려줘요~ 노! 시! 환!",
+      youtubeId: "S5LCqEdaBZ4",
     },
     {
       id: 5,
@@ -34,6 +38,7 @@ window.EAGLES_CHEER_DATA = {
       category: "batter",
       target: "No.22 채은성 (내야수/주장)",
       lyrics: "은성 은성 채은성~\n한화의 해결사 채은성!\n\n승리를 위하여 안타를 날려라~\n워어어 채은성 안타!",
+      youtubeId: "rISwHdbWAAU",
     },
     {
       id: 6,
@@ -41,13 +46,7 @@ window.EAGLES_CHEER_DATA = {
       category: "batter",
       target: "No.30 페라자 (외야수)",
       lyrics: "이글스의 페라자 워어어어어~\n안타 페라자! 홈런 페라자!\n\n열정의 불꽃을 태워라 페라자!\n승리를 위하여 페라자!",
-    },
-    {
-      id: 7,
-      title: "안치홍 응원가",
-      category: "batter",
-      target: "No.3 안치홍 (내야수)",
-      lyrics: "안치홍 안치홍 안타 안치홍~\n승리의 함성을 다 함께 외쳐라!\n\n한화의 안치홍 워어어어~\n안타 안치홍!",
+      youtubeId: "P4d4Z-xAwDM",
     },
     {
       id: 8,
@@ -55,6 +54,7 @@ window.EAGLES_CHEER_DATA = {
       category: "batter",
       target: "No.1 문현빈 (내야수)",
       lyrics: "날려라 문현빈 안타 문현빈!\n승리를 향해 힘차게 뛰어라~\n\n최강한화의 아기독수리 문현빈!\n워어어어 문현빈!",
+      youtubeId: "WgGtut5ZWes",
     },
     {
       id: 9,
@@ -62,6 +62,7 @@ window.EAGLES_CHEER_DATA = {
       category: "pitcher",
       target: "No.99 류현진 (선발투수)",
       lyrics: "[등장 테마곡: Evanescence - Bring Me To Life & The Monster]\n\n\"몬스터의 귀환, 99번 류현진 등판!\"\n\n(이글스파크를 뒤흔드는 괴물 투수의 카리스마 등장 사운드)",
+      youtubeId: "ViM1oDqapqM",
     },
     {
       id: 10,
@@ -69,6 +70,7 @@ window.EAGLES_CHEER_DATA = {
       category: "pitcher",
       target: "No.1 문동주 (선발투수)",
       lyrics: "[등장 테마곡: AC/DC - Thunderstruck]\n\n\"160km 광속구의 주역, 대전의 파이어볼러 문동주!\"\n\n(천둥 같은 비트와 함께 마운드 등판)",
+      youtubeId: "6OsKROspfGE",
     },
   ],
 };

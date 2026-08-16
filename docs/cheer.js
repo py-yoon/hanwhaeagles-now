@@ -12,6 +12,9 @@
   let currentCategory = "all";
   let currentSongId = DATA.songs.length ? DATA.songs[0].id : null;
   let isPlaying = false;
+  let ytPlayer = null;
+  let ytReady = false;
+  let pendingVideoId = null;
 
   const $meta = document.getElementById("ecMeta");
   const $search = document.getElementById("ecSearch");
@@ -21,6 +24,7 @@
   const $target = document.getElementById("ecViewTarget");
   const $lyrics = document.getElementById("ecViewLyrics");
   const $trackName = document.getElementById("ecTrackName");
+  const $trackSub = document.getElementById("ecTrackSub");
   const $playBtn = document.getElementById("ecPlayBtn");
   const $wave = document.getElementById("ecWave");
 
@@ -77,14 +81,70 @@
     $target.textContent = song.target;
     $lyrics.textContent = song.lyrics;
     $trackName.textContent = `${song.title} (${song.target})`;
+    $trackSub.textContent = song.youtubeId ? "▶ 눌러서 재생해 보세요" : "영상 없이 가사만 제공되는 곡입니다";
+
+    pendingVideoId = song.youtubeId || null;
+    if (ytReady && ytPlayer) {
+      if (pendingVideoId) {
+        ytPlayer.cueVideoById(pendingVideoId);
+      } else {
+        ytPlayer.stopVideo();
+      }
+    }
+    isPlaying = false;
+    $playBtn.textContent = "▶";
+    $wave.classList.remove("playing");
+    $playBtn.disabled = !pendingVideoId;
 
     renderList();
   }
 
   function togglePlay() {
-    isPlaying = !isPlaying;
+    if (!ytReady || !ytPlayer || !pendingVideoId) return;
+    if (isPlaying) {
+      ytPlayer.pauseVideo();
+    } else {
+      ytPlayer.playVideo();
+    }
+  }
+
+  function onPlayerStateChange(e) {
+    if (e.data === YT.PlayerState.PLAYING) {
+      isPlaying = true;
+    } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+      isPlaying = false;
+    } else {
+      return;
+    }
     $playBtn.textContent = isPlaying ? "⏸" : "▶";
     $wave.classList.toggle("playing", isPlaying);
+  }
+
+  function initYtPlayer() {
+    ytPlayer = new YT.Player("ecYtPlayer", {
+      height: "67",
+      width: "120",
+      videoId: pendingVideoId || undefined,
+      playerVars: { rel: 0, modestbranding: 1 },
+      events: {
+        onReady: function () {
+          ytReady = true;
+          if (pendingVideoId) ytPlayer.cueVideoById(pendingVideoId);
+        },
+        onStateChange: onPlayerStateChange,
+      },
+    });
+  }
+
+  function loadYouTubeApi() {
+    if (window.YT && window.YT.Player) {
+      initYtPlayer();
+      return;
+    }
+    window.onYouTubeIframeAPIReady = initYtPlayer;
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
   }
 
   function bindEvents() {
@@ -109,4 +169,5 @@
   renderList();
   if (currentSongId != null) selectSong(currentSongId);
   bindEvents();
+  loadYouTubeApi();
 })();
