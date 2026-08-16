@@ -206,6 +206,77 @@ function buildStandingsHtml(allRows, focusTeam) {
   return rows.join('\n        ');
 }
 
+/** Max wins a team can still finish with if it won out the rest of the season. */
+function maxPossibleWins(row) {
+  return row.wins + countTeamRemainingGames(row);
+}
+
+/** Classic win-count "magic number": how many more (chaser losses + rival wins),
+ * combined, before chaser can no longer catch rival by win count alone. <=0 means
+ * chaser is mathematically unable to pass rival anymore. This is a win-count
+ * approximation of KBO's actual win-rate standings (draws aren't decisions and don't
+ * count toward either side) — the same simplification broadcasts use, not a bug, but
+ * it can drift from the win-rate truth when tie counts differ a lot between teams. */
+function magicEliminationNumber(chaserRow, rivalRow) {
+  return maxPossibleWins(chaserRow) - rivalRow.wins;
+}
+
+/** Renders the "가을야구 매직넘버" card: how many combined (focus team losses + cutoff
+ * rival wins) close the door on the focus team catching that rival by win count. Reuses
+ * the same allRows the standings table above it is built from, so the two never drift —
+ * no separate data source, no separate build step. */
+function buildMagicNumberHtml(allRows, focusTeam, cutoffRank) {
+  const sorted = [...allRows].sort((a, b) => a.rank - b.rank);
+  const focusIdx = sorted.findIndex((r) => r.team === focusTeam);
+  if (focusIdx === -1) throw new Error(`buildMagicNumberHtml: ${focusTeam} not found in standings`);
+  const focus = sorted[focusIdx];
+  const rivalsAbove = sorted.slice(0, focusIdx);
+
+  if (!rivalsAbove.length) {
+    return `<div class="magic-card"><div class="magic-empty">현재 1위라 승수로 따라잡아야 할 상대가 없다.</div></div>`;
+  }
+
+  const cutoffTeam = rivalsAbove[Math.min(cutoffRank, rivalsAbove.length) - 1];
+  const cutoffRankShown = Math.min(cutoffRank, rivalsAbove.length);
+  const number = magicEliminationNumber(focus, cutoffTeam);
+  const alive = number > 0;
+
+  const rows = rivalsAbove
+    .map((rival, i) => {
+      const n = magicEliminationNumber(focus, rival);
+      const dead = n <= 0;
+      const isCutoff = rival.team === cutoffTeam.team;
+      return `<div class="magic-row${isCutoff ? ' magic-row--cutoff' : ''}">
+          <span class="magic-rank">${i + 1}위</span>
+          <span class="magic-team">${rival.team}</span>
+          <span class="magic-record mono">${rival.wins}승 ${rival.losses}패 ${rival.draws}무</span>
+          <span class="magic-number mono${dead ? ' magic-number--dead' : ''}">${dead ? '탈락' : n}</span>
+        </div>`;
+    })
+    .join('\n        ');
+
+  const sub = alive
+    ? `${focusTeam}의 패 + ${cutoffTeam.team}의 승이 합쳐서 이 숫자만큼 쌓이면, 승수 기준으로는 더 이상 따라잡을 수 없다.`
+    : `${focusTeam}는 승수 기준으로 ${cutoffTeam.team}를 더 이상 추월할 수 없다.`;
+
+  return `<div class="magic-card">
+        <div class="magic-headline">
+          <div class="magic-headline-label">가을야구 매직넘버 · vs ${cutoffTeam.team}(현재 ${cutoffRankShown}위)</div>
+          <div class="magic-headline-number mono${alive ? '' : ' magic-headline-number--dead'}">${alive ? number : '0'}</div>
+          <div class="magic-headline-sub">${sub}</div>
+        </div>
+        <div class="magic-list">
+        ${rows}
+        </div>
+        <div class="magic-footnote">
+          승수 기준 근사치다 — KBO 순위는 승률 기준이라 팀별 무승부 수 차이가 크면 실제와 오차가 있을 수 있다.
+          "5위와 격차"가 상대 성적이 멈춰 있다고 가정한 현재 시점 스냅샷이라면, 이 숫자는 ${focusTeam}의 잔여 경기까지 반영해
+          승수로 따라잡을 수 있는 여유를 계산한 값이다. 정확한 가을야구 진출 확률은 위 몬테카를로 시뮬레이션이 기준이며,
+          이 계산기는 그걸 대체하는 게 아니라 체감하기 쉬운 보조 숫자다.
+        </div>
+      </div>`;
+}
+
 /**
  * Fills templates/landing.html with values from a production report + the current
  * standings row for the focus team. Throws rather than silently rendering a page with
@@ -239,6 +310,7 @@ export function buildLandingHtml({ template, report, focusRow, refRow, allRows, 
     LADDER_HTML: buildLadderHtml(report.rank_distribution, focusRow.rank),
     GAMES_HTML: buildGamesHtml(report.important_games ?? [], focusRow.team),
     STANDINGS_HTML: buildStandingsHtml(allRows ?? [focusRow, refRow], focusRow.team),
+    MAGIC_NUMBER_HTML: buildMagicNumberHtml(allRows ?? [focusRow, refRow], focusRow.team, PLAYOFF_CUTOFF),
     TREE_DESC: tree.descHtml,
     TREE_HTML: tree.treeHtml,
     H2H_HTML: tree.h2hHtml,
