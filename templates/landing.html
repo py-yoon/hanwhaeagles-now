@@ -221,6 +221,27 @@
   .h2h-bar .l{ background:#4a4237; }
   .h2h-bar .d{ background:rgba(244,237,224,0.16); }
 
+  /* share card callout */
+  .share-card{
+    display:flex; align-items:center; gap:22px; margin-top:28px; padding:20px;
+    border:1px solid rgba(239,95,28,0.28); border-radius:14px;
+    background:linear-gradient(135deg, rgba(239,95,28,0.08), rgba(255,255,255,0.02));
+  }
+  .share-card .thumb{
+    flex:none; width:120px; border:1px solid rgba(244,237,224,0.14); border-radius:10px;
+    overflow:hidden; background:#100d09;
+  }
+  .share-card .thumb img{ display:block; width:100%; height:auto; }
+  .share-card .body{ flex:1; min-width:0; }
+  .share-card .body h3{ margin:0 0 4px; font-size:15.5px; font-weight:800; color:#f4ede0; }
+  .share-card .body p{ margin:0; font-size:12.5px; line-height:1.55; color:#8a8074; max-width:44ch; }
+  .share-card .actions{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  @media (max-width:560px){
+    .share-card{ flex-direction:column; align-items:stretch; text-align:center; }
+    .share-card .thumb{ width:100%; max-width:180px; margin:0 auto; }
+    .share-card .actions{ justify-content:center; }
+  }
+
   /* comments */
   .comment-box{ padding:24px; border:1px solid rgba(244,237,224,0.12); border-radius:12px; background:rgba(255,255,255,0.02); }
   .comment-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:18px; flex-wrap:wrap; }
@@ -361,6 +382,20 @@
 
     <div class="h2h-grid">
       {{H2H_HTML}}
+    </div>
+
+    <div class="share-card">
+      <a class="thumb" href="share-card-square.svg" target="_blank" rel="noopener">
+        <img src="share-card-square.svg" alt="오늘의 가을야구 확률 공유 카드" loading="lazy">
+      </a>
+      <div class="body">
+        <h3>이 갈림길, 카드로 공유하기</h3>
+        <p>오늘 기준 순위·확률을 담은 이미지 카드. 저장하거나 SNS에 그대로 올릴 수 있다.</p>
+        <div class="actions">
+          <a class="navlink" href="share-card-square.svg" target="_blank" rel="noopener">정사각형</a>
+          <a class="navlink" href="share-card-story.svg" target="_blank" rel="noopener">스토리형</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
