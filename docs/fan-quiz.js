@@ -39,6 +39,12 @@
   const $retryBtn = document.getElementById("fqRetryBtn");
   const $shareBtn = document.getElementById("fqShareBtn");
   const $shareCanvas = document.getElementById("fqShareCanvas");
+  const $shareSnsBtn = document.getElementById("fqShareSnsBtn");
+  const $sharePanel = document.getElementById("fqSharePanel");
+  const $shareX = document.getElementById("fqShareX");
+  const $shareKakao = document.getElementById("fqShareKakao");
+  const $shareFacebook = document.getElementById("fqShareFacebook");
+  const $shareCopy = document.getElementById("fqShareCopy");
   const $progressFill = document.getElementById("fqProgressFill");
   const $progressLabel = document.getElementById("fqProgressLabel");
   const $tierBadge = document.getElementById("fqTierBadge");
@@ -159,6 +165,36 @@
     return GRADES.find((g) => totalScore >= g.min && totalScore <= g.max) || GRADES[GRADES.length - 1];
   }
 
+  // 모바일은 navigator.share로 OS 공유 시트(카카오톡·메시지 등 포함)를 그대로 띄우고,
+  // 이를 지원하지 않는 데스크톱 브라우저에서는 개별 SNS 링크 패널로 대체한다.
+  function setupShare({ text, url }) {
+    if (!$shareSnsBtn) return;
+
+    if (navigator.share) {
+      $shareSnsBtn.onclick = () => {
+        navigator.share({ title: "한화 이글스 찐팬 감별기", text, url }).catch(() => {});
+      };
+      if ($sharePanel) $sharePanel.hidden = true;
+      return;
+    }
+
+    $shareSnsBtn.onclick = () => {
+      $sharePanel.hidden = !$sharePanel.hidden;
+    };
+    if ($shareX) $shareX.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    if ($shareKakao) $shareKakao.href = `https://story.kakao.com/share?url=${encodeURIComponent(url)}`;
+    if ($shareFacebook) $shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    if ($shareCopy) {
+      $shareCopy.onclick = () => {
+        navigator.clipboard.writeText(`${text} ${url}`).then(() => {
+          const original = $shareCopy.textContent;
+          $shareCopy.textContent = "복사 완료!";
+          setTimeout(() => { $shareCopy.textContent = original; }, 1500);
+        });
+      };
+    }
+  }
+
   function showResult() {
     $quiz.hidden = true;
     $result.hidden = false;
@@ -193,9 +229,10 @@
         </div>`)
       .join("");
 
+    const correctCount = answered.filter((a) => a.correct).length;
+
     if ($shareBtn && window.QuizCardGenerator) {
       $shareBtn.onclick = () => {
-        const correctCount = answered.filter((a) => a.correct).length;
         QuizCardGenerator.generateCard({
           canvas: $shareCanvas,
           score,
@@ -206,5 +243,10 @@
         QuizCardGenerator.downloadPNG($shareCanvas);
       };
     }
+
+    setupShare({
+      text: `한화 이글스 찐팬 감별기 결과: "${grade.name}" (${score}/60점, 정답률 ${Math.round((correctCount / session.length) * 100)}%). 너도 도전해봐!`,
+      url: "https://hanwhaeagles.kr/fan-quiz.html",
+    });
   }
 })();

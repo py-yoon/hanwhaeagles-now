@@ -301,6 +301,22 @@ body {
 .fq-result-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .fq-result-actions .fq-btn { flex: 1; min-width: 140px; }
 
+.fq-share-panel { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.fq-share-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-dim);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+}
+.fq-share-link:hover { border-color: var(--eagle-dim); color: var(--eagle-soft); }
+
 .fq-review { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
 .fq-review-item {
   background: var(--surface);
