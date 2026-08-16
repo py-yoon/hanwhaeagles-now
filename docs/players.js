@@ -101,7 +101,10 @@
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeDetail();
+      if (e.key === "Escape") { closeDetail(); return; }
+      if ($overlay.hidden) return;
+      if (e.key === "ArrowLeft") navigateDetail(-1);
+      else if (e.key === "ArrowRight") navigateDetail(1);
     });
   }
 
@@ -190,8 +193,35 @@
   }
 
   function closeDetail() {
+    // Clear the hash on every close path (X button, overlay click, Escape) —
+    // otherwise closing without going through the X leaves the old #선수id in
+    // the URL, and re-clicking that same card sets location.hash to the value
+    // it already is, which fires no hashchange event and never reopens it.
+    if (location.hash) {
+      history.pushState("", document.title, location.pathname + location.search);
+    }
     $overlay.hidden = true;
     document.body.style.overflow = "";
+  }
+
+  function orderedVisiblePlayers() {
+    const out = [];
+    SECTIONS.forEach((sec) => {
+      sec.groups.forEach((g) => {
+        PLAYERS.filter((p) => p.group === g && matchesQuery(p)).forEach((p) => out.push(p));
+      });
+    });
+    return out;
+  }
+
+  function navigateDetail(delta) {
+    const list = orderedVisiblePlayers();
+    if (!list.length) return;
+    const currentId = decodeURIComponent(location.hash.replace(/^#/, ""));
+    let idx = list.findIndex((p) => playerId(p) === currentId);
+    if (idx === -1) idx = 0;
+    const nextIdx = (idx + delta + list.length) % list.length;
+    location.hash = playerId(list[nextIdx]);
   }
 
   function calcAge(birthStr) {
@@ -335,7 +365,11 @@
           <h2>${p.name}</h2>
           <div class="ep-role-tag">${p.role || p.group}</div>
         </div>
-        <button class="ep-close" id="epCloseBtn" aria-label="닫기">✕</button>
+        <div class="ep-nav-cluster">
+          <button class="ep-close" id="epPrevBtn" aria-label="이전 선수">‹</button>
+          <button class="ep-close" id="epNextBtn" aria-label="다음 선수">›</button>
+          <button class="ep-close" id="epCloseBtn" aria-label="닫기">✕</button>
+        </div>
       </div>
       <div class="ep-detail-body">
         <div class="ep-diamond-wrap">
@@ -363,10 +397,10 @@
       </div>
     `;
     $overlay.hidden = false;
+    $overlay.scrollTop = 0;
     document.body.style.overflow = "hidden";
-    document.getElementById("epCloseBtn").addEventListener("click", () => {
-      history.pushState("", document.title, location.pathname + location.search);
-      closeDetail();
-    });
+    document.getElementById("epCloseBtn").addEventListener("click", closeDetail);
+    document.getElementById("epPrevBtn").addEventListener("click", () => navigateDetail(-1));
+    document.getElementById("epNextBtn").addEventListener("click", () => navigateDetail(1));
   }
 })();
