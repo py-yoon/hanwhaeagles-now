@@ -1,44 +1,44 @@
 {
   "schema_version": "1.0",
   "model_version": "0.8.7",
-  "generated_at": "2026-08-16T05:16:49.759Z",
-  "as_of": "2026-08-16",
+  "generated_at": "2026-08-16T18:17:27.797Z",
+  "as_of": "2026-08-17",
   "focus_team": "HANWHA",
   "iterations": 100000,
-  "future_games": 95,
+  "future_games": 90,
   "summary": {
-    "playoff_probability": 0.0352,
-    "expected_rank": 6.602,
+    "playoff_probability": 0.0307,
+    "expected_rank": 6.6,
     "most_likely_rank": 6
   },
   "rank_distribution": [
     {
       "rank": 3,
-      "probability": 0.0006
+      "probability": 0.0005
     },
     {
       "rank": 4,
-      "probability": 0.0046
+      "probability": 0.0042
     },
     {
       "rank": 5,
-      "probability": 0.03
+      "probability": 0.026
     },
     {
       "rank": 6,
-      "probability": 0.4857
+      "probability": 0.4987
     },
     {
       "rank": 7,
-      "probability": 0.321
+      "probability": 0.3152
     },
     {
       "rank": 8,
-      "probability": 0.1531
+      "probability": 0.1459
     },
     {
       "rank": 9,
-      "probability": 0.0051
+      "probability": 0.0095
     },
     {
       "rank": 10,
@@ -50,122 +50,127 @@
     "members": 12,
     "iterations": 5000,
     "playoff_probability": {
-      "p10": 0.03324,
-      "median": 0.0356,
-      "p90": 0.0395
+      "p10": 0.02522,
+      "median": 0.0304,
+      "p90": 0.03598
     },
     "rank_distribution": {
       "3": {
-        "p10": 0.0002,
-        "median": 0.0006,
+        "p10": 0.00002,
+        "median": 0.0004,
         "p90": 0.0008
       },
       "4": {
-        "p10": 0.00422,
-        "median": 0.0049,
-        "p90": 0.00598
+        "p10": 0.00302,
+        "median": 0.0043,
+        "p90": 0.0054
       },
       "5": {
-        "p10": 0.02766,
-        "median": 0.0294,
-        "p90": 0.03298
+        "p10": 0.02144,
+        "median": 0.025,
+        "p90": 0.03054
       },
       "6": {
-        "p10": 0.4785,
-        "median": 0.4832,
-        "p90": 0.49024
+        "p10": 0.49592,
+        "median": 0.5048,
+        "p90": 0.50952
       },
       "7": {
-        "p10": 0.31646,
-        "median": 0.3221,
-        "p90": 0.32868
+        "p10": 0.30726,
+        "median": 0.311,
+        "p90": 0.3169
       },
       "8": {
-        "p10": 0.14686,
-        "median": 0.1532,
-        "p90": 0.15808
+        "p10": 0.14126,
+        "median": 0.143,
+        "p90": 0.14794
       },
       "9": {
-        "p10": 0.0048,
-        "median": 0.0059,
-        "p90": 0.00732
+        "p10": 0.00826,
+        "median": 0.0095,
+        "p90": 0.01018
+      },
+      "10": {
+        "p10": 0,
+        "median": 0,
+        "p90": 0.00018
       }
     }
   },
   "sensitivity": {
     "model_version": "0.8.3",
     "focus_team": "HANWHA",
-    "baseline_playoff_probability": 0.0352,
+    "baseline_playoff_probability": 0.0307,
     "rows": [
       {
         "component": "starter",
         "direction": "positive",
         "delta": 0.2,
-        "playoff_probability": 0.0588,
-        "change": 0.0236
+        "playoff_probability": 0.057,
+        "change": 0.0263
+      },
+      {
+        "component": "roster",
+        "direction": "positive",
+        "delta": 0.15,
+        "playoff_probability": 0.0474,
+        "change": 0.0167
       },
       {
         "component": "starter",
         "direction": "negative",
         "delta": -0.2,
-        "playoff_probability": 0.0178,
-        "change": -0.0174
-      },
-      {
-        "component": "roster",
-        "direction": "positive",
-        "delta": 0.15,
-        "playoff_probability": 0.0482,
-        "change": 0.013
+        "playoff_probability": 0.017,
+        "change": -0.0137
       },
       {
         "component": "offense",
         "direction": "positive",
         "delta": 0.15,
-        "playoff_probability": 0.0454,
-        "change": 0.0102
+        "playoff_probability": 0.0442,
+        "change": 0.0135
       },
       {
         "component": "roster",
         "direction": "negative",
         "delta": -0.15,
-        "playoff_probability": 0.0252,
-        "change": -0.01
+        "playoff_probability": 0.0206,
+        "change": -0.0101
+      },
+      {
+        "component": "bullpen",
+        "direction": "positive",
+        "delta": 0.15,
+        "playoff_probability": 0.0364,
+        "change": 0.0057
+      },
+      {
+        "component": "recent",
+        "direction": "negative",
+        "delta": -0.1,
+        "playoff_probability": 0.0254,
+        "change": -0.0053
       },
       {
         "component": "offense",
         "direction": "negative",
         "delta": -0.15,
         "playoff_probability": 0.0258,
-        "change": -0.0094
+        "change": -0.0049
       },
       {
         "component": "bullpen",
         "direction": "negative",
         "delta": -0.15,
-        "playoff_probability": 0.0274,
-        "change": -0.0078
-      },
-      {
-        "component": "recent",
-        "direction": "negative",
-        "delta": -0.1,
-        "playoff_probability": 0.0312,
-        "change": -0.004
+        "playoff_probability": 0.0276,
+        "change": -0.0031
       },
       {
         "component": "recent",
         "direction": "positive",
         "delta": 0.1,
-        "playoff_probability": 0.032,
-        "change": -0.0032
-      },
-      {
-        "component": "bullpen",
-        "direction": "positive",
-        "delta": 0.15,
-        "playoff_probability": 0.038,
-        "change": 0.0028
+        "playoff_probability": 0.0338,
+        "change": 0.0031
       }
     ]
   },
@@ -174,7 +179,7 @@
     "simulation_seed": 20260812,
     "games_source": "data/raw/production-2026.json",
     "official_sources": [
-      "data/raw/official-2026-08-16.json"
+      "data/raw/official-2026-08-17.json"
     ],
     "team_stats_source": null,
     "team_stats_validated": false,
@@ -186,129 +191,14 @@
   },
   "important_games": [
     {
-      "game_id": "20260819-KIA-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.511523,
-          "playoff_probability": 0.059
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0276
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.478477,
-          "playoff_probability": 0.0134
-        }
-      ],
-      "impact_range": 0.0456
-    },
-    {
-      "game_id": "20260820-KIA-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.511523,
-          "playoff_probability": 0.0566
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.028
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.478477,
-          "playoff_probability": 0.012
-        }
-      ],
-      "impact_range": 0.0446
-    },
-    {
-      "game_id": "20260818-KIA-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.511523,
-          "playoff_probability": 0.054
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0292
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.478477,
-          "playoff_probability": 0.0138
-        }
-      ],
-      "impact_range": 0.0402
-    },
-    {
-      "game_id": "20260821-LG-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.521796,
-          "playoff_probability": 0.0524
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0304
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.468204,
-          "playoff_probability": 0.0174
-        }
-      ],
-      "impact_range": 0.035
-    },
-    {
       "game_id": "20260823-LG-HANWHA-1",
       "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
+      "base_playoff_probability": 0.0307,
       "conditional": [
         {
           "outcome": "HOME_WIN",
-          "prior_probability": 0.521796,
-          "playoff_probability": 0.0526
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.029
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.468204,
-          "playoff_probability": 0.0176
-        }
-      ],
-      "impact_range": 0.035
-    },
-    {
-      "game_id": "20260822-LG-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.521796,
-          "playoff_probability": 0.0522
+          "prior_probability": 0.52558,
+          "playoff_probability": 0.049
         },
         {
           "outcome": "DRAW",
@@ -317,274 +207,44 @@
         },
         {
           "outcome": "AWAY_WIN",
-          "prior_probability": 0.468204,
-          "playoff_probability": 0.0174
+          "prior_probability": 0.46442,
+          "playoff_probability": 0.014
         }
       ],
-      "impact_range": 0.0348
+      "impact_range": 0.035
     },
     {
-      "game_id": "20260829-NC-HANWHA-1",
+      "game_id": "20260818-KIA-HANWHA-1",
       "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
+      "base_playoff_probability": 0.0307,
       "conditional": [
         {
           "outcome": "HOME_WIN",
-          "prior_probability": 0.530163,
-          "playoff_probability": 0.0504
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0284
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.459837,
-          "playoff_probability": 0.017
-        }
-      ],
-      "impact_range": 0.0334
-    },
-    {
-      "game_id": "20260830-NC-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.530163,
-          "playoff_probability": 0.0514
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0312
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.459837,
-          "playoff_probability": 0.0192
-        }
-      ],
-      "impact_range": 0.0322
-    },
-    {
-      "game_id": "20260828-NC-HANWHA-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.530163,
+          "prior_probability": 0.508493,
           "playoff_probability": 0.0488
         },
         {
           "outcome": "DRAW",
           "prior_probability": 0.01,
-          "playoff_probability": 0.0332
+          "playoff_probability": 0.031
         },
         {
           "outcome": "AWAY_WIN",
-          "prior_probability": 0.459837,
-          "playoff_probability": 0.0168
+          "prior_probability": 0.481507,
+          "playoff_probability": 0.0144
         }
       ],
-      "impact_range": 0.032
+      "impact_range": 0.0344
     },
     {
-      "game_id": "20260901-HANWHA-KT-1",
+      "game_id": "20260819-KIA-HANWHA-1",
       "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
+      "base_playoff_probability": 0.0307,
       "conditional": [
         {
           "outcome": "HOME_WIN",
-          "prior_probability": 0.576362,
-          "playoff_probability": 0.0228
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0342
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.413638,
-          "playoff_probability": 0.0468
-        }
-      ],
-      "impact_range": 0.024
-    },
-    {
-      "game_id": "20260816-HANWHA-SAMSUNG-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.574806,
-          "playoff_probability": 0.0252
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0314
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.415194,
+          "prior_probability": 0.508493,
           "playoff_probability": 0.047
-        }
-      ],
-      "impact_range": 0.0218
-    },
-    {
-      "game_id": "20260903-HANWHA-KT-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.576362,
-          "playoff_probability": 0.0246
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0324
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.413638,
-          "playoff_probability": 0.0458
-        }
-      ],
-      "impact_range": 0.0212
-    },
-    {
-      "game_id": "20260904-HANWHA-LOTTE-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.529879,
-          "playoff_probability": 0.023
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.034
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.460121,
-          "playoff_probability": 0.044
-        }
-      ],
-      "impact_range": 0.021
-    },
-    {
-      "game_id": "20260905-HANWHA-LOTTE-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.529879,
-          "playoff_probability": 0.0246
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0318
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.460121,
-          "playoff_probability": 0.0454
-        }
-      ],
-      "impact_range": 0.0208
-    },
-    {
-      "game_id": "20260902-HANWHA-KT-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.576362,
-          "playoff_probability": 0.0254
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0328
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.413638,
-          "playoff_probability": 0.046
-        }
-      ],
-      "impact_range": 0.0206
-    },
-    {
-      "game_id": "20260906-HANWHA-LOTTE-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.529879,
-          "playoff_probability": 0.0248
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.0326
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.460121,
-          "playoff_probability": 0.0448
-        }
-      ],
-      "impact_range": 0.02
-    },
-    {
-      "game_id": "20260826-HANWHA-SSG-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.508153,
-          "playoff_probability": 0.023
-        },
-        {
-          "outcome": "DRAW",
-          "prior_probability": 0.01,
-          "playoff_probability": 0.032
-        },
-        {
-          "outcome": "AWAY_WIN",
-          "prior_probability": 0.481847,
-          "playoff_probability": 0.0428
-        }
-      ],
-      "impact_range": 0.0198
-    },
-    {
-      "game_id": "20260825-HANWHA-SSG-1",
-      "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
-      "conditional": [
-        {
-          "outcome": "HOME_WIN",
-          "prior_probability": 0.508153,
-          "playoff_probability": 0.024
         },
         {
           "outcome": "DRAW",
@@ -593,46 +253,362 @@
         },
         {
           "outcome": "AWAY_WIN",
-          "prior_probability": 0.481847,
-          "playoff_probability": 0.0436
+          "prior_probability": 0.481507,
+          "playoff_probability": 0.013
         }
       ],
-      "impact_range": 0.0196
+      "impact_range": 0.034
     },
     {
-      "game_id": "20260827-HANWHA-SSG-1",
+      "game_id": "20260829-NC-HANWHA-1",
       "focus_team": "HANWHA",
-      "base_playoff_probability": 0.0352,
+      "base_playoff_probability": 0.0307,
       "conditional": [
         {
           "outcome": "HOME_WIN",
-          "prior_probability": 0.508153,
-          "playoff_probability": 0.0242
+          "prior_probability": 0.530163,
+          "playoff_probability": 0.0464
         },
         {
           "outcome": "DRAW",
           "prior_probability": 0.01,
-          "playoff_probability": 0.034
+          "playoff_probability": 0.0324
         },
         {
           "outcome": "AWAY_WIN",
-          "prior_probability": 0.481847,
+          "prior_probability": 0.459837,
+          "playoff_probability": 0.0154
+        }
+      ],
+      "impact_range": 0.031
+    },
+    {
+      "game_id": "20260822-LG-HANWHA-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.52558,
+          "playoff_probability": 0.0458
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0296
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.46442,
+          "playoff_probability": 0.0154
+        }
+      ],
+      "impact_range": 0.0304
+    },
+    {
+      "game_id": "20260820-KIA-HANWHA-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.508493,
+          "playoff_probability": 0.0452
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0318
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.481507,
+          "playoff_probability": 0.0156
+        }
+      ],
+      "impact_range": 0.0296
+    },
+    {
+      "game_id": "20260821-LG-HANWHA-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.52558,
+          "playoff_probability": 0.045
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0318
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.46442,
+          "playoff_probability": 0.016
+        }
+      ],
+      "impact_range": 0.029
+    },
+    {
+      "game_id": "20260828-NC-HANWHA-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.530163,
+          "playoff_probability": 0.0442
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0328
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.459837,
+          "playoff_probability": 0.0168
+        }
+      ],
+      "impact_range": 0.0274
+    },
+    {
+      "game_id": "20260906-HANWHA-LOTTE-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.529879,
+          "playoff_probability": 0.0176
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.036
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.460121,
+          "playoff_probability": 0.0444
+        }
+      ],
+      "impact_range": 0.0268
+    },
+    {
+      "game_id": "20260825-HANWHA-SSG-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.511947,
+          "playoff_probability": 0.019
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0356
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.478053,
+          "playoff_probability": 0.0452
+        }
+      ],
+      "impact_range": 0.0262
+    },
+    {
+      "game_id": "20260830-NC-HANWHA-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.530163,
+          "playoff_probability": 0.043
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0328
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.459837,
+          "playoff_probability": 0.0174
+        }
+      ],
+      "impact_range": 0.0256
+    },
+    {
+      "game_id": "20260827-HANWHA-SSG-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.511947,
+          "playoff_probability": 0.017
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0348
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.478053,
+          "playoff_probability": 0.0424
+        }
+      ],
+      "impact_range": 0.0254
+    },
+    {
+      "game_id": "20260902-HANWHA-KT-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.578203,
+          "playoff_probability": 0.0218
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0356
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.411797,
+          "playoff_probability": 0.0468
+        }
+      ],
+      "impact_range": 0.025
+    },
+    {
+      "game_id": "20260901-HANWHA-KT-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.578203,
+          "playoff_probability": 0.0194
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0354
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.411797,
+          "playoff_probability": 0.0436
+        }
+      ],
+      "impact_range": 0.0242
+    },
+    {
+      "game_id": "20260905-HANWHA-LOTTE-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.529879,
+          "playoff_probability": 0.0196
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0338
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.460121,
+          "playoff_probability": 0.0438
+        }
+      ],
+      "impact_range": 0.0242
+    },
+    {
+      "game_id": "20260826-HANWHA-SSG-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.511947,
+          "playoff_probability": 0.019
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.0348
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.478053,
+          "playoff_probability": 0.0424
+        }
+      ],
+      "impact_range": 0.0234
+    },
+    {
+      "game_id": "20260903-HANWHA-KT-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.578203,
+          "playoff_probability": 0.0216
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.035
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.411797,
+          "playoff_probability": 0.0446
+        }
+      ],
+      "impact_range": 0.023
+    },
+    {
+      "game_id": "20260904-HANWHA-LOTTE-1",
+      "focus_team": "HANWHA",
+      "base_playoff_probability": 0.0307,
+      "conditional": [
+        {
+          "outcome": "HOME_WIN",
+          "prior_probability": 0.529879,
+          "playoff_probability": 0.0212
+        },
+        {
+          "outcome": "DRAW",
+          "prior_probability": 0.01,
+          "playoff_probability": 0.035
+        },
+        {
+          "outcome": "AWAY_WIN",
+          "prior_probability": 0.460121,
           "playoff_probability": 0.0426
         }
       ],
-      "impact_range": 0.0184
+      "impact_range": 0.0214
     }
   ],
   "game_tree": {
     "focus_team": "HANWHA",
-    "root_playoff_probability": 0.0352,
+    "root_playoff_probability": 0.0307,
     "target_games": [
-      {
-        "game_id": "20260816-HANWHA-SAMSUNG-1",
-        "date": "2026-08-16",
-        "opponent": "SAMSUNG",
-        "home_away": "AWAY"
-      },
       {
         "game_id": "20260818-KIA-HANWHA-1",
         "date": "2026-08-18",
@@ -644,71 +620,71 @@
         "date": "2026-08-19",
         "opponent": "KIA",
         "home_away": "HOME"
+      },
+      {
+        "game_id": "20260820-KIA-HANWHA-1",
+        "date": "2026-08-20",
+        "opponent": "KIA",
+        "home_away": "HOME"
       }
     ],
     "tree": {
       "depth": 0,
       "decided": [],
-      "playoff_probability": 0.0352,
+      "playoff_probability": 0.0307,
       "game": {
-        "game_id": "20260816-HANWHA-SAMSUNG-1",
-        "date": "2026-08-16",
-        "opponent": "SAMSUNG",
-        "home_away": "AWAY",
-        "focus_win_probability": 0.4194
+        "game_id": "20260818-KIA-HANWHA-1",
+        "date": "2026-08-18",
+        "opponent": "KIA",
+        "home_away": "HOME",
+        "focus_win_probability": 0.5136
       },
       "win": {
         "depth": 1,
         "decided": [
           {
-            "game_id": "20260816-HANWHA-SAMSUNG-1",
-            "date": "2026-08-16",
-            "opponent": "SAMSUNG",
+            "game_id": "20260818-KIA-HANWHA-1",
+            "date": "2026-08-18",
+            "opponent": "KIA",
             "result": "WIN"
           }
         ],
-        "playoff_probability": 0.0516,
+        "playoff_probability": 0.0464,
         "game": {
-          "game_id": "20260818-KIA-HANWHA-1",
-          "date": "2026-08-18",
+          "game_id": "20260819-KIA-HANWHA-1",
+          "date": "2026-08-19",
           "opponent": "KIA",
           "home_away": "HOME",
-          "focus_win_probability": 0.5167
+          "focus_win_probability": 0.5136
         },
         "win": {
           "depth": 2,
           "decided": [
             {
-              "game_id": "20260816-HANWHA-SAMSUNG-1",
-              "date": "2026-08-16",
-              "opponent": "SAMSUNG",
-              "result": "WIN"
-            },
-            {
               "game_id": "20260818-KIA-HANWHA-1",
               "date": "2026-08-18",
               "opponent": "KIA",
               "result": "WIN"
+            },
+            {
+              "game_id": "20260819-KIA-HANWHA-1",
+              "date": "2026-08-19",
+              "opponent": "KIA",
+              "result": "WIN"
             }
           ],
-          "playoff_probability": 0.0772,
+          "playoff_probability": 0.0694,
           "game": {
-            "game_id": "20260819-KIA-HANWHA-1",
-            "date": "2026-08-19",
+            "game_id": "20260820-KIA-HANWHA-1",
+            "date": "2026-08-20",
             "opponent": "KIA",
             "home_away": "HOME",
-            "focus_win_probability": 0.5167
+            "focus_win_probability": 0.5136
           },
           "win": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "WIN"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
@@ -719,20 +695,20 @@
                 "date": "2026-08-19",
                 "opponent": "KIA",
                 "result": "WIN"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
+                "result": "WIN"
               }
             ],
-            "playoff_probability": 0.1165
+            "playoff_probability": 0.1038
           },
           "lose": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "WIN"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
@@ -742,83 +718,89 @@
                 "game_id": "20260819-KIA-HANWHA-1",
                 "date": "2026-08-19",
                 "opponent": "KIA",
+                "result": "WIN"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
                 "result": "LOSS"
               }
             ],
-            "playoff_probability": 0.0366
+            "playoff_probability": 0.0343
           }
         },
         "lose": {
           "depth": 2,
           "decided": [
             {
-              "game_id": "20260816-HANWHA-SAMSUNG-1",
-              "date": "2026-08-16",
-              "opponent": "SAMSUNG",
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
               "result": "WIN"
             },
             {
-              "game_id": "20260818-KIA-HANWHA-1",
-              "date": "2026-08-18",
+              "game_id": "20260819-KIA-HANWHA-1",
+              "date": "2026-08-19",
               "opponent": "KIA",
               "result": "LOSS"
             }
           ],
-          "playoff_probability": 0.0233,
+          "playoff_probability": 0.0231,
           "game": {
-            "game_id": "20260819-KIA-HANWHA-1",
-            "date": "2026-08-19",
+            "game_id": "20260820-KIA-HANWHA-1",
+            "date": "2026-08-20",
             "opponent": "KIA",
             "home_away": "HOME",
-            "focus_win_probability": 0.5167
+            "focus_win_probability": 0.5136
           },
           "win": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "WIN"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
-                "result": "LOSS"
+                "result": "WIN"
               },
               {
                 "game_id": "20260819-KIA-HANWHA-1",
                 "date": "2026-08-19",
                 "opponent": "KIA",
+                "result": "LOSS"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
                 "result": "WIN"
               }
             ],
-            "playoff_probability": 0.0366
+            "playoff_probability": 0.0343
           },
           "lose": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "WIN"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
-                "result": "LOSS"
+                "result": "WIN"
               },
               {
                 "game_id": "20260819-KIA-HANWHA-1",
                 "date": "2026-08-19",
                 "opponent": "KIA",
                 "result": "LOSS"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
+                "result": "LOSS"
               }
             ],
-            "playoff_probability": 0.0091
+            "playoff_probability": 0.0106
           }
         }
       },
@@ -826,127 +808,121 @@
         "depth": 1,
         "decided": [
           {
-            "game_id": "20260816-HANWHA-SAMSUNG-1",
-            "date": "2026-08-16",
-            "opponent": "SAMSUNG",
+            "game_id": "20260818-KIA-HANWHA-1",
+            "date": "2026-08-18",
+            "opponent": "KIA",
             "result": "LOSS"
           }
         ],
-        "playoff_probability": 0.0229,
+        "playoff_probability": 0.0146,
         "game": {
-          "game_id": "20260818-KIA-HANWHA-1",
-          "date": "2026-08-18",
+          "game_id": "20260819-KIA-HANWHA-1",
+          "date": "2026-08-19",
           "opponent": "KIA",
           "home_away": "HOME",
-          "focus_win_probability": 0.5167
+          "focus_win_probability": 0.5136
         },
         "win": {
           "depth": 2,
           "decided": [
             {
-              "game_id": "20260816-HANWHA-SAMSUNG-1",
-              "date": "2026-08-16",
-              "opponent": "SAMSUNG",
+              "game_id": "20260818-KIA-HANWHA-1",
+              "date": "2026-08-18",
+              "opponent": "KIA",
               "result": "LOSS"
             },
             {
-              "game_id": "20260818-KIA-HANWHA-1",
-              "date": "2026-08-18",
+              "game_id": "20260819-KIA-HANWHA-1",
+              "date": "2026-08-19",
               "opponent": "KIA",
               "result": "WIN"
             }
           ],
-          "playoff_probability": 0.0362,
+          "playoff_probability": 0.0231,
           "game": {
-            "game_id": "20260819-KIA-HANWHA-1",
-            "date": "2026-08-19",
+            "game_id": "20260820-KIA-HANWHA-1",
+            "date": "2026-08-20",
             "opponent": "KIA",
             "home_away": "HOME",
-            "focus_win_probability": 0.5167
+            "focus_win_probability": 0.5136
           },
           "win": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "LOSS"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
-                "result": "WIN"
+                "result": "LOSS"
               },
               {
                 "game_id": "20260819-KIA-HANWHA-1",
                 "date": "2026-08-19",
                 "opponent": "KIA",
                 "result": "WIN"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
+                "result": "WIN"
               }
             ],
-            "playoff_probability": 0.0576
+            "playoff_probability": 0.0343
           },
           "lose": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "LOSS"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
-                "result": "WIN"
+                "result": "LOSS"
               },
               {
                 "game_id": "20260819-KIA-HANWHA-1",
                 "date": "2026-08-19",
                 "opponent": "KIA",
+                "result": "WIN"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
                 "result": "LOSS"
               }
             ],
-            "playoff_probability": 0.0141
+            "playoff_probability": 0.0106
           }
         },
         "lose": {
           "depth": 2,
           "decided": [
             {
-              "game_id": "20260816-HANWHA-SAMSUNG-1",
-              "date": "2026-08-16",
-              "opponent": "SAMSUNG",
-              "result": "LOSS"
-            },
-            {
               "game_id": "20260818-KIA-HANWHA-1",
               "date": "2026-08-18",
               "opponent": "KIA",
               "result": "LOSS"
+            },
+            {
+              "game_id": "20260819-KIA-HANWHA-1",
+              "date": "2026-08-19",
+              "opponent": "KIA",
+              "result": "LOSS"
             }
           ],
-          "playoff_probability": 0.0085,
+          "playoff_probability": 0.0064,
           "game": {
-            "game_id": "20260819-KIA-HANWHA-1",
-            "date": "2026-08-19",
+            "game_id": "20260820-KIA-HANWHA-1",
+            "date": "2026-08-20",
             "opponent": "KIA",
             "home_away": "HOME",
-            "focus_win_probability": 0.5167
+            "focus_win_probability": 0.5136
           },
           "win": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "LOSS"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
@@ -956,21 +932,21 @@
                 "game_id": "20260819-KIA-HANWHA-1",
                 "date": "2026-08-19",
                 "opponent": "KIA",
+                "result": "LOSS"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
                 "result": "WIN"
               }
             ],
-            "playoff_probability": 0.0141
+            "playoff_probability": 0.0106
           },
           "lose": {
             "depth": 3,
             "decided": [
               {
-                "game_id": "20260816-HANWHA-SAMSUNG-1",
-                "date": "2026-08-16",
-                "opponent": "SAMSUNG",
-                "result": "LOSS"
-              },
-              {
                 "game_id": "20260818-KIA-HANWHA-1",
                 "date": "2026-08-18",
                 "opponent": "KIA",
@@ -981,21 +957,20 @@
                 "date": "2026-08-19",
                 "opponent": "KIA",
                 "result": "LOSS"
+              },
+              {
+                "game_id": "20260820-KIA-HANWHA-1",
+                "date": "2026-08-20",
+                "opponent": "KIA",
+                "result": "LOSS"
               }
             ],
-            "playoff_probability": 0.0025
+            "playoff_probability": 0.0029
           }
         }
       }
     },
     "head_to_head": {
-      "SAMSUNG": {
-        "games": 12,
-        "wins": 3,
-        "losses": 8,
-        "draws": 1,
-        "win_rate": 0.25
-      },
       "KIA": {
         "games": 12,
         "wins": 6,
