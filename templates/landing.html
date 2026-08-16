@@ -233,6 +233,32 @@
   }
   .t-branch b{ color:#c7bda9; font-weight:700; }
 
+  /* mobile: collapse the horizontal org-chart into a vertical drill-down —
+     root's split stays visible, deeper branches expand one tap at a time
+     via JS toggling `hidden` on each branch li's child <ul>. */
+  @media (max-width:760px){
+    .tree-wrap{ overflow-x:visible; }
+    .tree, .tree ul{ display:block; }
+    .tree ul[hidden]{ display:none; }
+    .tree li{ padding:0; margin-top:10px; }
+    .tree > li{ margin-top:0; }
+    .tree li::before, .tree li::after, .tree ul::before{ content:none; display:none; }
+    .tree ul{ margin:10px 0 0; padding-left:16px; border-left:1px dashed rgba(244,237,224,0.16); }
+    .tree .t-node, .tree .t-node.root{ width:100%; box-sizing:border-box; }
+    .tree .t-branch{ width:auto; text-align:left; margin:4px 0 0 2px; }
+    .tree li[data-depth]:not([data-depth="0"]) > .t-node{
+      cursor:pointer; position:relative; padding-right:26px;
+    }
+    .tree li[data-depth]:not([data-depth="0"]) > .t-node::after{
+      content:'▾'; position:absolute; top:10px; right:10px; font-size:10px;
+      color:#8a8074; transition:transform .15s;
+    }
+    .tree li[data-depth]:not([data-depth="0"]) > .t-node[aria-expanded="false"]::after{
+      transform:rotate(-90deg);
+    }
+    .tree .t-node[role="button"]:focus-visible{ outline:2px solid #ef5f1c; outline-offset:2px; }
+  }
+
   .h2h-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:28px; }
   .h2h-card{ border:1px solid rgba(244,237,224,0.12); border-radius:12px; padding:16px 18px; background:rgba(255,255,255,0.02); }
   .h2h-card .h2h-name{ font-weight:700; font-size:14.5px; color:#f4ede0; }
@@ -541,6 +567,57 @@
         });
     });
   });
+})();
+
+(function(){
+  // On mobile the 3-level branch tree collapses to a vertical drill-down:
+  // each non-root branch card toggles its own child <ul>, so the reader
+  // taps into one level of the tree at a time instead of scrolling sideways.
+  var tree = document.querySelector('.tree');
+  if (!tree) return;
+  var mq = window.matchMedia('(max-width:760px)');
+  var branches = Array.prototype.filter.call(
+    tree.querySelectorAll('li[data-depth]'),
+    function(li){ return li.getAttribute('data-depth') !== '0'; }
+  );
+
+  function toggle(card, childUl){
+    var opening = childUl.hidden;
+    childUl.hidden = !opening;
+    card.setAttribute('aria-expanded', opening ? 'true' : 'false');
+  }
+
+  branches.forEach(function(li){
+    var card = li.querySelector(':scope > .t-node');
+    var childUl = li.querySelector(':scope > ul');
+    if (!card || !childUl) return;
+    card.addEventListener('click', function(){ if (mq.matches) toggle(card, childUl); });
+    card.addEventListener('keydown', function(e){
+      if (mq.matches && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggle(card, childUl); }
+    });
+  });
+
+  function apply(){
+    branches.forEach(function(li){
+      var card = li.querySelector(':scope > .t-node');
+      var childUl = li.querySelector(':scope > ul');
+      if (!card || !childUl) return;
+      if (mq.matches) {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        childUl.hidden = true;
+        card.setAttribute('aria-expanded', 'false');
+      } else {
+        card.removeAttribute('role');
+        card.removeAttribute('tabindex');
+        card.removeAttribute('aria-expanded');
+        childUl.hidden = false;
+      }
+    });
+  }
+
+  apply();
+  mq.addEventListener('change', apply);
 })();
 
 (function(){

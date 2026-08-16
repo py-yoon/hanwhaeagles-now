@@ -125,7 +125,7 @@ function treeNodeLiHtml(node, maxPct) {
   const card = treeNodeCardHtml(node, maxPct);
   if (!node.game) return `<li>\n          ${card}\n        </li>`;
   const tag = treeBranchTagHtml(node);
-  return `<li>
+  return `<li data-depth="${node.depth}">
           ${card}
           ${tag}
           <ul>
