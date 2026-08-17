@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "model_version": "0.8.7",
-  "generated_at": "2026-08-16T18:17:27.797Z",
-  "as_of": "2026-08-17",
+  "generated_at": "2026-08-17T18:26:58.560Z",
+  "as_of": "2026-08-18",
   "focus_team": "HANWHA",
   "iterations": 100000,
   "future_games": 90,
@@ -179,7 +179,7 @@
     "simulation_seed": 20260812,
     "games_source": "data/raw/production-2026.json",
     "official_sources": [
-      "data/raw/official-2026-08-17.json"
+      "data/raw/official-2026-08-18.json"
     ],
     "team_stats_source": null,
     "team_stats_validated": false,
