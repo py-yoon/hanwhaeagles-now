@@ -2,9 +2,11 @@ name: Refresh production forecast
 
 on:
   schedule:
-    # 18:00 UTC = 03:00 KST (next day) — after the day's KBO games (and any extra
-    # innings) have long finished.
-    - cron: '0 18 * * *'
+    # 15:00 UTC = 00:00 KST (next day) — after the day's KBO games (and any extra
+    # innings) have almost always finished. On the rare day a game runs past
+    # midnight, the RECONCILIATION gate below just blocks that night's publish
+    # (yesterday's page stays live) and the next run catches up.
+    - cron: '0 15 * * *'
   workflow_dispatch: {}
 
 permissions:
