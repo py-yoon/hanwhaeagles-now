@@ -175,6 +175,12 @@
   .game .scenario .win{ color:#7ec98f; font-weight:600; }
   .game .scenario .loss{ color:#e2645a; font-weight:600; }
   .empty{ color:#8a8074; font-size:14px; }
+  @media (max-width:640px){
+    .games{ grid-template-columns:repeat(2,1fr); gap:8px; }
+    .game{ padding:12px 12px; gap:8px; }
+    .game .match{ font-size:13px; }
+    .game .scenario{ gap:8px; flex-wrap:wrap; }
+  }
 
   /* standings table */
   .standings-wrap{ overflow-x:auto; border:1px solid rgba(244,237,224,0.12); border-radius:12px; }
@@ -265,19 +271,33 @@
      via JS toggling `hidden` on each branch li's child <ul>. */
   @media (max-width:760px){
     .tree-wrap{ overflow-x:visible; }
-    .tree, .tree ul{ display:block; }
+    .tree{ display:block; }
+    .tree ul{ display:block; }
     .tree ul[hidden]{ display:none; }
     .tree li{ padding:0; margin-top:10px; }
     .tree > li{ margin-top:0; }
     .tree li::before, .tree li::after, .tree ul::before{ content:none; display:none; }
     .tree ul{ margin:10px 0 0; padding-left:16px; border-left:1px dashed rgba(244,237,224,0.16); }
-    .tree .t-node, .tree .t-node.root{ width:100%; box-sizing:border-box; }
-    .tree .t-branch{ width:auto; text-align:left; margin:4px 0 0 2px; }
+    /* the first split (root's own win/loss row) is always visible and is the
+       main thing being read on mobile, so it gets two columns; deeper
+       drill-down levels stay single-column full width — halving their
+       already-indented width a second or third time leaves too little room
+       for the card's text. */
+    .tree > li > ul{
+      display:flex; flex-wrap:wrap; gap:8px 10px;
+      margin:14px 0 0; padding-left:0; border-left:none;
+    }
+    .tree > li > ul > li{ margin-top:0; flex:1 1 calc(50% - 5px); min-width:0; box-sizing:border-box; }
+    .tree .t-node, .tree .t-node.root{ width:100%; box-sizing:border-box; padding:7px 8px 8px; }
+    .tree .t-node .pp{ font-size:.85rem; }
+    .tree .t-node.root .pp{ font-size:1.05rem; }
+    .tree .t-node .pp-label, .tree .t-node .t-opp, .tree .t-tag{ font-size:9px; }
+    .tree .t-branch{ width:auto; text-align:left; margin:4px 0 0 2px; font-size:9px; }
     .tree li[data-depth]:not([data-depth="0"]) > .t-node{
-      cursor:pointer; position:relative; padding-right:26px;
+      cursor:pointer; position:relative; padding-right:22px;
     }
     .tree li[data-depth]:not([data-depth="0"]) > .t-node::after{
-      content:'▾'; position:absolute; top:10px; right:10px; font-size:10px;
+      content:'▾'; position:absolute; top:8px; right:8px; font-size:10px;
       color:#8a8074; transition:transform .15s;
     }
     .tree li[data-depth]:not([data-depth="0"]) > .t-node[aria-expanded="false"]::after{

@@ -221,7 +221,7 @@ function magicEliminationNumber(chaserRow, rivalRow) {
   return maxPossibleWins(chaserRow) - rivalRow.wins;
 }
 
-/** Renders the "가을야구 매직넘버" card: how many combined (focus team losses + cutoff
+/** Renders the "가을야구 탈락 매직넘버" card: how many combined (focus team losses + cutoff
  * rival wins) close the door on the focus team catching that rival by win count. Reuses
  * the same allRows the standings table above it is built from, so the two never drift —
  * no separate data source, no separate build step. */
@@ -256,12 +256,12 @@ function buildMagicNumberHtml(allRows, focusTeam, cutoffRank) {
     .join('\n        ');
 
   const sub = alive
-    ? `${focusTeam}의 패 + ${cutoffTeam.team}의 승이 합쳐서 이 숫자만큼 쌓이면, 승수 기준으로는 더 이상 따라잡을 수 없다.`
-    : `${focusTeam}는 승수 기준으로 ${cutoffTeam.team}를 더 이상 추월할 수 없다.`;
+    ? `${focusTeam}가 지거나 ${cutoffTeam.team}가 이길 때마다 이 숫자가 1씩 줄어든다. 0이 되면 승수로는 ${cutoffTeam.team}를 더 이상 따라잡을 수 없다 — 그래서 "탈락" 매직넘버다.`
+    : `이미 0이다. ${focusTeam}는 이제 승수로는 ${cutoffTeam.team}를 따라잡을 수 없다.`;
 
   return `<div class="magic-card">
         <div class="magic-headline">
-          <div class="magic-headline-label">가을야구 매직넘버 · vs ${cutoffTeam.team}(현재 ${cutoffRankShown}위)</div>
+          <div class="magic-headline-label">가을야구 탈락 매직넘버 · vs ${cutoffTeam.team}(현재 ${cutoffRankShown}위)</div>
           <div class="magic-headline-number mono${alive ? '' : ' magic-headline-number--dead'}">${alive ? number : '0'}</div>
           <div class="magic-headline-sub">${sub}</div>
         </div>
@@ -269,10 +269,10 @@ function buildMagicNumberHtml(allRows, focusTeam, cutoffRank) {
         ${rows}
         </div>
         <div class="magic-footnote">
-          승수 기준 근사치다 — KBO 순위는 승률 기준이라 팀별 무승부 수 차이가 크면 실제와 오차가 있을 수 있다.
-          "5위와 격차"가 상대 성적이 멈춰 있다고 가정한 현재 시점 스냅샷이라면, 이 숫자는 ${focusTeam}의 잔여 경기까지 반영해
-          승수로 따라잡을 수 있는 여유를 계산한 값이다. 정확한 가을야구 진출 확률은 위 몬테카를로 시뮬레이션이 기준이며,
-          이 계산기는 그걸 대체하는 게 아니라 체감하기 쉬운 보조 숫자다.
+          이 숫자는 승수만 세서 계산한 값이다. KBO 순위는 승률로 정해지기 때문에, 팀마다 무승부 수가 크게 다르면
+          실제 순위와 약간 어긋날 수 있다. ${focusTeam}가 남은 경기를 전부 이겼을 때 나올 수 있는 최대 승수를 기준으로 계산했다.
+          진짜 가을야구 진출 확률이 궁금하면 위 몬테카를로 시뮬레이션 결과를 보는 게 더 정확하고, 이 숫자는 그 결과를
+          쉽게 감 잡기 위한 보조 지표일 뿐이다.
         </div>
       </div>`;
 }
