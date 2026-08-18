@@ -175,6 +175,12 @@
   .game .scenario .win{ color:#7ec98f; font-weight:600; }
   .game .scenario .loss{ color:#e2645a; font-weight:600; }
   .empty{ color:#8a8074; font-size:14px; }
+  @media (max-width:640px){
+    .games{ grid-template-columns:repeat(2,1fr); gap:8px; }
+    .game{ padding:12px 12px; gap:8px; }
+    .game .match{ font-size:13px; }
+    .game .scenario{ gap:8px; flex-wrap:wrap; }
+  }
 
   /* standings table */
   .standings-wrap{ overflow-x:auto; border:1px solid rgba(244,237,224,0.12); border-radius:12px; }
@@ -265,19 +271,33 @@
      via JS toggling `hidden` on each branch li's child <ul>. */
   @media (max-width:760px){
     .tree-wrap{ overflow-x:visible; }
-    .tree, .tree ul{ display:block; }
+    .tree{ display:block; }
+    .tree ul{ display:block; }
     .tree ul[hidden]{ display:none; }
     .tree li{ padding:0; margin-top:10px; }
     .tree > li{ margin-top:0; }
     .tree li::before, .tree li::after, .tree ul::before{ content:none; display:none; }
     .tree ul{ margin:10px 0 0; padding-left:16px; border-left:1px dashed rgba(244,237,224,0.16); }
-    .tree .t-node, .tree .t-node.root{ width:100%; box-sizing:border-box; }
-    .tree .t-branch{ width:auto; text-align:left; margin:4px 0 0 2px; }
+    /* the first split (root's own win/loss row) is always visible and is the
+       main thing being read on mobile, so it gets two columns; deeper
+       drill-down levels stay single-column full width — halving their
+       already-indented width a second or third time leaves too little room
+       for the card's text. */
+    .tree > li > ul{
+      display:flex; flex-wrap:wrap; gap:8px 10px;
+      margin:14px 0 0; padding-left:0; border-left:none;
+    }
+    .tree > li > ul > li{ margin-top:0; flex:1 1 calc(50% - 5px); min-width:0; box-sizing:border-box; }
+    .tree .t-node, .tree .t-node.root{ width:100%; box-sizing:border-box; padding:7px 8px 8px; }
+    .tree .t-node .pp{ font-size:.85rem; }
+    .tree .t-node.root .pp{ font-size:1.05rem; }
+    .tree .t-node .pp-label, .tree .t-node .t-opp, .tree .t-tag{ font-size:9px; }
+    .tree .t-branch{ width:auto; text-align:left; margin:4px 0 0 2px; font-size:9px; }
     .tree li[data-depth]:not([data-depth="0"]) > .t-node{
-      cursor:pointer; position:relative; padding-right:26px;
+      cursor:pointer; position:relative; padding-right:22px;
     }
     .tree li[data-depth]:not([data-depth="0"]) > .t-node::after{
-      content:'▾'; position:absolute; top:10px; right:10px; font-size:10px;
+      content:'▾'; position:absolute; top:8px; right:8px; font-size:10px;
       color:#8a8074; transition:transform .15s;
     }
     .tree li[data-depth]:not([data-depth="0"]) > .t-node[aria-expanded="false"]::after{
@@ -384,7 +404,7 @@
       <a class="navlink" href="history.html">역사관</a>
       <a class="navlink" href="methodology.html">방법론/FAQ</a>
     </nav>
-    <div class="badge">🦅&nbsp;<b>2026-08-18</b>&nbsp;기준 · 라이브 데이터</div>
+    <div class="badge">🦅&nbsp;<b>2026-08-19</b>&nbsp;기준 · 라이브 데이터</div>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="메뉴 열기">
       <span></span><span></span><span></span>
     </button>
@@ -395,19 +415,19 @@
   <div class="wrap">
     <div class="kicker">2026 KBO · HANWHA EAGLES</div>
     <h1 class="headline">가을야구, <em>아직</em> 살아있다.</h1>
-    <p class="lede">6위, 6.0경기차. 쉽지 않은 자리지만 수학적으로는 여전히 가능하다. 실제 KBO 기록 675경기를 근거로 리그 전체 잔여 90경기를 10만 번 시뮬레이션한 결과다.</p>
+    <p class="lede">6위, 7.0경기차. 쉽지 않은 자리지만 수학적으로는 여전히 가능하다. 실제 KBO 기록 675경기를 근거로 리그 전체 잔여 85경기를 10만 번 시뮬레이션한 결과다.</p>
 
     <div class="stat-hero">
       <div class="num" id="heroNum">0<span style="font-size:.5em;">%</span></div>
-      <div class="cap">리그 전체 잔여 90경기 기준<br><b>가을야구(5위 이내) 진출&nbsp;확률</b><br>중앙값 3.04% · 2.52–3.60%&nbsp;구간</div>
+      <div class="cap">리그 전체 잔여 85경기 기준<br><b>가을야구(5위 이내) 진출&nbsp;확률</b><br>중앙값 0.96% · 0.73–1.06%&nbsp;구간</div>
     </div>
 
     <div class="board">
       <div class="cell"><div class="l">순위</div><div class="v accent">6위</div></div>
-      <div class="cell"><div class="l">승 · 패 · 무</div><div class="v mono">48–53–3</div></div>
-      <div class="cell"><div class="l">승률</div><div class="v mono">.4752</div></div>
-      <div class="cell"><div class="l">5위와 격차</div><div class="v mono">6.0</div></div>
-      <div class="cell"><div class="l">팀 잔여 경기</div><div class="v mono">40</div></div>
+      <div class="cell"><div class="l">승 · 패 · 무</div><div class="v mono">48–54–3</div></div>
+      <div class="cell"><div class="l">승률</div><div class="v mono">.4706</div></div>
+      <div class="cell"><div class="l">5위와 격차</div><div class="v mono">7.0</div></div>
+      <div class="cell"><div class="l">팀 잔여 경기</div><div class="v mono">39</div></div>
     </div>
   </div>
 </section>
@@ -421,14 +441,14 @@
     <div class="ladder" id="ladder">
       <div class="rung hunt" data-pct="0.00"><div class="pos">1</div><div class="track"><div class="fill"></div></div><div class="pct">0%</div></div>
       <div class="rung hunt" data-pct="0.00"><div class="pos">2</div><div class="track"><div class="fill"></div></div><div class="pct">0%</div></div>
-      <div class="rung hunt" data-pct="0.05"><div class="pos">3</div><div class="track"><div class="fill"></div></div><div class="pct">0.1%</div></div>
-      <div class="rung hunt" data-pct="0.42"><div class="pos">4</div><div class="track"><div class="fill"></div></div><div class="pct">0.4%</div></div>
-      <div class="rung hunt" data-pct="2.60"><div class="pos">5</div><div class="track"><div class="fill"></div></div><div class="pct">2.6%</div></div>
+      <div class="rung hunt" data-pct="0.01"><div class="pos">3</div><div class="track"><div class="fill"></div></div><div class="pct">0.0%</div></div>
+      <div class="rung hunt" data-pct="0.08"><div class="pos">4</div><div class="track"><div class="fill"></div></div><div class="pct">0.1%</div></div>
+      <div class="rung hunt" data-pct="0.79"><div class="pos">5</div><div class="track"><div class="fill"></div></div><div class="pct">0.8%</div></div>
       <div class="cutoff"><span class="txt">↑ 가을야구</span><span class="line"></span><span class="txt">탈락 ↓</span></div>
-      <div class="rung now" data-pct="49.87"><div class="pos">6</div><div class="track"><div class="fill"></div></div><div class="pct">49.9%</div></div>
-      <div class="rung " data-pct="31.52"><div class="pos">7</div><div class="track"><div class="fill"></div></div><div class="pct">31.5%</div></div>
-      <div class="rung " data-pct="14.59"><div class="pos">8</div><div class="track"><div class="fill"></div></div><div class="pct">14.6%</div></div>
-      <div class="rung " data-pct="0.95"><div class="pos">9</div><div class="track"><div class="fill"></div></div><div class="pct">0.9%</div></div>
+      <div class="rung now" data-pct="48.00"><div class="pos">6</div><div class="track"><div class="fill"></div></div><div class="pct">48.0%</div></div>
+      <div class="rung " data-pct="29.43"><div class="pos">7</div><div class="track"><div class="fill"></div></div><div class="pct">29.4%</div></div>
+      <div class="rung " data-pct="19.33"><div class="pos">8</div><div class="track"><div class="fill"></div></div><div class="pct">19.3%</div></div>
+      <div class="rung " data-pct="2.36"><div class="pos">9</div><div class="track"><div class="fill"></div></div><div class="pct">2.4%</div></div>
       <div class="rung " data-pct="0.00"><div class="pos">10</div><div class="track"><div class="fill"></div></div><div class="pct">0%</div></div>
     </div>
   </div>
@@ -443,16 +463,16 @@
       <table class="standings">
         <thead><tr><th>순위</th><th>팀</th><th>승</th><th>패</th><th>무</th><th>승률</th><th>1위와 격차</th></tr></thead>
         <tbody>
-          <tr class="hunt"><td>1</td><td>KT</td><td>62</td><td>39</td><td>2</td><td>.6139</td><td>-</td></tr>
-        <tr class="hunt"><td>2</td><td>SAMSUNG</td><td>62</td><td>41</td><td>2</td><td>.6019</td><td>1.0</td></tr>
-        <tr class="hunt"><td>3</td><td>LG</td><td>58</td><td>48</td><td>1</td><td>.5472</td><td>6.5</td></tr>
-        <tr class="hunt"><td>4</td><td>KIA</td><td>56</td><td>48</td><td>2</td><td>.5385</td><td>7.5</td></tr>
-        <tr class="hunt"><td>5</td><td>DOOSAN</td><td>55</td><td>48</td><td>4</td><td>.5340</td><td>8.0</td></tr><tr class="cutoff-row"><td colspan="7"><span class="line"></span></td></tr>
-        <tr class="me"><td>6</td><td>HANWHA</td><td>48</td><td>53</td><td>3</td><td>.4752</td><td>14.0</td></tr>
-        <tr class=""><td>7</td><td>NC</td><td>46</td><td>52</td><td>2</td><td>.4694</td><td>14.5</td></tr>
-        <tr class=""><td>8</td><td>LOTTE</td><td>46</td><td>57</td><td>2</td><td>.4466</td><td>17.0</td></tr>
-        <tr class=""><td>9</td><td>SSG</td><td>43</td><td>62</td><td>4</td><td>.4095</td><td>21.0</td></tr>
-        <tr class=""><td>10</td><td>KIWOOM</td><td>40</td><td>68</td><td>2</td><td>.3704</td><td>25.5</td></tr>
+          <tr class="hunt"><td>1</td><td>KT</td><td>62</td><td>40</td><td>2</td><td>.6078</td><td>-</td></tr>
+        <tr class="hunt"><td>2</td><td>SAMSUNG</td><td>62</td><td>42</td><td>2</td><td>.5962</td><td>1.0</td></tr>
+        <tr class="hunt"><td>3</td><td>LG</td><td>59</td><td>48</td><td>1</td><td>.5514</td><td>5.5</td></tr>
+        <tr class="hunt"><td>4</td><td>KIA</td><td>57</td><td>48</td><td>2</td><td>.5429</td><td>6.5</td></tr>
+        <tr class="hunt"><td>5</td><td>DOOSAN</td><td>56</td><td>48</td><td>4</td><td>.5385</td><td>7.0</td></tr><tr class="cutoff-row"><td colspan="7"><span class="line"></span></td></tr>
+        <tr class="me"><td>6</td><td>HANWHA</td><td>48</td><td>54</td><td>3</td><td>.4706</td><td>14.0</td></tr>
+        <tr class=""><td>7</td><td>NC</td><td>46</td><td>53</td><td>2</td><td>.4646</td><td>14.5</td></tr>
+        <tr class=""><td>8</td><td>LOTTE</td><td>47</td><td>57</td><td>2</td><td>.4519</td><td>16.0</td></tr>
+        <tr class=""><td>9</td><td>SSG</td><td>44</td><td>62</td><td>4</td><td>.4151</td><td>20.0</td></tr>
+        <tr class=""><td>10</td><td>KIWOOM</td><td>40</td><td>69</td><td>2</td><td>.3670</td><td>25.5</td></tr>
         </tbody>
       </table>
     </div>
@@ -460,47 +480,47 @@
     <div class="magic-wrap">
       <div class="magic-card">
         <div class="magic-headline">
-          <div class="magic-headline-label">가을야구 매직넘버 · vs DOOSAN(현재 5위)</div>
-          <div class="magic-headline-number mono">33</div>
-          <div class="magic-headline-sub">HANWHA의 패 + DOOSAN의 승이 합쳐서 이 숫자만큼 쌓이면, 승수 기준으로는 더 이상 따라잡을 수 없다.</div>
+          <div class="magic-headline-label">가을야구 탈락 매직넘버 · vs DOOSAN(현재 5위)</div>
+          <div class="magic-headline-number mono">31</div>
+          <div class="magic-headline-sub">HANWHA가 지거나 DOOSAN가 이길 때마다 이 숫자가 1씩 줄어든다. 0이 되면 승수로는 DOOSAN를 더 이상 따라잡을 수 없다 — 그래서 "탈락" 매직넘버다.</div>
         </div>
         <div class="magic-list">
         <div class="magic-row">
           <span class="magic-rank">1위</span>
           <span class="magic-team">KT</span>
-          <span class="magic-record mono">62승 39패 2무</span>
-          <span class="magic-number mono">26</span>
+          <span class="magic-record mono">62승 40패 2무</span>
+          <span class="magic-number mono">25</span>
         </div>
         <div class="magic-row">
           <span class="magic-rank">2위</span>
           <span class="magic-team">SAMSUNG</span>
-          <span class="magic-record mono">62승 41패 2무</span>
-          <span class="magic-number mono">26</span>
+          <span class="magic-record mono">62승 42패 2무</span>
+          <span class="magic-number mono">25</span>
         </div>
         <div class="magic-row">
           <span class="magic-rank">3위</span>
           <span class="magic-team">LG</span>
-          <span class="magic-record mono">58승 48패 1무</span>
-          <span class="magic-number mono">30</span>
+          <span class="magic-record mono">59승 48패 1무</span>
+          <span class="magic-number mono">28</span>
         </div>
         <div class="magic-row">
           <span class="magic-rank">4위</span>
           <span class="magic-team">KIA</span>
-          <span class="magic-record mono">56승 48패 2무</span>
-          <span class="magic-number mono">32</span>
+          <span class="magic-record mono">57승 48패 2무</span>
+          <span class="magic-number mono">30</span>
         </div>
         <div class="magic-row magic-row--cutoff">
           <span class="magic-rank">5위</span>
           <span class="magic-team">DOOSAN</span>
-          <span class="magic-record mono">55승 48패 4무</span>
-          <span class="magic-number mono">33</span>
+          <span class="magic-record mono">56승 48패 4무</span>
+          <span class="magic-number mono">31</span>
         </div>
         </div>
         <div class="magic-footnote">
-          승수 기준 근사치다 — KBO 순위는 승률 기준이라 팀별 무승부 수 차이가 크면 실제와 오차가 있을 수 있다.
-          "5위와 격차"가 상대 성적이 멈춰 있다고 가정한 현재 시점 스냅샷이라면, 이 숫자는 HANWHA의 잔여 경기까지 반영해
-          승수로 따라잡을 수 있는 여유를 계산한 값이다. 정확한 가을야구 진출 확률은 위 몬테카를로 시뮬레이션이 기준이며,
-          이 계산기는 그걸 대체하는 게 아니라 체감하기 쉬운 보조 숫자다.
+          이 숫자는 승수만 세서 계산한 값이다. KBO 순위는 승률로 정해지기 때문에, 팀마다 무승부 수가 크게 다르면
+          실제 순위와 약간 어긋날 수 있다. HANWHA가 남은 경기를 전부 이겼을 때 나올 수 있는 최대 승수를 기준으로 계산했다.
+          진짜 가을야구 진출 확률이 궁금하면 위 몬테카를로 시뮬레이션 결과를 보는 게 더 정확하고, 이 숫자는 그 결과를
+          쉽게 감 잡기 위한 보조 지표일 뿐이다.
         </div>
       </div>
     </div>
@@ -515,40 +535,40 @@
 
     <div class="games">
       <div class="game">
-        <div class="date">8월 23일</div>
-        <div class="match">LG<span class="vs">vs</span>HANWHA</div>
-        <div class="impact"><div class="bar"><i style="width:100%"></i></div></div>
-        <div class="scenario"><span class="win">이기면 4.90%</span><span class="loss">지면 1.40%</span></div>
-      </div>
-      <div class="game">
-        <div class="date">8월 18일</div>
-        <div class="match">KIA<span class="vs">vs</span>HANWHA</div>
-        <div class="impact"><div class="bar"><i style="width:98%"></i></div></div>
-        <div class="scenario"><span class="win">이기면 4.88%</span><span class="loss">지면 1.44%</span></div>
-      </div>
-      <div class="game">
         <div class="date">8월 19일</div>
         <div class="match">KIA<span class="vs">vs</span>HANWHA</div>
-        <div class="impact"><div class="bar"><i style="width:97%"></i></div></div>
-        <div class="scenario"><span class="win">이기면 4.70%</span><span class="loss">지면 1.30%</span></div>
+        <div class="impact"><div class="bar"><i style="width:100%"></i></div></div>
+        <div class="scenario"><span class="win">이기면 1.54%</span><span class="loss">지면 0.24%</span></div>
+      </div>
+      <div class="game">
+        <div class="date">8월 21일</div>
+        <div class="match">LG<span class="vs">vs</span>HANWHA</div>
+        <div class="impact"><div class="bar"><i style="width:92%"></i></div></div>
+        <div class="scenario"><span class="win">이기면 1.44%</span><span class="loss">지면 0.24%</span></div>
+      </div>
+      <div class="game">
+        <div class="date">8월 23일</div>
+        <div class="match">LG<span class="vs">vs</span>HANWHA</div>
+        <div class="impact"><div class="bar"><i style="width:89%"></i></div></div>
+        <div class="scenario"><span class="win">이기면 1.46%</span><span class="loss">지면 0.30%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 29일</div>
         <div class="match">NC<span class="vs">vs</span>HANWHA</div>
-        <div class="impact"><div class="bar"><i style="width:89%"></i></div></div>
-        <div class="scenario"><span class="win">이기면 4.64%</span><span class="loss">지면 1.54%</span></div>
+        <div class="impact"><div class="bar"><i style="width:80%"></i></div></div>
+        <div class="scenario"><span class="win">이기면 1.40%</span><span class="loss">지면 0.36%</span></div>
       </div>
       <div class="game">
         <div class="date">8월 22일</div>
         <div class="match">LG<span class="vs">vs</span>HANWHA</div>
-        <div class="impact"><div class="bar"><i style="width:87%"></i></div></div>
-        <div class="scenario"><span class="win">이기면 4.58%</span><span class="loss">지면 1.54%</span></div>
+        <div class="impact"><div class="bar"><i style="width:78%"></i></div></div>
+        <div class="scenario"><span class="win">이기면 1.38%</span><span class="loss">지면 0.36%</span></div>
       </div>
       <div class="game">
-        <div class="date">8월 20일</div>
-        <div class="match">KIA<span class="vs">vs</span>HANWHA</div>
-        <div class="impact"><div class="bar"><i style="width:85%"></i></div></div>
-        <div class="scenario"><span class="win">이기면 4.52%</span><span class="loss">지면 1.56%</span></div>
+        <div class="date">8월 30일</div>
+        <div class="match">NC<span class="vs">vs</span>HANWHA</div>
+        <div class="impact"><div class="bar"><i style="width:77%"></i></div></div>
+        <div class="scenario"><span class="win">이기면 1.44%</span><span class="loss">지면 0.44%</span></div>
       </div>
     </div>
   </div>
@@ -558,42 +578,42 @@
   <div class="wrap">
     <div class="eyebrow2">3연전을 갈림길로 펼치면</div>
     <h2 class="sec-title">가을야구, 어디까지 갈 수 있나</h2>
-    <p class="sec-desc">위 세 경기(8/18 KIA, 8/19 KIA, 8/20 KIA)를 승/패로 끝까지 갈라서 재시뮬레이션했다. <b style="color:#f4ede0">3연승하면 10.38%</b>까지 오르고, <b style="color:#f4ede0">3연패하면 0.29%</b>로 사실상 끝난다. 확정된 결과가 아니라 각 갈림길 시점의 조건부 시뮬레이션 수치다.</p>
+    <p class="sec-desc">위 세 경기(8/19 KIA, 8/20 KIA, 8/21 LG)를 승/패로 끝까지 갈라서 재시뮬레이션했다. <b style="color:#f4ede0">3연승하면 3.45%</b>까지 오르고, <b style="color:#f4ede0">3연패하면 0.01%</b>로 사실상 끝난다. 확정된 결과가 아니라 각 갈림길 시점의 조건부 시뮬레이션 수치다.</p>
 
     <div class="tree-wrap">
       <ul class="tree">
       <li data-depth="0">
           <div class="t-node root">
             <span class="t-tag now">현재</span>
-            <div class="pp mono">3.07%</div>
+            <div class="pp mono">0.88%</div>
             <div class="pp-label">가을야구 확률</div>
           </div>
-          <span class="t-branch">8/18 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/19 KIA(홈)<br><b>승리확률 50.76%</b></span>
           <ul>
             <li data-depth="1">
           <div class="t-node">
-            <span class="t-tag win">8/18 승</span>
-            <div class="pp mono">4.64%</div>
+            <span class="t-tag win">8/19 승</span>
+            <div class="pp mono">1.37%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:45%"></i></div>
+            <div class="t-bar"><i style="width:40%"></i></div>
             <div class="t-opp">vs KIA 원정</div>
           </div>
-          <span class="t-branch">8/19 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 50.76%</b></span>
           <ul>
             <li data-depth="2">
           <div class="t-node">
-            <span class="t-tag win">8/19 승</span>
-            <div class="pp mono">6.94%</div>
+            <span class="t-tag win">8/20 승</span>
+            <div class="pp mono">2.27%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:67%"></i></div>
+            <div class="t-bar"><i style="width:66%"></i></div>
             <div class="t-opp">vs KIA 원정</div>
           </div>
-          <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/21 LG(홈)<br><b>승리확률 52.44%</b></span>
           <ul>
             <li>
           <div class="t-node">
-            <span class="t-tag win">8/20 승</span>
-            <div class="pp mono">10.38%</div>
+            <span class="t-tag win">8/21 승</span>
+            <div class="pp mono">3.45%</div>
             <div class="pp-label">가을야구</div>
             <div class="t-bar"><i style="width:100%"></i></div>
             <div class="t-opp">3연승</div>
@@ -601,10 +621,10 @@
         </li>
             <li>
           <div class="t-node">
-            <span class="t-tag loss">8/20 패</span>
-            <div class="pp mono">3.43%</div>
+            <span class="t-tag loss">8/21 패</span>
+            <div class="pp mono">1.04%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:33%"></i></div>
+            <div class="t-bar"><i style="width:30%"></i></div>
             <div class="t-opp">2승1패</div>
           </div>
         </li>
@@ -612,29 +632,29 @@
         </li>
             <li data-depth="2">
           <div class="t-node">
-            <span class="t-tag loss">8/19 패</span>
-            <div class="pp mono">2.31%</div>
+            <span class="t-tag loss">8/20 패</span>
+            <div class="pp mono">0.52%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:22%"></i></div>
+            <div class="t-bar"><i style="width:15%"></i></div>
             <div class="t-opp">vs KIA 원정</div>
           </div>
-          <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/21 LG(홈)<br><b>승리확률 52.44%</b></span>
           <ul>
             <li>
           <div class="t-node">
-            <span class="t-tag win">8/20 승</span>
-            <div class="pp mono">3.43%</div>
+            <span class="t-tag win">8/21 승</span>
+            <div class="pp mono">0.86%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:33%"></i></div>
+            <div class="t-bar"><i style="width:25%"></i></div>
             <div class="t-opp">2승1패</div>
           </div>
         </li>
             <li>
           <div class="t-node">
-            <span class="t-tag loss">8/20 패</span>
-            <div class="pp mono">1.06%</div>
+            <span class="t-tag loss">8/21 패</span>
+            <div class="pp mono">0.14%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:10%"></i></div>
+            <div class="t-bar"><i style="width:4%"></i></div>
             <div class="t-opp">1승2패</div>
           </div>
         </li>
@@ -644,39 +664,39 @@
         </li>
             <li data-depth="1">
           <div class="t-node">
-            <span class="t-tag loss">8/18 패</span>
-            <div class="pp mono">1.46%</div>
+            <span class="t-tag loss">8/19 패</span>
+            <div class="pp mono">0.32%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:14%"></i></div>
+            <div class="t-bar"><i style="width:9%"></i></div>
             <div class="t-opp">vs KIA 원정</div>
           </div>
-          <span class="t-branch">8/19 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 50.76%</b></span>
           <ul>
             <li data-depth="2">
           <div class="t-node">
-            <span class="t-tag win">8/19 승</span>
-            <div class="pp mono">2.31%</div>
+            <span class="t-tag win">8/20 승</span>
+            <div class="pp mono">0.52%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:22%"></i></div>
+            <div class="t-bar"><i style="width:15%"></i></div>
             <div class="t-opp">vs KIA 원정</div>
           </div>
-          <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/21 LG(홈)<br><b>승리확률 52.44%</b></span>
           <ul>
             <li>
           <div class="t-node">
-            <span class="t-tag win">8/20 승</span>
-            <div class="pp mono">3.43%</div>
+            <span class="t-tag win">8/21 승</span>
+            <div class="pp mono">0.86%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:33%"></i></div>
+            <div class="t-bar"><i style="width:25%"></i></div>
             <div class="t-opp">2승1패</div>
           </div>
         </li>
             <li>
           <div class="t-node">
-            <span class="t-tag loss">8/20 패</span>
-            <div class="pp mono">1.06%</div>
+            <span class="t-tag loss">8/21 패</span>
+            <div class="pp mono">0.14%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:10%"></i></div>
+            <div class="t-bar"><i style="width:4%"></i></div>
             <div class="t-opp">1승2패</div>
           </div>
         </li>
@@ -684,29 +704,29 @@
         </li>
             <li data-depth="2">
           <div class="t-node">
-            <span class="t-tag loss">8/19 패</span>
-            <div class="pp mono">0.64%</div>
+            <span class="t-tag loss">8/20 패</span>
+            <div class="pp mono">0.14%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:6%"></i></div>
+            <div class="t-bar"><i style="width:4%"></i></div>
             <div class="t-opp">vs KIA 원정</div>
           </div>
-          <span class="t-branch">8/20 KIA(홈)<br><b>승리확률 51.36%</b></span>
+          <span class="t-branch">8/21 LG(홈)<br><b>승리확률 52.44%</b></span>
           <ul>
             <li>
           <div class="t-node">
-            <span class="t-tag win">8/20 승</span>
-            <div class="pp mono">1.06%</div>
+            <span class="t-tag win">8/21 승</span>
+            <div class="pp mono">0.21%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:10%"></i></div>
+            <div class="t-bar"><i style="width:6%"></i></div>
             <div class="t-opp">1승2패</div>
           </div>
         </li>
             <li>
           <div class="t-node">
-            <span class="t-tag loss">8/20 패</span>
-            <div class="pp mono">0.29%</div>
+            <span class="t-tag loss">8/21 패</span>
+            <div class="pp mono">0.01%</div>
             <div class="pp-label">가을야구</div>
-            <div class="t-bar"><i style="width:3%"></i></div>
+            <div class="t-bar"><i style="width:1%"></i></div>
             <div class="t-opp">3연패</div>
           </div>
         </li>
@@ -721,10 +741,16 @@
 
     <div class="h2h-grid">
       <div class="h2h-card">
-        <div class="h2h-name">KIA (8/18, 8/19, 8/20)</div>
-        <div class="h2h-rec mono">6승 6패<span class="pct">.500</span></div>
-        <div class="h2h-note">2026시즌 12경기</div>
-        <div class="h2h-bar"><span class="w" style="width:50%"></span><span class="d" style="width:0%"></span><span class="l" style="width:50%"></span></div>
+        <div class="h2h-name">KIA (8/19, 8/20)</div>
+        <div class="h2h-rec mono">6승 7패<span class="pct">.462</span></div>
+        <div class="h2h-note">2026시즌 13경기</div>
+        <div class="h2h-bar"><span class="w" style="width:46%"></span><span class="d" style="width:0%"></span><span class="l" style="width:54%"></span></div>
+      </div>
+      <div class="h2h-card">
+        <div class="h2h-name">LG (8/21)</div>
+        <div class="h2h-rec mono">6승 5패<span class="pct">.545</span></div>
+        <div class="h2h-note">2026시즌 11경기</div>
+        <div class="h2h-bar"><span class="w" style="width:55%"></span><span class="d" style="width:0%"></span><span class="l" style="width:45%"></span></div>
       </div>
     </div>
 
@@ -779,7 +805,7 @@
       "N연승·N연패 시 확률" 같은 갈림길(트리) 수치는 한화의 해당 경기 결과만 고정하고, 같은 날 열리는 다른 구단들의 경기는 여전히 알 수 없는 것으로 두고 시뮬레이션한 조건부 값입니다. 다음 날 실제 확률은 한화의 결과뿐 아니라 그날 있었던 다른 구단들의 실제 경기 결과까지 반영해 다시 계산되므로, 예를 들어 "지면 X%"로 나왔던 갈림길 값과 실제로 진 다음 날의 확률이 서로 다를 수 있습니다 — 오류가 아니라, 후자가 더 많은 정보를 반영한 값이기 때문입니다.
     </p>
     <div class="foot-row">
-      <span>기준일 2026-08-18 · 데이터 출처 koreabaseball.com</span>
+      <span>기준일 2026-08-19 · 데이터 출처 koreabaseball.com</span>
       <span>매일 경기 종료 후 자동 갱신</span>
     </div>
     <div class="legal-mark">
@@ -916,7 +942,7 @@
 
   // hero count-up
   var heroNum = document.getElementById('heroNum');
-  var target = 3.07;
+  var target = 0.88;
   if (reduced) {
     heroNum.innerHTML = target.toFixed(2) + '<span style="font-size:.5em;">%</span>';
   } else {
