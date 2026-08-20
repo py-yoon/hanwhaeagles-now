@@ -2,18 +2,48 @@ window.EAGLES_GAMES_2026 = {
   "meta": {
     "season": 2026,
     "team": "HANWHA",
-    "generated": "2026-08-18",
+    "generated": "2026-08-20",
     "source": "data/raw/production-2026.json + data/live/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
     "record": {
       "wins": 48,
-      "losses": 54,
+      "losses": 56,
       "draws": 3,
-      "games": 105
+      "games": 107
     },
-    "games_with_starters": 105,
-    "games_with_swings": 105
+    "games_with_starters": 107,
+    "games_with_swings": 107
   },
   "games": [
+    {
+      "game_id": "20260820-KIA-HANWHA-1",
+      "date": "2026-08-20",
+      "home": true,
+      "opponent": "KIA",
+      "hanwhaScore": 6,
+      "oppScore": 10,
+      "stadium": "대전",
+      "result": "LOSS",
+      "hanwhaStarter": "류현진",
+      "oppStarter": "황동하",
+      "probabilityDeltaPct": -0.15,
+      "probabilityBefore": 0.0018,
+      "probabilityAfter": 0.0003
+    },
+    {
+      "game_id": "20260819-KIA-HANWHA-1",
+      "date": "2026-08-19",
+      "home": true,
+      "opponent": "KIA",
+      "hanwhaScore": 3,
+      "oppScore": 6,
+      "stadium": "대전",
+      "result": "LOSS",
+      "hanwhaStarter": "화이트",
+      "oppStarter": "시라카와",
+      "probabilityDeltaPct": -0.52,
+      "probabilityBefore": 0.0086,
+      "probabilityAfter": 0.0034
+    },
     {
       "game_id": "20260818-KIA-HANWHA-1",
       "date": "2026-08-18",
