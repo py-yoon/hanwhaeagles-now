@@ -2,18 +2,33 @@ window.EAGLES_GAMES_2026 = {
   "meta": {
     "season": 2026,
     "team": "HANWHA",
-    "generated": "2026-08-20",
+    "generated": "2026-08-21",
     "source": "data/raw/production-2026.json + data/live/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
     "record": {
-      "wins": 48,
+      "wins": 49,
       "losses": 56,
       "draws": 3,
-      "games": 107
+      "games": 108
     },
-    "games_with_starters": 107,
-    "games_with_swings": 107
+    "games_with_starters": 108,
+    "games_with_swings": 108
   },
   "games": [
+    {
+      "game_id": "20260821-LG-HANWHA-1",
+      "date": "2026-08-21",
+      "home": true,
+      "opponent": "LG",
+      "hanwhaScore": 15,
+      "oppScore": 11,
+      "stadium": "대전",
+      "result": "WIN",
+      "hanwhaStarter": "짐머맨",
+      "oppStarter": "송승기",
+      "probabilityDeltaPct": 0.08,
+      "probabilityBefore": 0.0007,
+      "probabilityAfter": 0.0015
+    },
     {
       "game_id": "20260820-KIA-HANWHA-1",
       "date": "2026-08-20",
