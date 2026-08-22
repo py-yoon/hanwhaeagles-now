@@ -2,7 +2,7 @@ window.EAGLES_GAMES_2026 = {
   "meta": {
     "season": 2026,
     "team": "HANWHA",
-    "generated": "2026-08-21",
+    "generated": "2026-08-22",
     "source": "data/raw/production-2026.json + data/live/box-scores-2026.json (선발투수는 KBO 박스스코어 투수 등판 순서 중 첫 번째로 추정)",
     "record": {
       "wins": 49,
